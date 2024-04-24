@@ -5,7 +5,52 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/GameMenu.unity
+    guid: a57a3231e5294184fbbfd7ba942e605c
+  - enabled: 0
+    path: Assets/Scenes/LevelSelection.unity
+    guid: 0f3d6eea751a219438d750e6a89e62b4
+  - enabled: 0
+    path: Assets/Scenes/Lore.unity
+    guid: 3710da1d1201c2249898070c9e60ced8
+  - enabled: 0
+    path: Assets/Scenes/Village_1.unity
+    guid: 9b2ffe1e0d41d504e883cc7635a21985
+  - enabled: 0
+    path: Assets/Scenes/Field_2.unity
+    guid: 9a5dc18a3e7c59141b1530578cb2648f
+  - enabled: 0
+    path: Assets/Scenes/Level 3.unity
+    guid: 83978f7aaf307f94490cac298642f691
+  - enabled: 0
+    path: Assets/Scenes/Level_4Autumn.unity
+    guid: abe81caf05b144544885bd9943d895f0
+  - enabled: 0
+    path: Assets/Scenes/Caves_5.unity
+    guid: e465668aafc35ef4b91d79100c27e41f
+  - enabled: 0
+    path: Assets/Scenes/Caves_6.unity
+    guid: 7eed1d538ceb3d043b12d841dfe08302
+  - enabled: 0
+    path: Assets/Scenes/IceLake_7.unity
+    guid: 27feeb1743485bb49b5e678ef24ec18e
+  - enabled: 0
+    path: Assets/Scenes/WinterForest_8.unity
+    guid: 51de8218a654b4b429a46d9812aec9f7
+  - enabled: 0
+    path: Assets/Scenes/WinterForest_9.unity
+    guid: 384860df67738c246a1069d2924ff24b
+  - enabled: 0
+    path: Assets/Scenes/Epilogue.unity
+    guid: ca0a4afc698aa994eb9d0f07a8a377b3
+  - enabled: 0
+    path: Assets/Scenes/Final.unity
+    guid: a916b18b439f5c44cae77f79a70d596e
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/GlavnoeMenu.unity
+    guid: 364aee95fafd154459a09eec017a7da7
+  - enabled: 1
+    path: Assets/Scenes/subtitles.unity
+    guid: f5acf018e7f3ef24581ea5f12fe5be22
   m_configObjects: {}
