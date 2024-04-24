@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Wolf.prefab.meta
+<<<<<<< Updated upstream
+guid: b3ff715de7cc2c4489e9501fc54fc6c5
+=======
+guid: 4194fef14f258da4bb7da6f91927099c
+>>>>>>> Stashed changes
+PrefabImporter:
+========
+guid: c6edba5a88bd03445bc959229a548eb5
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> LevelSelection:Assets/Prefabs/LevelSelectionsButtons.meta
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

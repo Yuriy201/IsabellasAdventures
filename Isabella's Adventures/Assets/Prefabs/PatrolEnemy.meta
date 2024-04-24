@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Enemy/EnemyWithDamage.meta
+guid: b7356edf319bf8c4181b58c496885356
+========
+guid: b74e5c3d413ce5d43bbd877dc8f155e6
+>>>>>>>> PlayerAndWolf:Assets/Prefabs/PatrolEnemy.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

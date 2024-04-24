@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Items/arrow.prefab.meta
+guid: ddb2603f7043b9a4ebbd63c0b174ca7f
+PrefabImporter:
+========
+guid: d0baf960c4da6da4f93796e277fccc17
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> LevelSelection:Assets/Scripts/SwitchLevel.meta
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

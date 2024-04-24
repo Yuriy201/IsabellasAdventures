@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Tiles.meta
+<<<<<<< Updated upstream
+guid: 0f3d6eea751a219438d750e6a89e62b4
+=======
+guid: d47e3ffe35a8d6a4aa099fd59e783e79
+>>>>>>> Stashed changes
+folderAsset: yes
+========
+guid: e89e14b2a9757da418f1250886a3a1fd
+>>>>>>>> LevelSelection:Assets/Scenes/LevelSelection.unity.meta
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

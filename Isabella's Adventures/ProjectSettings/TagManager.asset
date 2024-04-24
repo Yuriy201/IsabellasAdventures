@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Platform
+  - Potion
+  - Tablet
+  - Coin
+  - CharacterSpawnPoint
+  - Background
+  - Hurt
+  - Attack
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -11,11 +21,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - items
+  - Enemy
+  - Player
+  - Arrow
   - 
   - 
   - 

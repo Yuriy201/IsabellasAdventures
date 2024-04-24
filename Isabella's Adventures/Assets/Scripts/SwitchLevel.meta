@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Items/arrow.prefab.meta
+<<<<<<< Updated upstream
+guid: 45607bbccdaee43439f012860bdf4268
+=======
+guid: 9da707fa3b4baab44ba1fe25669902c0
+>>>>>>> Stashed changes
+PrefabImporter:
+========
+guid: d0baf960c4da6da4f93796e277fccc17
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> LevelSelection:Assets/Scripts/SwitchLevel.meta
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

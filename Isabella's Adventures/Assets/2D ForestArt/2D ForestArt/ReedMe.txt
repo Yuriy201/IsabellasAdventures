@@ -1,0 +1,29 @@
+
+Thank you for your purchase.
+
+
+*** 2D ForestArt - Read Me - ***
+
+
+This is a set of background image and forest elements for 2D games.
+
+
+== Description ==
+
+Usage is very simple.
+
+Place the background image in the beginning.
+Then, place the forest elements.
+
+It looks naturally by changing the size in the same parts.
+
+Since there is a forest element that changed the color to blend into the background image,
+please use the forest elements adapted to the background image, respectively.
+
+Background image so that you can create a background image that follows indefinitely, 
+combined connects the background image because it is drawn as the left and right edges come together.
+This is suitable for the background of the game to move a lot of players. (For example, Flxxpy Bird)
+
+
+
+
