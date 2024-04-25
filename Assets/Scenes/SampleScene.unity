@@ -780,10 +780,10 @@ MonoBehaviour:
   _jumpForce: 7
   _checkGrondSphere: {fileID: 655697854}
   _checkGroundSphereRadius: 0.17
-  _playerLayer:
+  _ignoredLayers:
     serializedVersion: 2
     m_Bits: 8
-  _animator: {fileID: 1490014686}
+  _reloadTime: 1
 --- !u!70 &1884391156
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

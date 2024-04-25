@@ -5,6 +5,7 @@ public abstract class InputHandler : MonoBehaviour
 {
     public Vector2 Directon { get; protected set; }
     public event Action JumpButtonDown;
+    public event Action FireButtonDown;
     
     private void Update()
     {
@@ -14,8 +15,7 @@ public abstract class InputHandler : MonoBehaviour
 
     protected abstract void GetDirection();
 
-    protected void InvokeJumpAction()
-    {
-        JumpButtonDown?.Invoke();
-    }
+    protected void InvokeJumpAction() => JumpButtonDown?.Invoke();
+
+    protected void InvokeFireAction() => FireButtonDown?.Invoke();
 }

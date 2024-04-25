@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class DefaultPcInputHandler: InputHandler
+public class PcInputHandler: InputHandler
 {
     private InputSettings _playerInput;
     
@@ -12,12 +12,9 @@ public class DefaultPcInputHandler: InputHandler
 
     private void Update()
     {
-        if (_playerInput.Gameplay.Jump.IsPressed())
-        {
-            InvokeJumpAction();
-        }
-        
         GetDirection();
+        if (_playerInput.Gameplay.Jump.IsPressed()) InvokeJumpAction();
+        if (_playerInput.Gameplay.Fire.IsPressed()) InvokeFireAction();
     }
     
     protected override void GetDirection()
