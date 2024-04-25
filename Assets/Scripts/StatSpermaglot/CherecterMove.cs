@@ -11,6 +11,7 @@ public class CherecterMove: MonoBehaviour
     [SerializeField] private Transform _checkGrondSphere;
     [SerializeField] private float _checkGroundSphereRadius;
     [SerializeField] private LayerMask _playerLayer;
+    [SerializeField] private Animator _animator;
     
     private Rigidbody2D _rb;
     private InputHandler _inputHandler;
@@ -28,9 +29,24 @@ public class CherecterMove: MonoBehaviour
 
     private void Update()
     {
-        _rb.velocity = new Vector2(_inputHandler.Directon.x * _speed, _rb.velocity.y);
+        Walk();
     }
 
+    private void Walk()
+    {
+        _rb.velocity = new Vector2(_inputHandler.Directon.x * _speed, _rb.velocity.y);
+        _animator.SetFloat("Speed", Mathf.Abs(_rb.velocity.x));
+
+        if (_rb.velocity.x < 0)
+        {
+            transform.localScale = new Vector2(-1f, 1f);
+        }
+        else if (_rb.velocity.x > 0)
+        {
+            transform.localScale = new Vector2(1f, 1f);
+        }
+    }
+    
     private void Jump()
     {
         if (Physics2D.OverlapCircle(_checkGrondSphere.position, _checkGroundSphereRadius, ~_playerLayer))
