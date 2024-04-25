@@ -777,7 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
-  _jumpForce: 5
+  _jumpForce: 7
   _checkGrondSphere: {fileID: 655697854}
   _checkGroundSphereRadius: 0.17
   _playerLayer:
