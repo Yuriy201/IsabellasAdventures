@@ -9,7 +9,7 @@
                     "name": "Movement",
                     "type": "Value",
                     "id": "097858be-bca6-4a6c-a3bd-a6bf0472c6cb",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -35,9 +35,9 @@
             ],
             "bindings": [
                 {
-                    "name": "2D Vector",
+                    "name": "1D Axis",
                     "id": "e3dc2d5c-25fa-4fb1-9489-5af8939eed6f",
-                    "path": "2DVector",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -46,7 +46,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "left",
+                    "name": "Negative",
                     "id": "94c18f79-0667-4aa7-9d69-d8796b99877c",
                     "path": "<Keyboard>/a",
                     "interactions": "",
@@ -57,7 +57,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
+                    "name": "Positive",
                     "id": "d2903533-ceba-49af-8b00-ae4698327e5b",
                     "path": "<Keyboard>/d",
                     "interactions": "",
@@ -96,7 +96,7 @@
             "id": "1bd863d7-9f87-4f3c-b4c5-aa6dfe69385c",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "OpenInventory",
                     "type": "Button",
                     "id": "17d55dce-7261-4ad9-9f3a-a67cbe21d55e",
                     "expectedControlType": "Button",
@@ -109,11 +109,11 @@
                 {
                     "name": "",
                     "id": "44f865d7-d2b1-4dbc-8235-3efb74ccc165",
-                    "path": "",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "New action",
+                    "action": "OpenInventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
