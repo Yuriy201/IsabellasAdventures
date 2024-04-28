@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask _ignoredLayers;
 
     [Space]
+    [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private Transform _shootPoint;
     [SerializeField] private float _reloadTime;
 
     private Animator _animator;
@@ -32,16 +34,17 @@ public class Player : MonoBehaviour
     private Vector2 _rightFaceRotation = new Vector2(1, 1);
     #endregion
 
-    [Inject]
-    private void Inject(InputHandler inputHandler)
-    {
-        _inputHandler = inputHandler;
-    }
+    //[Inject]
+    //private void Inject(InputHandler inputHandler)
+    //{
+    //    _inputHandler = inputHandler;
+    //}
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
+        _inputHandler = GetComponent<InputHandler>();
     }
 
     private void Update()
@@ -61,11 +64,11 @@ public class Player : MonoBehaviour
     {
         if (_rb.velocity.x < 0)
         {
-            transform.localScale = _leftFaceRotation;
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
         else if (_rb.velocity.x > 0)
         {
-            transform.localScale = _rightFaceRotation;
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
     }
     
@@ -90,7 +93,8 @@ public class Player : MonoBehaviour
     {
         if (_canShoot)
         {
-            print("pidor"); // shoot in future
+            Instantiate(_bulletPrefab, _shootPoint.position, transform.rotation);
+            _animator.SetTrigger("Shoot");
             StartCoroutine(ReloadFire());
         }
         else print("reload");
