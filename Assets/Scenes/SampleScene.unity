@@ -372,6 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _InputHandler: {fileID: 492527376}
+  _PlayerAudioMixer: {fileID: 0}
 --- !u!114 &492527375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,7 +412,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 492527372}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea2733d10b0e4041960efb51c22ab261, type: 3}
   m_Name: 
@@ -1237,11 +1238,11 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1052641084}
   - {fileID: 619394802}
   - {fileID: 519420032}
+  - {fileID: 353366539}
   - {fileID: 1884391158}
   - {fileID: 350326795}
   - {fileID: 5796204424194561079}
   - {fileID: 492788999}
-  - {fileID: 353366539}
+  - {fileID: 1052641084}

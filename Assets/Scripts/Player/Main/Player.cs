@@ -34,17 +34,16 @@ public class Player : MonoBehaviour
     private Vector2 _rightFaceRotation = new Vector2(1, 1);
     #endregion
 
-    //[Inject]
-    //private void Inject(InputHandler inputHandler)
-    //{
-    //    _inputHandler = inputHandler;
-    //}
+    [Inject]
+    private void Inject(InputHandler inputHandler)
+    {
+        _inputHandler = inputHandler;
+    }
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
-        _inputHandler = GetComponent<InputHandler>();
     }
 
     private void Update()
@@ -78,7 +77,6 @@ public class Player : MonoBehaviour
         {
             _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
             _animator.SetTrigger("Jump");
-            
         }
         else _animator.ResetTrigger("Jump");
     }
