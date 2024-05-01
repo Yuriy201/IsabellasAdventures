@@ -1,21 +1,14 @@
-using System;
 using UnityEngine;
+using System;
 
-public abstract class InputHandler : MonoBehaviour
+public abstract class InputHandler
 {
-    public Vector2 Directon { get; protected set; }
+    public abstract Vector2 Directon { get;}
+
     public event Action JumpButtonDown;
-    public event Action FireButtonDown;
-    
-    private void Update()
-    {
-        GetDirection();
-        InvokeJumpAction();
-    }
+    public event Action FireButtonDown; 
 
-    protected abstract void GetDirection();
+    protected void InvokeFireButtonAction() => FireButtonDown?.Invoke();
 
-    protected void InvokeJumpAction() => JumpButtonDown?.Invoke();
-
-    protected void InvokeFireAction() => FireButtonDown?.Invoke();
+    protected void InvokeJumpButtonAction() => JumpButtonDown?.Invoke();
 }

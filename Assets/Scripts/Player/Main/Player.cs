@@ -95,7 +95,6 @@ public class Player : MonoBehaviour
             _animator.SetTrigger("Shoot");
             StartCoroutine(ReloadFire());
         }
-        else print("reload");
     }
     
     private IEnumerator ReloadFire()
@@ -104,12 +103,13 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(_reloadTime);
         _canShoot = true;
     }
-    
+
     private void OnEnable()
     {
         _inputHandler.JumpButtonDown += Jump;
         _inputHandler.FireButtonDown += Fire;
     }
+
     private void OnDisable()
     {
         _inputHandler.JumpButtonDown -= Jump;

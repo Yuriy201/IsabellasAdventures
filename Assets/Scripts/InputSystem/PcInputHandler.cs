@@ -1,24 +1,22 @@
 ﻿using UnityEngine;
 
-public class PcInputHandler: InputHandler
+public class PcInputHandler : InputHandler
 {
-    private InputSettings _playerInput;
-    
-    public void Awake()
+    public override Vector2 Directon => GetDirection();
+
+    private InputSettings _inputSettings;
+
+    public PcInputHandler()
     {
-        _playerInput = new InputSettings();
-        _playerInput.Enable();
+        _inputSettings = new InputSettings();
+        _inputSettings.Enable();
+
+        _inputSettings.Gameplay.Jump.performed += invokeEvent => JumpButtonEvent();
+        _inputSettings.Gameplay.Fire.performed += invokeEvent => FireButtonEvent();
     }
 
-    private void Update()
-    {
-        GetDirection();
-        if (_playerInput.Gameplay.Jump.IsPressed()) InvokeJumpAction();
-        if (_playerInput.Gameplay.Fire.IsPressed()) InvokeFireAction();
-    }
-    
-    protected override void GetDirection()
-    {
-        Directon = _playerInput.Gameplay.Movement.ReadValue<Vector2>().normalized;
-    }
+    //get data
+    private Vector2 GetDirection() => _inputSettings.Gameplay.Movement.ReadValue<Vector2>();
+    private void JumpButtonEvent() => InvokeJumpButtonAction();
+    private void FireButtonEvent() => InvokeFireButtonAction();
 }
