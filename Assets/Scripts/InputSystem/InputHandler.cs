@@ -9,6 +9,5 @@ public abstract class InputHandler
     public event Action FireButtonDown; 
 
     protected void InvokeFireButtonAction() => FireButtonDown?.Invoke();
-
     protected void InvokeJumpButtonAction() => JumpButtonDown?.Invoke();
 }

@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1884391158}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 4.6
+    OrthographicSize: 6.96
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -370,7 +370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a8f57a202fc3942b93a8bdcba55ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _platformType: 0
   _PlayerAudioMixer: {fileID: 24100000, guid: d7ae88c1951ce134e876410d2a79a3d8, type: 2}
 --- !u!114 &492527375
 MonoBehaviour:
@@ -579,7 +578,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 4.6
+  orthographic size: 6.96
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1135,7 +1134,7 @@ MonoBehaviour:
   _checkGroundSphereRadius: 0.32
   _ignoredLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
   _bulletPrefab: {fileID: 2745127749481628010, guid: 4b7b5ce099aba4b498d42b0e82dd00fc, type: 3}
   _shootPoint: {fileID: 1118681968}
   _reloadTime: 1
