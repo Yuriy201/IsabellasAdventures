@@ -12,14 +12,19 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float _speed;
 
-    [Space] [SerializeField] private float _jumpForce;
+    [Space] 
+    [SerializeField] private float _jumpForce;
     [SerializeField] private Transform _checkGrondSphere;
     [SerializeField] private float _checkGroundSphereRadius;
     [SerializeField] private LayerMask _ignoredLayers;
-    [SerializeField] private Button _leftButton;
-    [SerializeField] private Button _rightButton;
 
-[Space]
+    [Space]
+    [SerializeField] private MoveButton _leftButton;
+    [SerializeField] private MoveButton _rightButton;
+    [SerializeField] private Button _jumpButton;
+    [SerializeField] private Button _fireButton;
+
+    [Space]
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private float _reloadTime;
@@ -45,7 +50,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        _inputHandler = new MobileInputHandler(_leftButton, _rightButton);
+        _inputHandler = new MobileInputHandler(_leftButton, _rightButton, _jumpButton, _fireButton);
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
     }

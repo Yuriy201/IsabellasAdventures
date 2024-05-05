@@ -3,42 +3,30 @@ using UnityEngine.UI;
 
 public class MobileInputHandler : InputHandler
 {
-    public override Vector2 Directon => _direction;
-
-    private Vector2 _direction = Vector2.zero;
+    public override Vector2 Directon => GetDirection();
     
-    private Button _leftWalkButton;
-    private Button _rightWalkButton;
+    private MoveButton _leftWalkButton;
+    private MoveButton _rightWalkButton;
+    private Button _jumpButton;
+    private Button _fireButton;
     
-    public MobileInputHandler(Button _leftWalk, Button _rightWalk)
+    public MobileInputHandler(MoveButton _leftWalk, MoveButton _rightWalk, Button jumpButton, Button fireButton)
     {
         _leftWalkButton = _leftWalk;
         _rightWalkButton = _rightWalk;
-        _leftWalkButton.onClick.AddListener(() => ButtonCallBackContext(_leftWalkButton));
-        _rightWalkButton.onClick.AddListener(() => ButtonCallBackContext(_rightWalkButton));
+        _jumpButton = jumpButton;
+        _fireButton = fireButton;
+
+        _jumpButton.onClick.AddListener(InvokeJumpButtonAction);
+        _fireButton.onClick.AddListener(InvokeFireButtonAction);
     }
 
-    private void ButtonCallBackContext(Button buttonPressed)
-    {
-        if (buttonPressed == _leftWalkButton)
-        {
-            _direction.x += -1f;
-        }
-        else if (buttonPressed == _rightWalkButton)
-        {
-            _direction.x += 1f;
-        }
-        else
-        {
-            _direction = Vector2.zero;
-            Debug.Log("стас далбаеб");
-        }
-    }
+    private Vector2 GetDirection() => new Vector2(_leftWalkButton.Direction + _rightWalkButton.Direction, 0);
 
-    private void OnDisable()
+    ~MobileInputHandler()
     {
-        _leftWalkButton.onClick.RemoveAllListeners();
-        _rightWalkButton.onClick.RemoveAllListeners();
+        _jumpButton.onClick.RemoveListener(InvokeJumpButtonAction);
+        _fireButton.onClick.RemoveListener(InvokeFireButtonAction);
     }
 }
 
