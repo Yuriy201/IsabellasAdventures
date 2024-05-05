@@ -8,7 +8,7 @@ public class GlobalInstaller : MonoInstaller
     
     public override void InstallBindings()
     {
-        Container.Bind<InputHandler>().To<PcInputHandler>().FromNew().AsSingle().NonLazy();
+        //Container.Bind<InputHandler>().To<PcInputHandler>().FromNew().AsSingle().NonLazy();
         Container.Bind<AudioMixer>().FromInstance(_PlayerAudioMixer).AsSingle().NonLazy();
     }
 }

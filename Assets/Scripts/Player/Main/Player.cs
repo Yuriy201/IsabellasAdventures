@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -8,15 +9,17 @@ using Zenject;
 public class Player : MonoBehaviour
 {
     #region Field
+
     [SerializeField] private float _speed;
 
-    [Space]
-    [SerializeField] private float _jumpForce;
+    [Space] [SerializeField] private float _jumpForce;
     [SerializeField] private Transform _checkGrondSphere;
     [SerializeField] private float _checkGroundSphereRadius;
     [SerializeField] private LayerMask _ignoredLayers;
+    [SerializeField] private Button _leftButton;
+    [SerializeField] private Button _rightButton;
 
-    [Space]
+[Space]
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private float _reloadTime;
@@ -34,14 +37,15 @@ public class Player : MonoBehaviour
     private Vector2 _rightFaceRotation = new Vector2(1, 1);
     #endregion
 
-    [Inject]
+    /*[Inject]
     private void Inject(InputHandler inputHandler)
     {
         _inputHandler = inputHandler;
-    }
+    }*/
 
     private void Awake()
     {
+        _inputHandler = new MobileInputHandler(_leftButton, _rightButton);
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
     }
