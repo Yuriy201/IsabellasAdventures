@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3164567816691317103}
   - component: {fileID: 6069366975044850073}
   - component: {fileID: 2518383368375030500}
+  - component: {fileID: 5976727499257776824}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -126,5 +127,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 20
-  _damage: 2
   _lifeTime: 3
+  _damage: 30
+--- !u!70 &5976727499257776824
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2745127749481628010}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 3.77, y: 0}
+  m_Size: {x: 0.93, y: 0.74}
+  m_Direction: 1

@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     private Animator _animator;
     private Rigidbody2D _rb;
     private InputHandler _inputHandler;
+    private PlayerStats _playerStats;
 
     private bool _isGround;
     private bool _canShoot = true;
@@ -42,11 +43,14 @@ public class Player : MonoBehaviour
     private Vector2 _rightFaceRotation = new Vector2(1, 1);
     #endregion
 
-    /*[Inject]
-    private void Inject(InputHandler inputHandler)
+    [Inject] private DiContainer _diContainer;
+    
+    [Inject]
+    private void Inject(InputHandler inputHandler, PlayerStats playerStats)
     {
         _inputHandler = inputHandler;
-    }*/
+        _playerStats = playerStats;
+    }
 
     private void Awake()
     {
@@ -60,6 +64,7 @@ public class Player : MonoBehaviour
         Walk();
         FaceRotation();
         CheckGround();
+        Die();
     }
 
     private void Walk()
@@ -100,7 +105,7 @@ public class Player : MonoBehaviour
     {
         if (_canShoot)
         {
-            Instantiate(_bulletPrefab, _shootPoint.position, transform.rotation);
+            _diContainer.InstantiatePrefab(_bulletPrefab, _shootPoint.position, _shootPoint.rotation, _shootPoint);
             _animator.SetTrigger("Shoot");
             StartCoroutine(ReloadFire());
         }
@@ -113,6 +118,15 @@ public class Player : MonoBehaviour
         _canShoot = true;
     }
 
+    private void Die()
+    {
+        if (_playerStats._playerHp <= 0)
+        {
+            Time.timeScale = 0;
+            print("PlayerDie");
+        }
+    }
+    
     private void OnEnable()
     {
         _inputHandler.JumpButtonDown += Jump;
