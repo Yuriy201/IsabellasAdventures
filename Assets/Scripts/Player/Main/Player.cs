@@ -37,7 +37,6 @@ public class Player : MonoBehaviour
     private bool _isGround;
     private bool _canShoot = true;
     #endregion
-
     #region Const
     private Vector2 _leftFaceRotation = new Vector2(-1, 1);
     private Vector2 _rightFaceRotation = new Vector2(1, 1);

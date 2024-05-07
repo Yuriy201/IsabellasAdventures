@@ -1,35 +1,37 @@
 using UnityEngine;
 using TMPro;
 
-public class _Privet : MonoBehaviour
+public class Titles : MonoBehaviour 
 {
-    public TMP_Text _glavnoeText;
-    public float _skolzhenieSkorosti = 50f;
+    //сами титры
+    public TMP_Text _mainText;
+    //скорость скольжения
+    public float _speedSlip = 50f;
     private RectTransform _textRectTransform;
     private float _textHeight;
     private float _parentHeight;
-    private bool _isSkolzhenie = false;
+    private bool _isSlip = false;
 
     private void Start()
     {
-        _textRectTransform = _glavnoeText.rectTransform;
+        _textRectTransform = _mainText.rectTransform;
         _textHeight = _textRectTransform.rect.height;
         _parentHeight = _textRectTransform.parent.GetComponent<RectTransform>().rect.height;
 
-        StartCoroutine(SkolzhenieTexta());
+        StartCoroutine(SlipText());
     }
-
-    private System.Collections.IEnumerator SkolzhenieTexta()
+    //функция отвечающая за скольжение титров вверх
+    private System.Collections.IEnumerator SlipText()
     {
-        _isSkolzhenie = true;
-        while (_isSkolzhenie)
+        _isSlip = true;
+        while (_isSlip)
         {
             float currentYPosition = _textRectTransform.anchoredPosition.y;
             float targetYPosition = _parentHeight + _textHeight;
 
             while (currentYPosition < targetYPosition)
             {
-                currentYPosition += _skolzhenieSkorosti * Time.deltaTime;
+                currentYPosition += _speedSlip* Time.deltaTime;
                 _textRectTransform.anchoredPosition = new Vector2(_textRectTransform.anchoredPosition.x, currentYPosition);
                 yield return null;
             }
