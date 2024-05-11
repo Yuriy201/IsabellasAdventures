@@ -15,7 +15,7 @@ public class MainMenuButtons : MonoBehaviour
 
     public void Levels()
     {
-        print("Hui");
+        print("In progress..");
     }
     
     public void Settings()

@@ -488,7 +488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 309a53a8b649a2942b1e55f26aa2cecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: MainMenu
 --- !u!1 &780753637
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,11 +601,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1321133447}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 246285c5db768a64eab1723d6a274c25, type: 3}
+  m_Script: {fileID: 11500000, guid: f1a04c6ecbbdc624aade5c73235f7177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glavnoeText: {fileID: 168924001}
-  _skolzhenieSkorosti: 50
+  _mainText: {fileID: 168924001}
+  _speedSlip: 50
 --- !u!1 &1605622715
 GameObject:
   m_ObjectHideFlags: 0
