@@ -19,10 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask _ignoredLayers;
 
     [Space]
-    [SerializeField] private MoveButton _leftButton;
-    [SerializeField] private MoveButton _rightButton;
-    [SerializeField] private Button _jumpButton;
-    [SerializeField] private Button _fireButton;
+    [SerializeField] private MobileInputContainer _mobileInputContainer;
 
     [Space]
     [SerializeField] private GameObject _bulletPrefab;
@@ -44,17 +41,17 @@ public class Player : MonoBehaviour
     #endregion
 
     [Inject] private DiContainer _diContainer;
-    
+
     [Inject]
     private void Inject(InputHandler inputHandler, PlayerStats playerStats)
     {
-        _inputHandler = inputHandler;
+        //_inputHandler = inputHandler;
         _playerStats = playerStats;
     }
 
     private void Awake()
     {
-        _inputHandler = new MobileInputHandler(_leftButton, _rightButton, _jumpButton, _fireButton);
+        _inputHandler = new MobileInputHandler(_mobileInputContainer);
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
     }

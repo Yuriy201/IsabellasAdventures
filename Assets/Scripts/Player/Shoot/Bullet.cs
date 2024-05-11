@@ -1,5 +1,4 @@
 using UnityEngine;
-using Zenject;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
@@ -10,11 +9,6 @@ public class Bullet : MonoBehaviour
 
     private Rigidbody2D _rigidbody;
     private EnemyStats _enemyStats;
-
-    [Inject] private void Inject(EnemyStats enemyStats)
-    {
-        _enemyStats = enemyStats;
-    }
     
     private void Start()
     {
@@ -25,9 +19,9 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<Enemy>())
+        if (collision.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemy))
         {
-            _enemyStats._enemyHp -= _damage;
+            enemy._enemyHp -= _damage;
         }
         Destroy(gameObject);
     }
