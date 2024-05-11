@@ -1,11 +1,12 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class Titles : MonoBehaviour 
 {
-    //сами титры
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     public TMP_Text _mainText;
-    //скорость скольжения
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public float _speedSlip = 50f;
     private RectTransform _textRectTransform;
     private float _textHeight;
@@ -20,8 +21,8 @@ public class Titles : MonoBehaviour
 
         StartCoroutine(SlipText());
     }
-    //функция отвечающая за скольжение титров вверх
-    private System.Collections.IEnumerator SlipText()
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    private IEnumerator SlipText()
     {
         _isSlip = true;
         while (_isSlip)
