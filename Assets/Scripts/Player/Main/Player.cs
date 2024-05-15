@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
 
     [Space]
     [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private GameObject _altBulletPrefab;
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private float _reloadTime;
 
@@ -50,9 +51,11 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        _inputHandler = new MobileInputHandler(_mobileInputContainer);
+        //_inputHandler = new MobileInputHandler(_mobileInputContainer);
+        _inputHandler = new PcInputHandler();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
+        QualitySettings.vSyncCount = 0;
     }
 
     private void Update()
@@ -106,6 +109,16 @@ public class Player : MonoBehaviour
             StartCoroutine(ReloadFire());
         }
     }
+
+    private void AltFire()
+    {
+        if (_canShoot)
+        {
+            _diContainer.InstantiatePrefab(_altBulletPrefab, _shootPoint.position, _shootPoint.rotation, _shootPoint);
+            _animator.SetTrigger("Shoot");
+            StartCoroutine(ReloadFire());
+        }
+    }
     
     private IEnumerator ReloadFire()
     {
@@ -127,11 +140,13 @@ public class Player : MonoBehaviour
     {
         _inputHandler.JumpButtonDown += Jump;
         _inputHandler.FireButtonDown += Fire;
+        _inputHandler.AltFireButtonDown += AltFire;
     }
 
     private void OnDisable()
     {
         _inputHandler.JumpButtonDown -= Jump;
         _inputHandler.FireButtonDown -= Fire;
+        _inputHandler.AltFireButtonDown -= AltFire;
     }
 }

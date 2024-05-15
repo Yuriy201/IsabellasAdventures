@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Serialization;
 using Zenject;
 
 public class GlobalInstaller : MonoInstaller
