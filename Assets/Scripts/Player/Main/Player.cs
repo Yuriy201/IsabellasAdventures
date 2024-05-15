@@ -51,11 +51,11 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        //_inputHandler = new MobileInputHandler(_mobileInputContainer);
-        _inputHandler = new PcInputHandler();
+        _inputHandler = new MobileInputHandler(_mobileInputContainer);
+        //_inputHandler = new PcInputHandler();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
-        QualitySettings.vSyncCount = 0;
+        QualitySettings.vSyncCount = -1;
     }
 
     private void Update()

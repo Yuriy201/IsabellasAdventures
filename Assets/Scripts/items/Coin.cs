@@ -5,14 +5,11 @@ public class Coin : MonoBehaviour
 {
     [SerializeField] private Transform _topPoint;
     [SerializeField] private Transform _bottomPoint;
-    [SerializeField] private float _animationSpeed;
-
-    private Rigidbody2D _rb;
+    [SerializeField] private float _animTime;
     
     private void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(CoinAnimation());
+        StartCoroutine(Animation());
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -22,25 +19,30 @@ public class Coin : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    private IEnumerator CoinAnimation()
+
+    private IEnumerator Animation()
     {
-        var direction = 1;
-        
         while (true)
         {
-            if (transform.position.y >= _topPoint.position.y)
-            {
-                direction = -1;
-            }
-            else if (transform.position.y <= _bottomPoint.position.y)
-            {
-                direction = 1;
-            }
-        
-            /*_rb.velocity = new Vector2(_rb.velocity.x, direction * _animationSpeed);*/
-            transform.Translate(new Vector2(0, direction * _animationSpeed));
+            float time = 0;
             
+            while (time < _animTime)
+            {
+                transform.position = Vector3.Lerp(_topPoint.position, _bottomPoint.position, time / _animTime);
+                time += Time.deltaTime;
+                yield return null;
+            }
+            
+            time = 0;
+            
+            while (time < _animTime)
+            {
+                transform.position = Vector3.Lerp(_bottomPoint.position, _topPoint.position, time / _animTime);
+                time += Time.deltaTime;
+                yield return null;
+            }
+            
+            transform.position = _topPoint.position;
             yield return null;
         }
     }
