@@ -1818,11 +1818,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1693032109171109557, guid: 6ebe811325a9c6148a00f46b1a69e4d6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.53
+      value: 0.87
       objectReference: {fileID: 0}
     - target: {fileID: 4271977489484499026, guid: 6ebe811325a9c6148a00f46b1a69e4d6, type: 3}
       propertyPath: _animTime
-      value: 0.5
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4271977489484499026, guid: 6ebe811325a9c6148a00f46b1a69e4d6, type: 3}
       propertyPath: _animationSpeed
