@@ -8,7 +8,6 @@ public class Bullet : MonoBehaviour
     [SerializeField] private int _damage;
 
     private Rigidbody2D _rigidbody;
-    private EnemyStats _enemyStats;
     
     private void Start()
     {
@@ -19,9 +18,9 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<EnemyStats>(out EnemyStats enemy))
+        if (true)
         {
-            enemy._enemyHp -= _damage;
+            //damage logic;
         }
         Destroy(gameObject);
     }

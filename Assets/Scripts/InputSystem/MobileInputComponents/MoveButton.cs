@@ -21,10 +21,7 @@ public class MoveButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
     }
 
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        _direction = 0;
-    }
+    public void OnPointerUp(PointerEventData eventData) => _direction = 0;
 
     public enum Side
     {

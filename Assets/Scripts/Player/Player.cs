@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IManaUser
 {
     #region Field
 
@@ -24,6 +23,7 @@ public class Player : MonoBehaviour
     [Space]
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private GameObject _altBulletPrefab;
+    [SerializeField][Range(0, 10)] private int _altFireManacost;
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private float _reloadTime;
 
@@ -35,24 +35,21 @@ public class Player : MonoBehaviour
     private bool _isGround;
     private bool _canShoot = true;
     #endregion
+
     #region Const
     private Vector2 _leftFaceRotation = new Vector2(-1, 1);
     private Vector2 _rightFaceRotation = new Vector2(1, 1);
     #endregion
 
-    [Inject] private DiContainer _diContainer;
-
     [Inject]
     private void Inject(InputHandler inputHandler, PlayerStats playerStats)
     {
-        //_inputHandler = inputHandler;
+        _inputHandler = inputHandler;
         _playerStats = playerStats;
     }
 
     private void Awake()
     {
-        _inputHandler = new MobileInputHandler(_mobileInputContainer);
-        //_inputHandler = new PcInputHandler();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
         QualitySettings.vSyncCount = -1;
@@ -104,7 +101,7 @@ public class Player : MonoBehaviour
     {
         if (_canShoot)
         {
-            _diContainer.InstantiatePrefab(_bulletPrefab, _shootPoint.position, _shootPoint.rotation, _shootPoint);
+            Instantiate(_bulletPrefab, _shootPoint.position, _shootPoint.rotation, _shootPoint);
             _animator.SetTrigger("Shoot");
             StartCoroutine(ReloadFire());
         }
@@ -114,9 +111,12 @@ public class Player : MonoBehaviour
     {
         if (_canShoot)
         {
-            _diContainer.InstantiatePrefab(_altBulletPrefab, _shootPoint.position, _shootPoint.rotation, _shootPoint);
-            _animator.SetTrigger("Shoot");
-            StartCoroutine(ReloadFire());
+            if (_playerStats.RemoveMana(this))
+            {
+                Instantiate(_altBulletPrefab, _shootPoint.position, _shootPoint.rotation, _shootPoint);
+                _animator.SetTrigger("Shoot");
+                StartCoroutine(ReloadFire());
+            }
         }
     }
     
@@ -129,10 +129,9 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
-        if (_playerStats._playerHp <= 0)
+        if (_playerStats.CurrentHealth <= 0)
         {
-            Time.timeScale = 0;
-            print("PlayerDie");
+            //die logic
         }
     }
     
@@ -148,5 +147,10 @@ public class Player : MonoBehaviour
         _inputHandler.JumpButtonDown -= Jump;
         _inputHandler.FireButtonDown -= Fire;
         _inputHandler.AltFireButtonDown -= AltFire;
+    }
+
+    public int GetManacost()
+    {
+        return _altFireManacost;
     }
 }

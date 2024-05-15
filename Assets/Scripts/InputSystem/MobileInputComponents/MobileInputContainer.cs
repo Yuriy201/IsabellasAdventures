@@ -11,17 +11,49 @@ public class MobileInputContainer : MonoBehaviour
     public Button AltFireButton => _altFireButton;
     public ControlType ControlType => _controlType;
 
-    [SerializeField] public ControlType _controlType;
+    [Space]
+    [SerializeField] private GameConfig _gameConfig;
+    [SerializeField] private ControlType _controlType;
+    [SerializeField] private GameObject _ui;
 
     [Space]
     [SerializeField] private Joystick _joystick;
+
+    [Space]
     [SerializeField] private MoveButton _moveButtonLeft;
     [SerializeField] private MoveButton _moveButtonRight;
+
+    [Space]
     [SerializeField] private Button _jumpButton;
     [SerializeField] private Button _fireButton;
     [SerializeField] private Button _altFireButton;
 
+    private void Start()
+    {
+        CheckControlType();
+        CheckPlatformType();
+    }
+
     private void OnValidate()
+    {
+        CheckControlType();
+        CheckPlatformType();
+    }
+
+    private void CheckPlatformType()
+    {
+        switch (_gameConfig.PlatfotmType)
+        {
+            case PlatfotmType.PC:
+                _ui.SetActive(false);
+                break;
+            case PlatfotmType.Mobile:
+                _ui.SetActive(true);
+                break;
+        }
+    }
+
+    private void CheckControlType()
     {
         switch (_controlType)
         {
@@ -30,15 +62,14 @@ public class MobileInputContainer : MonoBehaviour
                 _moveButtonRight.gameObject.SetActive(true);
                 _joystick.gameObject.SetActive(false);
                 break;
-            
+
             case ControlType.Joystick:
                 _moveButtonLeft.gameObject.SetActive(false);
                 _moveButtonRight.gameObject.SetActive(false);
-                _joystick.gameObject.SetActive(true); 
+                _joystick.gameObject.SetActive(true);
                 break;
         }
     }
-
 }
 
 public enum ControlType
