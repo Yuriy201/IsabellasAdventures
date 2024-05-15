@@ -13,6 +13,7 @@ public class MobileInputHandler : InputHandler
 
         _inputContainer.JumpButton.onClick.AddListener(InvokeJumpButtonAction);
         _inputContainer.FireButton.onClick.AddListener(InvokeFireButtonAction);
+        _inputContainer.AltFireButton.onClick.AddListener(InvokeAltFireButtonAction);
     }
 
     private Vector2 GetDirection()
@@ -32,6 +33,7 @@ public class MobileInputHandler : InputHandler
     {
         _inputContainer.JumpButton.onClick.RemoveListener(InvokeJumpButtonAction);
         _inputContainer.FireButton.onClick.RemoveListener(InvokeFireButtonAction);
+        _inputContainer.AltFireButton.onClick.RemoveListener(InvokeAltFireButtonAction);
     }
 }
 

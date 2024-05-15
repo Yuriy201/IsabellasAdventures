@@ -2,5 +2,5 @@
 
 public class PlayerStats: MonoBehaviour
 {
-    [SerializeField] internal int _playerHp;
+    public int _playerHp;
 }

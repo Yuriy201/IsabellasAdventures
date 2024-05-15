@@ -8,6 +8,7 @@ public class MobileInputContainer : MonoBehaviour
     public MoveButton MoveButtonRight => _moveButtonRight;
     public Button JumpButton => _jumpButton;
     public Button FireButton => _fireButton;
+    public Button AltFireButton => _altFireButton;
     public ControlType ControlType => _controlType;
 
     [SerializeField] public ControlType _controlType;
@@ -18,6 +19,7 @@ public class MobileInputContainer : MonoBehaviour
     [SerializeField] private MoveButton _moveButtonRight;
     [SerializeField] private Button _jumpButton;
     [SerializeField] private Button _fireButton;
+    [SerializeField] private Button _altFireButton;
 
     private void OnValidate()
     {
@@ -28,6 +30,7 @@ public class MobileInputContainer : MonoBehaviour
                 _moveButtonRight.gameObject.SetActive(true);
                 _joystick.gameObject.SetActive(false);
                 break;
+            
             case ControlType.Joystick:
                 _moveButtonLeft.gameObject.SetActive(false);
                 _moveButtonRight.gameObject.SetActive(false);
