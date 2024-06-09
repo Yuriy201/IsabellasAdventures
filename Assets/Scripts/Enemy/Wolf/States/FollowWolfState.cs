@@ -13,17 +13,12 @@ namespace Enemy.Wolf
         public override void Enter()
         {
             Debug.Log($"<color=yellow>Enter in Follow</color>");
-
-            _wolf.TouchTarget += GoToAttackState;
             _wolf.GetComponent<SpriteRenderer>().color = Color.red;
         }
 
         public override void Exit()
         {
-            _wolf.TouchTarget -= GoToAttackState;
             _wolf.GetComponent<SpriteRenderer>().color = Color.white;
-
-            //Debug.Log($"<color=red>Exit out Follow</color>");
         }
 
         public override void Operate()
@@ -31,6 +26,11 @@ namespace Enemy.Wolf
             if(_wolf.Target == null)
             {
                 _stateMashine.GoTo<PatrolWolfState>();
+                return;
+            }
+            if (_wolf.TouchingTarget != null)
+            {
+                _stateMashine.GoTo<AttackWolfState>();
                 return;
             }
 
@@ -41,12 +41,6 @@ namespace Enemy.Wolf
                 _wolf.transform.rotation = Quaternion.Euler(0, 180, 0);
 
             _wolf.Rigidbody2D.velocity = new Vector2(_wolf.Speed * _wolf.transform.right.x, _wolf.Rigidbody2D.velocity.y);
-        }
-
-        private void GoToAttackState(PlayerController player)
-        {
-            if (player != null)
-                _stateMashine.GoTo<AttackWolfState>();
         }
     }
 }

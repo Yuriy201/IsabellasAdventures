@@ -10,7 +10,7 @@ namespace Enemy.Wolf
 
         public override void Enter()
         {
-            Debug.Log($"<color=red>Enter in Attack</color>");
+            Debug.Log($"<color=green>Enter in Attack</color>");
 
             _wolf.AttackAnimationCallback += Attack;
             _wolf.Rigidbody2D.velocity = new Vector2(0, _wolf.Rigidbody2D.velocity.y);
@@ -22,9 +22,8 @@ namespace Enemy.Wolf
         {
             _wolf.Rigidbody2D.velocity = new Vector2(0, _wolf.Rigidbody2D.velocity.y);
             _wolf.Animator.SetBool("Attacking", false);
-            _wolf.AttackAnimationCallback -= Attack;
 
-            //Debug.Log($"<color=red>Exit out Attack</color>");
+            _wolf.AttackAnimationCallback -= Attack;
         }
 
         public override void Operate()

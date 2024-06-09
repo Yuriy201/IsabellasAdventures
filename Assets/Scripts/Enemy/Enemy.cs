@@ -3,7 +3,7 @@ using System;
 
 namespace Enemy
 {
-    public abstract class Enemy : MonoBehaviour, IDamagable
+    public abstract class Enemy : MonoBehaviour, IDamagable, IExperienceAdder
     {
         public event Action HealthChanged;
         public event Action Died;
@@ -22,9 +22,11 @@ namespace Enemy
 
             if (Health <= 0)
             {
-                Destroy(gameObject);
                 Died?.Invoke();
+                Destroy(gameObject);
             }
         }
+
+        public int GetExpValue() => UnityEngine.Random.Range(40, 70 + 1);
     }
 }

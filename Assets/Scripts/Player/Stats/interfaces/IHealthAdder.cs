@@ -1,4 +1,4 @@
 ﻿public interface IHealthAdder
 {
-    int GetHealthBoost();
+    int GetHealthBoostValue();
 }

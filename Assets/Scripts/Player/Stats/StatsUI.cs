@@ -1,13 +1,15 @@
 using UnityEngine.UI;
 using UnityEngine;
 using Zenject;
+using TMPro;
 
 namespace Player
 {
-    public class StatsUI : MonoBehaviour, IManaAdder, IManaUser, IDamageDiller, IHealthAdder
+    public class StatsUI : MonoBehaviour, IManaAdder, IHealthAdder
     {
         [SerializeField] private Image _healthBar;
         [SerializeField] private Image _manaBar;
+        [SerializeField] private TextMeshProUGUI _expText;
 
         private PlayerStats _playerStats;
 
@@ -26,39 +28,35 @@ namespace Player
         {
             if (_playerStats == null) return;
 
-            if (Input.GetKeyDown(KeyCode.UpArrow)) _playerStats.AddHealth(this);
-            if (Input.GetKeyDown(KeyCode.DownArrow)) _playerStats.RemoveHealth(this);
-            if (Input.GetKeyDown(KeyCode.RightArrow)) _playerStats.AddMana(this);
-            if (Input.GetKeyDown(KeyCode.LeftArrow)) _playerStats.RemoveMana(this);
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                _playerStats.AddHealth(this);
+                _playerStats.AddMana(this);
+            }
         }
 
         private void UpdateUI()
         {
             _healthBar.fillAmount = (float)_playerStats.CurrentHealth / _playerStats.MaxHealth;
             _manaBar.fillAmount = (float)_playerStats.CurrentMana / _playerStats.MaxMana;
+
+            int remExp = 0;
+            ExperienceInfo.CalculateLevel(_playerStats.Experience, out remExp);
+
+            _expText.text = $"Level {_playerStats.Level}: " + remExp  + "/" + ExperienceInfo.GetExpForNext(_playerStats.Experience);
         }
 
         private void OnEnable() => _playerStats.StateChanged += UpdateUI;
         private void OnDisable() => _playerStats.StateChanged -= UpdateUI;
 
-        public int GetManaBoost()
+        public int GetManaBoostValue()
         {
-            return 1;
+            return 10;
         }
 
-        public int GetManacost()
+        public int GetHealthBoostValue()
         {
-            return 1;
-        }
-
-        public int GetDamageValue()
-        {
-            return 1;
-        }
-
-        public int GetHealthBoost()
-        {
-            return 1;
+            return 10;
         }
     }
 }

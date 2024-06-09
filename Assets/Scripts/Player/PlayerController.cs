@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.ComponentModel;
 using InputSystem;
 using UnityEngine;
 using Zenject;
