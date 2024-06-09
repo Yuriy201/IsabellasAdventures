@@ -1,24 +1,27 @@
 ﻿using UnityEngine;
 
-public class PcInputHandler : InputHandler
+namespace InputSystem
 {
-    public override Vector2 Directon => GetDirection();
-
-    private InputSettings _inputSettings;
-
-    public PcInputHandler()
+    public class PcInputHandler : InputHandler
     {
-        _inputSettings = new InputSettings();
-        _inputSettings.Enable();
+        public override Vector2 Directon => GetDirection();
 
-        _inputSettings.Gameplay.Jump.performed += invokeEvent => JumpButtonEvent();
-        _inputSettings.Gameplay.Fire.performed += invokeEvent => FireButtonEvent();
-        _inputSettings.Gameplay.AltFire.performed += invokeEvent => InvokeAltFireButtonAction();
+        private InputSettings _inputSettings;
+
+        public PcInputHandler()
+        {
+            _inputSettings = new InputSettings();
+            _inputSettings.Enable();
+
+            _inputSettings.Gameplay.Jump.performed += invokeEvent => JumpButtonEvent();
+            _inputSettings.Gameplay.Fire.performed += invokeEvent => FireButtonEvent();
+            _inputSettings.Gameplay.AltFire.performed += invokeEvent => InvokeAltFireButtonAction();
+        }
+
+        //get data
+        private Vector2 GetDirection() => _inputSettings.Gameplay.Movement.ReadValue<Vector2>();
+        private void JumpButtonEvent() => InvokeJumpButtonAction();
+        private void FireButtonEvent() => InvokeFireButtonAction();
+        private void AltFireButtonEvent() => InvokeAltFireButtonAction();
     }
-
-    //get data
-    private Vector2 GetDirection() => _inputSettings.Gameplay.Movement.ReadValue<Vector2>();
-    private void JumpButtonEvent() => InvokeJumpButtonAction();
-    private void FireButtonEvent() => InvokeFireButtonAction();
-    private void AltFireButtonEvent() => InvokeAltFireButtonAction();
 }
