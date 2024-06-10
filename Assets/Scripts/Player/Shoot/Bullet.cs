@@ -1,3 +1,4 @@
+using Enemy;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -13,17 +14,18 @@ public class Bullet : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _rigidbody.velocity = transform.right * _speed;
-        Invoke(nameof(DestroyThis), _lifeTime);
+        Invoke(nameof(DestroyAfterDelay), _lifeTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (true)
-        {
-            //damage logic;
-        }
+        if (collision == null) return;
+
+        if (collision.TryGetComponent(out IDamagable target))
+            target.GetDamage(_damage);
+
         Destroy(gameObject);
     }
 
-    private void DestroyThis() => Destroy(gameObject);
+    private void DestroyAfterDelay() => Destroy(gameObject);
 }

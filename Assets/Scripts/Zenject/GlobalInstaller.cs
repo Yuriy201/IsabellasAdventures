@@ -1,12 +1,14 @@
+using InputSystem;
 using UnityEngine;
 using Zenject;
+using Player;
 
 public class GlobalInstaller : MonoInstaller
 {
     [SerializeField] private GameConfig _gameConfig;
 
     [Header("Player")]
-    [SerializeField] private Player _playerGameObject;
+    [SerializeField] private PlayerController _playerGameObject;
 
     [Header("Input")]
     [SerializeField] private MobileInputContainer _mobileInputContainer;
@@ -20,13 +22,14 @@ public class GlobalInstaller : MonoInstaller
 
     private void BindStats()
     {
-        var stats = new PlayerStats(10, 10, 5, 5);
+        StatsContainer container = new StatsContainer(100, 100, 100, 100);
+        var stats = new PlayerStats(container);
         Container.Bind<PlayerStats>().FromInstance(stats).AsSingle().NonLazy();
     }
 
     private void BindPlayer()
     {
-        Container.Bind<Player>().FromInstance(_playerGameObject).AsSingle().NonLazy();
+        Container.Bind<PlayerController>().FromInstance(_playerGameObject).AsSingle().NonLazy();
     }
 
     private void BindInputHandler()
