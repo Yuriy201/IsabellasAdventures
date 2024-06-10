@@ -1,15 +1,13 @@
-using DG.Tweening;
 using UnityEngine;
 using Player;
 
 public class Coin : MonoBehaviour
 {
-    [SerializeField] private Transform _Point;
-    [SerializeField] private float _animTime;
+    [SerializeField] private float _animSpeed;
 
-    private void Start()
+    private void Update()
     {
-        transform.DOMove(_Point.position, _animTime).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+        transform.Rotate(0, _animSpeed * Time.deltaTime, 0);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
