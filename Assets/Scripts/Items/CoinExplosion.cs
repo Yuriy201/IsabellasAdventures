@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class CoinExplosion : MonoBehaviour
 {
@@ -6,24 +7,18 @@ public class CoinExplosion : MonoBehaviour
     [SerializeField] private float _explosionForce;
     [SerializeField] private GameObject _coinPrefab;
 
-    private void Start()
+    public void Exploision(int count = 1)
     {
-        Exploision();
-    }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O)) Exploision();
-    }
+        if (count <= 0)
+            throw new InvalidOperationException("Coin count should be more than 0");
 
-    private void Exploision()
-    {
-        if (_coinCount == 1)
+        if (count == 1)
         {
             Rigidbody2D rb = Instantiate(_coinPrefab, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
             rb.AddForce(Vector2.up * _explosionForce);
         }
-        else if (_coinCount > 1)
+        else if (count > 1)
         {
             for (int i = 0; i < _coinCount; i++)
             {
@@ -34,7 +29,7 @@ public class CoinExplosion : MonoBehaviour
                     sign = -1;
 
                 Rigidbody2D rb = Instantiate(_coinPrefab, transform.position, transform.rotation).GetComponent<Rigidbody2D>();
-                rb.AddForce(new Vector2(Random.Range(0f, 0.6f) * sign, 1f) * _explosionForce);
+                rb.AddForce(new Vector2(UnityEngine.Random.Range(0f, 0.6f) * sign, 1f) * _explosionForce);
             }
         }
     }

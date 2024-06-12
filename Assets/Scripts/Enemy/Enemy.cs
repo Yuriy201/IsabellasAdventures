@@ -11,6 +11,9 @@ namespace Enemy
         [field: SerializeField] public int MaxHealth { get; protected set; }
         [field: SerializeField] public int Health { get; protected set; }
 
+        [SerializeField] private CoinExplosion coinExplosion;
+        [SerializeField] private int _coinReward;
+
         public void GetDamage(int damage)
         {
             if (damage <= 0)
@@ -23,6 +26,7 @@ namespace Enemy
             if (Health <= 0)
             {
                 Died?.Invoke();
+                coinExplosion.Exploision(_coinReward);
                 Destroy(gameObject);
             }
         }
