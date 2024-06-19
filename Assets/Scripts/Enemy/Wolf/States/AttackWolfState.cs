@@ -30,11 +30,6 @@ namespace Enemy.Wolf
         {
             if (_wolf.TouchingTarget == null)
                 _stateMashine.GoTo<FollowWolfState>();
-
-            if (_wolf.TouchingTarget.transform.position.x < _wolf.transform.position.x)
-                _wolf.transform.rotation = Quaternion.Euler(0,180,0);
-            else
-                _wolf.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
         private void Attack()
