@@ -5,36 +5,39 @@ namespace Player
 {
     public class PlayerStats
     {
-        public event Action StateChanged;
-        public event Action OutOfManaTrying;
-        public event Action OutOfMoneyTrying;
+        public event Action OnStateChanged;
+        
+        public event Action OnLackOfMoney;
+        public event Action OnLackOfMana;
+        public event Action OnDied;
 
         public int CurrentHealth => _currentHealth;
         public int CurrentMana => _currentMana;
         public int MaxHealth => _maxHealth;
         public int MaxMana => _maxMana;
         public int Experience => _experience;
-        public int Coin => _coin;
+        public int Money => _money;
         public int Level => ExperienceInfo.CalculateLevel(_experience);
-        
 
         private int _maxHealth;
         private int _maxMana;
+
         private int _currentHealth;
         private int _currentMana;
 
         private int _experience;
-        private int _coin;
+        private int _money;
 
-        public PlayerStats(StatsContainer stats, int experience = 0, int coin = 0)
+        public PlayerStats(StatsContainer stats)
         {
             _maxHealth = stats.MaxHealth;
             _maxMana = stats.MaxMana;
+
             _currentHealth = stats.CurrentHealth;
             _currentMana = stats.CurrentMana;
 
-            _experience = experience;
-            _coin = coin;
+            _experience = stats.Experience;
+            _money = stats.Money;
         }
 
         public void RemoveHealth(IDamageDiller damageDiller)
@@ -47,7 +50,10 @@ namespace Player
             _currentHealth -= value;
             _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
 
-            StateChanged?.Invoke();
+            if (_currentHealth <= 0)
+                OnDied?.Invoke();
+
+            OnStateChanged?.Invoke();
         }
 
         public bool RemoveMana(IManaUser manaUser)
@@ -59,13 +65,13 @@ namespace Player
 
             if (_currentMana - value < 0)
             {
-                OutOfManaTrying?.Invoke();
+                OnLackOfMana?.Invoke();
                 return false;
             }
 
             _currentMana -= value;
 
-            StateChanged?.Invoke();
+            OnStateChanged?.Invoke();
             return true;
         }
 
@@ -79,7 +85,7 @@ namespace Player
             _currentHealth += value;
             _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
 
-            StateChanged?.Invoke();
+            OnStateChanged?.Invoke();
         }
 
         public void AddMana(IManaAdder manaAdder)
@@ -92,7 +98,7 @@ namespace Player
             _currentMana += value;
             _currentMana = Mathf.Clamp(_currentMana, 0, _maxMana);
 
-            StateChanged?.Invoke();
+            OnStateChanged?.Invoke();
         }
 
         public void AddExperience(IExperienceAdder expAdder)
@@ -106,7 +112,7 @@ namespace Player
             _experience += value;
             if (Level != oldLevel) IncreaseMaxValues();
 
-            StateChanged?.Invoke();
+            OnStateChanged?.Invoke();
         }
 
         
@@ -116,8 +122,8 @@ namespace Player
             if (coinAdder == null)
                 throw new ArgumentNullException("coinAdder is null!");
 
-            _coin += 1;
-            StateChanged?.Invoke();
+            _money += 1;
+            OnStateChanged?.Invoke();
         }
 
         public bool UseMoney(ICoinUser coinUser)
@@ -127,15 +133,15 @@ namespace Player
             if (value <= 0)
                 throw new InvalidOperationException("Price value should be more than 0!");
 
-            if (_coin - value < 0)
+            if (_money - value < 0)
             {
-                OutOfManaTrying?.Invoke();
+                OnLackOfMana?.Invoke();
                 return false;
             }
 
-            _coin -= value;
+            _money -= value;
 
-            StateChanged?.Invoke();
+            OnStateChanged?.Invoke();
             return true;
         }
 

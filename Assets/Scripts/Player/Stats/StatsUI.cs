@@ -46,8 +46,8 @@ namespace Player
             _expText.text = $"Level {_playerStats.Level}: " + remExp  + "/" + ExperienceInfo.GetExpForNext(_playerStats.Experience);
         }
 
-        private void OnEnable() => _playerStats.StateChanged += UpdateUI;
-        private void OnDisable() => _playerStats.StateChanged -= UpdateUI;
+        private void OnEnable() => _playerStats.OnStateChanged += UpdateUI;
+        private void OnDisable() => _playerStats.OnStateChanged -= UpdateUI;
 
         public int GetManaBoostValue()
         {

@@ -6,13 +6,18 @@
         public int CurrentMana;
         public int MaxHealth;
         public int MaxMana;
+        public int Experience;
+        public int Money;
 
-        public StatsContainer(int maxHealth = 0, int currentHealth = 0, int maxMana = 0, int currentMana = 0)
+        public StatsContainer(int maxHealth, int currentHealth, int maxMana, 
+            int currentMana, int experience, int money) 
         {
             MaxHealth = maxHealth;
             CurrentHealth = currentHealth;
             MaxMana = maxMana;
             CurrentMana = currentMana;
+            Experience = experience;
+            Money = money;
         }
     }
 }

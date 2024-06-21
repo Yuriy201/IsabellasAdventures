@@ -22,7 +22,7 @@ public class GlobalInstaller : MonoInstaller
 
     private void BindStats()
     {
-        StatsContainer container = new StatsContainer(100, 100, 100, 100);
+        StatsContainer container = new StatsContainer(100, 100, 100, 100, 0, 0);
         var stats = new PlayerStats(container);
         Container.Bind<PlayerStats>().FromInstance(stats).AsSingle().NonLazy();
     }
