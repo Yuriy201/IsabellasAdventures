@@ -64,7 +64,6 @@ namespace Player
             Walk();
             FaceRotation();
             CheckGround();
-            Die();
         }
 
         private void Walk()
@@ -129,14 +128,6 @@ namespace Player
             _canShoot = false;
             yield return new WaitForSeconds(_reloadTime);
             _canShoot = true;
-        }
-
-        private void Die()
-        {
-            if (Stats.CurrentHealth <= 0)
-            {
-                //die logic
-            }
         }
 
         private void OnEnable()
