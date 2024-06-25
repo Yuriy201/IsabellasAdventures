@@ -11,9 +11,9 @@ namespace Player
         [Inject]
         private void Inject(PlayerStats stats) => _playerStats = stats;
 
-        private void OnEnable() => _playerStats.OnDied += StartPause;
+        //private void OnEnable() => _playerStats.OnDied += StartPause;
 
-        private void OnDisable() => _playerStats.OnDied -= StartPause;
+        //private void OnDisable() => _playerStats.OnDied -= StartPause;
 
         private void StartPause() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
