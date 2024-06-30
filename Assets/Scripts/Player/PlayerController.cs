@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.ComponentModel;
+using CustomAttributes;
 using InputSystem;
 using UnityEngine;
 using Zenject;
@@ -14,18 +14,33 @@ namespace Player
         #region Field
         public PlayerStats Stats { get; private set; }
 
+        [Space(5)]
+        [Header("Movement")]
+        [ReadOnlyProperty] 
         [SerializeField] private float _speed;
+        [SerializeField] private float _walkSpeed = 10f;
+        [SerializeField] private float _sprintSpeed = 15f;
 
-        [Space]
+        [Space(3)]
+        [Header("Jump")]
         [SerializeField] private float _jumpForce;
+        [SerializeField] private int _airJumpsCount = 2;
+        [ReadOnlyProperty]
+        [SerializeField]  private int currentAirJumps;
+        [Space(2)]
         [SerializeField] private Transform _checkGroundSphere;
         [SerializeField] private float _checkGroundSphereRadius;
         [SerializeField] private LayerMask _ignoredLayers;
+        [Space(2)]
+        [SerializeField] private ParticleSystem _airJumpParticles;
+        [SerializeField] private int _airJumpParticlesCount = 5;
 
         [Space]
+        [Header("Mobile Input")]
         [SerializeField] private MobileInputContainer _mobileInputContainer;
 
-        [Space]
+        [Space(3)]
+        [Header("Combat")]
         [SerializeField] private GameObject _bulletPrefab;
         [SerializeField] private GameObject _altBulletPrefab;
         [SerializeField][Range(0, 10)] private int _altFireManacost;
@@ -56,7 +71,7 @@ namespace Player
         {
             _rb = GetComponent<Rigidbody2D>();
             _animator = GetComponentInChildren<Animator>();
-            QualitySettings.vSyncCount = -1;
+            QualitySettings.vSyncCount = -1;           
         }
 
         private void Update()
@@ -68,6 +83,8 @@ namespace Player
 
         private void Walk()
         {
+            _speed = _inputHandler.Sprinting ? _sprintSpeed : _walkSpeed;
+
             _rb.velocity = new Vector2(_inputHandler.Directon.x * _speed, _rb.velocity.y);
             _animator.SetFloat("Speed", Mathf.Abs(_rb.velocity.x));
         }
@@ -89,7 +106,14 @@ namespace Player
             if (_isGround)
             {
                 _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+                _animator.SetTrigger("Jump");              
+            }
+            else if (currentAirJumps > 0)
+            {
+                _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
                 _animator.SetTrigger("Jump");
+                _airJumpParticles.Emit(_airJumpParticlesCount);
+                currentAirJumps--;
             }
             else _animator.ResetTrigger("Jump");
         }
@@ -98,6 +122,11 @@ namespace Player
         {
             _isGround = Physics2D.OverlapCircle(_checkGroundSphere.position, _checkGroundSphereRadius, ~_ignoredLayers);
             _animator.SetBool("IsGround", _isGround);
+
+            if ( _isGround ) 
+            {
+                currentAirJumps = _airJumpsCount;
+            }
         }
 
         private void Fire()
