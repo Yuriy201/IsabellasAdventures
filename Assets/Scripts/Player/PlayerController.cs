@@ -133,7 +133,12 @@ namespace Player
         {
             if (_canShoot)
             {
-                Instantiate(_bulletPrefab, _shootPoint.position, _shootPoint.rotation, _shootPoint).transform.parent = null;
+                GameObject newBullet = ObjectPool.Instance.GetObject(_bulletPrefab, _shootPoint.transform);
+                newBullet.transform.rotation = _shootPoint.rotation;
+                newBullet.GetComponent<Bullet>().ApplyVelocity();
+
+                ObjectPool.Instance.ReternObject(newBullet, 2f);
+
                 _animator.SetTrigger("Shoot");
                 StartCoroutine(ReloadFire());
             }
@@ -145,7 +150,12 @@ namespace Player
             {
                 if (Stats.RemoveMana(this))
                 {
-                    Instantiate(_altBulletPrefab, _shootPoint.position, _shootPoint.rotation, _shootPoint).transform.parent = null;
+                    GameObject newBullet = ObjectPool.Instance.GetObject(_altBulletPrefab, _shootPoint.transform);
+                    newBullet.transform.rotation = _shootPoint.rotation;
+                    newBullet.GetComponent<Bullet>().ApplyVelocity();
+
+                    ObjectPool.Instance.ReternObject(newBullet, 2f);
+
                     _animator.SetTrigger("Shoot");
                     StartCoroutine(ReloadFire());
                 }

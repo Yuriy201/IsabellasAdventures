@@ -1478,10 +1478,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a8f57a202fc3942b93a8bdcba55ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAudioMixer: {fileID: 0}
-  _player: {fileID: 0}
-  _playerStats: {fileID: 0}
-  _enemyStats: {fileID: 0}
+  _gameConfig: {fileID: 0}
+  _playerGameObject: {fileID: 0}
+  _mobileInputContainer: {fileID: 0}
 --- !u!114 &1248748184
 MonoBehaviour:
   m_ObjectHideFlags: 0

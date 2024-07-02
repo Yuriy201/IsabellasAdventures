@@ -10,11 +10,9 @@ public class Bullet : MonoBehaviour
 
     private Rigidbody2D _rigidbody;
     
-    private void Start()
+    private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _rigidbody.velocity = transform.right * _speed;
-        Invoke(nameof(DestroyAfterDelay), _lifeTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,8 +22,11 @@ public class Bullet : MonoBehaviour
         if (collision.TryGetComponent(out IDamagable target))
             target.GetDamage(_damage);
 
-        Destroy(gameObject);
+        ObjectPool.Instance.ReternObject(gameObject);
     }
 
-    private void DestroyAfterDelay() => Destroy(gameObject);
+    public void ApplyVelocity()
+    {
+        _rigidbody.velocity = transform.right * _speed;
+    }
 }
