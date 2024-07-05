@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6069366975044850073}
   - component: {fileID: 2518383368375030500}
   - component: {fileID: 5976727499257776824}
+  - component: {fileID: 1619606931265041641}
   m_Layer: 0
   m_Name: AltAroow
   m_TagString: Untagged
@@ -113,7 +114,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!114 &2518383368375030500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +145,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -164,3 +165,16 @@ CapsuleCollider2D:
   m_Offset: {x: 3.77, y: 0}
   m_Size: {x: 0.93, y: 0.74}
   m_Direction: 1
+--- !u!114 &1619606931265041641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2745127749481628010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4f5bdcfaed8f764dba00e8dfec40414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canRotate: 1
