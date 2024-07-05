@@ -21,25 +21,31 @@ namespace Player
         [SerializeField] private float _walkSpeed = 10f;
         [SerializeField] private float _sprintSpeed = 15f;
 
-        [Space(3)]
+        [Space(5)]
         [Header("Jump")]
         [SerializeField] private float _jumpForce;
         [SerializeField] private int _airJumpsCount = 2;
         [ReadOnlyProperty]
         [SerializeField]  private int currentAirJumps;
-        [Space(2)]
+        [Space(4)]
         [SerializeField] private Transform _checkGroundSphere;
         [SerializeField] private float _checkGroundSphereRadius;
         [SerializeField] private LayerMask _ignoredLayers;
-        [Space(2)]
+        [Space(4)]
         [SerializeField] private ParticleSystem _airJumpParticles;
         [SerializeField] private int _airJumpParticlesCount = 5;
+        [Space(4)]
+        [SerializeField] private float _coyoteTime = 0.2f;
+        private float coyoteTimer;
+        [Space(4)]
+        [SerializeField] private float _jumpBufferTime = 0.2f;
+        private float jumpBufferTimer;
 
         [Space]
         [Header("Mobile Input")]
         [SerializeField] private MobileInputContainer _mobileInputContainer;
 
-        [Space(3)]
+        [Space(5)]
         [Header("Combat")]
         [SerializeField] private GameObject _bulletPrefab;
         [SerializeField] private GameObject _altBulletPrefab;
@@ -79,6 +85,7 @@ namespace Player
             Walk();
             FaceRotation();
             CheckGround();
+            JumpBuffer();
         }
 
         private void Walk()
@@ -103,17 +110,26 @@ namespace Player
 
         private void Jump()
         {
-            if (_isGround)
-            {
-                _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
-                _animator.SetTrigger("Jump");              
-            }
-            else if (currentAirJumps > 0)
+            jumpBufferTimer = _jumpBufferTime;
+
+            if (coyoteTimer > 0f)
             {
                 _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
                 _animator.SetTrigger("Jump");
+                coyoteTimer = -1f;
+                jumpBufferTimer = -1f;
+
+                return;
+            }
+
+            if (currentAirJumps > 0)
+            {
+                _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+                //_animator.SetTrigger("Jump");
                 _airJumpParticles.Emit(_airJumpParticlesCount);
                 currentAirJumps--;
+
+                jumpBufferTimer = -1f;
             }
             else _animator.ResetTrigger("Jump");
         }
@@ -123,9 +139,14 @@ namespace Player
             _isGround = Physics2D.OverlapCircle(_checkGroundSphere.position, _checkGroundSphereRadius, ~_ignoredLayers);
             _animator.SetBool("IsGround", _isGround);
 
-            if ( _isGround ) 
+            if (_isGround && _rb.velocity.y <= 0f) 
             {
                 currentAirJumps = _airJumpsCount;
+                coyoteTimer = _coyoteTime;
+            }
+            else
+            {
+                coyoteTimer -= Time.deltaTime;
             }
         }
 
@@ -161,6 +182,17 @@ namespace Player
                 }
             }
         }
+
+        private void JumpBuffer()
+        {
+            jumpBufferTimer -= Time.deltaTime;  
+
+            if (jumpBufferTimer > 0f && _isGround)
+            {
+                Jump();
+            }
+        }
+
 
         private IEnumerator ReloadFire()
         {
