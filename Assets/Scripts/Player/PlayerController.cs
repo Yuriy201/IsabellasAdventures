@@ -14,6 +14,9 @@ namespace Player
         #region Field
         public PlayerStats Stats { get; private set; }
 
+        // for testing
+        public bool isMobile = false;
+
         [Space(5)]
         [Header("Movement")]
         [ReadOnlyProperty] 
@@ -78,6 +81,11 @@ namespace Player
             _rb = GetComponent<Rigidbody2D>();
             _animator = GetComponentInChildren<Animator>();
             QualitySettings.vSyncCount = -1;           
+        }
+
+        private void Start()
+        {
+            _mobileInputContainer.CheckPlatformType(isMobile);
         }
 
         private void Update()

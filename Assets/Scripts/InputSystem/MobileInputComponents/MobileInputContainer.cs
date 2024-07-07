@@ -1,13 +1,17 @@
 using UnityEngine;
+using UnityEngine.InputSystem.Layouts;
 using UnityEngine.UI;
 
 namespace InputSystem
 {
     public class MobileInputContainer : MonoBehaviour
     {
+        [InputControl(layout = "Vector2")]
+        public string _mobileControlPath;
+
         public Joystick Joystick => _joystick;
-        public MoveButton MoveButtonLeft => _moveButtonLeft;
-        public MoveButton MoveButtonRight => _moveButtonRight;
+        public Transform MoveButtonLeft => _moveButtonLeft;
+        public Transform MoveButtonRight => _moveButtonRight;
         public Button JumpButton => _jumpButton;
         public Button FireButton => _fireButton;
         public Button AltFireButton => _altFireButton;
@@ -22,8 +26,8 @@ namespace InputSystem
         [SerializeField] private Joystick _joystick;
 
         [Space]
-        [SerializeField] private MoveButton _moveButtonLeft;
-        [SerializeField] private MoveButton _moveButtonRight;
+        [SerializeField] private Transform _moveButtonLeft;
+        [SerializeField] private Transform _moveButtonRight;
 
         [Space]
         [SerializeField] private Button _jumpButton;
@@ -40,6 +44,8 @@ namespace InputSystem
         {
             CheckControlType();
             CheckPlatformType();
+
+            _joystick.m_ControlPath = _mobileControlPath;
         }
 
         private void CheckPlatformType()
@@ -53,6 +59,11 @@ namespace InputSystem
                     _ui.SetActive(true);
                     break;
             }
+        }
+
+        public void CheckPlatformType(bool isMobile)
+        {
+            _ui.SetActive(isMobile);
         }
 
         private void CheckControlType()

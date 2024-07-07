@@ -4,7 +4,8 @@ namespace InputSystem
 {
     public class MobileInputHandler : InputHandler
     {
-        public override Vector2 Directon => GetDirection();
+        public override Vector2 Directon => Vector2.zero;
+            //GetDirection();
 
         private MobileInputContainer _inputContainer;
 
@@ -17,6 +18,7 @@ namespace InputSystem
             _inputContainer.AltFireButton.onClick.AddListener(InvokeAltFireButtonAction);
         }
 
+        /* useless for now
         private Vector2 GetDirection()
         {
             switch (_inputContainer.ControlType)
@@ -29,6 +31,7 @@ namespace InputSystem
                     return Vector2.zero;
             }
         }
+        */
 
         ~MobileInputHandler()
         {
