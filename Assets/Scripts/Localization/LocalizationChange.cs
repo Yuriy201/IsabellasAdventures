@@ -5,7 +5,6 @@ using UnityEngine.Localization.Settings;
 public class LocalizationChange : MonoBehaviour
 {
     public string[] languagesIndexes;
-    public static SystemLanguage language = SystemLanguage.English;
 
     [SerializeField]
     private int indexLanguage = 0;
