@@ -8,8 +8,8 @@ namespace Sound
 {
     public class SoundManager : MonoBehaviour
     {
-        [SerializeField] private Slider _globalValumeSlider;
-        [SerializeField] private Slider _sfxValumeSlider;
+        [SerializeField] private Slider _globalVolumeSlider;
+        [SerializeField] private Slider _sfxVolumeSlider;
 
         private AudioMixer _playerAudioMixer;
         private float _globalVolume;
@@ -20,24 +20,40 @@ namespace Sound
         private const float MINVOLUME = -80f;
 
         [Inject]
-        private void Inject(AudioMixer playerAudioSource)
+        private void Inject(AudioMixer audioMixer)
         {
-            _playerAudioMixer = playerAudioSource;
+            _playerAudioMixer = audioMixer;
         }
 
         private void Start()
         {
             Load();
+
+            _globalVolumeSlider.onValueChanged.AddListener(SetGlobalVolume);
+            _sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
+
             DontDestroyOnLoad(gameObject);
+        }
+
+        private void SetGlobalVolume(float value)
+        {
+            _playerAudioMixer.SetFloat("Global", Mathf.Log10(value) * 20);
+            PlayerPrefs.SetFloat("globalVolume", value);
+        }
+
+        private void SetSFXVolume(float value)
+        {
+            _playerAudioMixer.SetFloat("SFX", Mathf.Log10(value) * 20);
+            PlayerPrefs.SetFloat("SFXVolume", value);
         }
 
         public void SetVolume()
         {
-            _globalVolume = _globalValumeSlider.value;
-            _sfxVolume = _sfxValumeSlider.value;
+            _globalVolume = _globalVolumeSlider.value;
+            _sfxVolume = _sfxVolumeSlider.value;
 
-            _playerAudioMixer.SetFloat("Global", Mathf.Lerp(MINVOLUME, MAXVOLUME, _globalValumeSlider.value));
-            _playerAudioMixer.SetFloat("SFX", Mathf.Lerp(MINVOLUME, MAXVOLUME, _sfxValumeSlider.value));
+            _playerAudioMixer.SetFloat("Global", Mathf.Lerp(MINVOLUME, MAXVOLUME, _globalVolumeSlider.value));
+            _playerAudioMixer.SetFloat("SFX", Mathf.Lerp(MINVOLUME, MAXVOLUME, _sfxVolumeSlider.value));
 
             StartCoroutine(Save());
         }
@@ -51,10 +67,11 @@ namespace Sound
 
         private void Load()
         {
-            _globalValumeSlider.value = PlayerPrefs.GetFloat("GlobalValue");
-            _sfxValumeSlider.value = PlayerPrefs.GetFloat("SFXValue");
+            _globalVolumeSlider.value = PlayerPrefs.GetFloat("globalVolume", 0.5f);
+            _sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
 
-            SetVolume();
+            SetGlobalVolume(_globalVolumeSlider.value);
+            SetSFXVolume(_sfxVolumeSlider.value);
         }
     }
 }

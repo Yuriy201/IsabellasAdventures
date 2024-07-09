@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -133,7 +134,7 @@ GameObject:
   - component: {fileID: 3250777}
   - component: {fileID: 3250778}
   m_Layer: 5
-  m_Name: MusicValume
+  m_Name: MusicVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,9 +158,9 @@ RectTransform:
   - {fileID: 2019126473}
   m_Father: {fileID: 431232535}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -25}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3250778
@@ -446,7 +447,7 @@ RectTransform:
   m_Father: {fileID: 1012700709}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -499,7 +500,7 @@ GameObject:
   - component: {fileID: 118303365}
   - component: {fileID: 118303366}
   m_Layer: 5
-  m_Name: SFXValume
+  m_Name: SFXVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -523,9 +524,9 @@ RectTransform:
   - {fileID: 1368509423}
   m_Father: {fileID: 431232535}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &118303366
@@ -856,12 +857,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!224 &199471457 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5796507784786021798, guid: ec4e48c8003b44d44b58d595d7238253, type: 3}
@@ -932,7 +933,7 @@ RectTransform:
   m_Father: {fileID: 632679255}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1007,7 +1008,7 @@ RectTransform:
   m_Father: {fileID: 1039658793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1086,7 +1087,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 150}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &431232536
 MonoBehaviour:
@@ -1725,9 +1726,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a8f57a202fc3942b93a8bdcba55ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameConfig: {fileID: 0}
+  _gameConfig: {fileID: 11400000, guid: d965fb48811237a478a8b8f4d1fdd7d4, type: 2}
   _playerGameObject: {fileID: 0}
   _mobileInputContainer: {fileID: 0}
+  _audioMixer: {fileID: 24100000, guid: d7ae88c1951ce134e876410d2a79a3d8, type: 2}
 --- !u!114 &1248748184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2291,8 +2293,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e6f536bb4245f0afd85b10b85e6a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _globalValumeSlider: {fileID: 3250778}
-  _sfxValumeSlider: {fileID: 118303366}
+  _globalVolumeSlider: {fileID: 3250778}
+  _sfxVolumeSlider: {fileID: 118303366}
 --- !u!1 &1605925601
 GameObject:
   m_ObjectHideFlags: 0
@@ -3070,7 +3072,7 @@ RectTransform:
   m_Father: {fileID: 594354595}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3120,6 +3122,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 82105937}
     m_Modifications:
+    - target: {fileID: 3059836845465407564, guid: ec4e48c8003b44d44b58d595d7238253, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4679082002473002408, guid: ec4e48c8003b44d44b58d595d7238253, type: 3}
       propertyPath: m_Name
       value: Page Menu
@@ -3231,13 +3237,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 82105937}
     m_Modifications:
+    - target: {fileID: 3059836845465407564, guid: ec4e48c8003b44d44b58d595d7238253, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4679082002473002408, guid: ec4e48c8003b44d44b58d595d7238253, type: 3}
       propertyPath: m_Name
       value: Page Settings
       objectReference: {fileID: 0}
     - target: {fileID: 4679082002473002408, guid: ec4e48c8003b44d44b58d595d7238253, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6215602225964809042, guid: ec4e48c8003b44d44b58d595d7238253, type: 3}
       propertyPath: pageType

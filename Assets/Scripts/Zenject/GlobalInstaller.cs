@@ -2,6 +2,8 @@ using InputSystem;
 using UnityEngine;
 using Zenject;
 using Player;
+using UnityEngine.Audio;
+using TMPro;
 
 public class GlobalInstaller : MonoInstaller
 {
@@ -12,12 +14,21 @@ public class GlobalInstaller : MonoInstaller
 
     [Header("Input")]
     [SerializeField] private MobileInputContainer _mobileInputContainer;
-    
+
+    [Header("Audio Mixer")]
+    [SerializeField] private AudioMixer _audioMixer;
+
     public override void InstallBindings()
     {
         BindStats();
         BindPlayer();
         BindInputHandler();
+        BindAudioMixer();
+    }
+
+    private void BindAudioMixer()
+    {
+        Container.Bind<AudioMixer>().FromInstance(_audioMixer).AsSingle().NonLazy();
     }
 
     private void BindStats()
