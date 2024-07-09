@@ -88,7 +88,7 @@ namespace Player
             _mobileInputContainer.CheckPlatformType(isMobile);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             Walk();
             FaceRotation();
