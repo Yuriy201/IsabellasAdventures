@@ -276,7 +276,7 @@ namespace NeoxiderUi
                     CheckDublicate();
 
                     _pages = scenePages;
-                    PagesActivate(_activPageEditor, true, new PageType[] { PageType.None}, true, true);
+                    PagesActivate(_activPageEditor, true, new PageType[] { PageType.None}, true, false);
                 }
             }
         }

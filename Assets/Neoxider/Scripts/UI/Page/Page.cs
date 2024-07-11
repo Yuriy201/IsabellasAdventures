@@ -27,5 +27,7 @@ namespace NeoxiderUi
 
             //FindFirstObjectByType<PagesManager>().OnValidate();
         }
+
+        public void SetActive(bool value) => gameObject.SetActive(value);
     }
 }
