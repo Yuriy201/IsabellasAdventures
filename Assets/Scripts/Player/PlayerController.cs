@@ -136,10 +136,12 @@ namespace Player
                 //_animator.SetTrigger("Jump");
                 _airJumpParticles.Emit(_airJumpParticlesCount);
                 currentAirJumps--;
-
                 jumpBufferTimer = -1f;
+
+                return;
             }
-            else _animator.ResetTrigger("Jump");
+
+            _animator.ResetTrigger("Jump");
         }
 
         private void CheckGround()
@@ -221,6 +223,12 @@ namespace Player
             _inputHandler.JumpButtonDown -= Jump;
             _inputHandler.FireButtonDown -= Fire;
             _inputHandler.AltFireButtonDown -= AltFire;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(_checkGroundSphere.position, _checkGroundSphereRadius);
         }
 
         public int GetManacost()
