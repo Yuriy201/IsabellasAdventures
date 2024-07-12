@@ -1675,7 +1675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7315955999680976628, guid: cdced73c9d75f4e40ac5dddf5d81c01d, type: 3}
       propertyPath: m_Name
-      value: MusicVolume
+      value: GlobalVolume
       objectReference: {fileID: 0}
     - target: {fileID: 7669137428234300246, guid: cdced73c9d75f4e40ac5dddf5d81c01d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1988,9 +1988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e15814efce5684da7759d7c10efcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  languagesIndexes:
-  - English (en)
-  - Russian (ru)
+  languagesIndexes: []
   indexLanguage: 0
 --- !u!224 &1501733626 stripped
 RectTransform:
@@ -2041,7 +2039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e6f536bb4245f0afd85b10b85e6a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _globalVolumeSlider: {fileID: 0}
+  _globalVolumeSlider: {fileID: 1989706080}
   _sfxVolumeSlider: {fileID: 118303366}
 --- !u!1001 &1611509274
 PrefabInstance:
@@ -2385,6 +2383,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890037616}
   m_CullTransparentMesh: 1
+--- !u!114 &1989706080 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1918885135628513931, guid: cdced73c9d75f4e40ac5dddf5d81c01d, type: 3}
+  m_PrefabInstance: {fileID: 1356225237}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2021551792
 GameObject:
   m_ObjectHideFlags: 0
@@ -3270,6 +3279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 8056880575331708501}
+  _updateMode: 2
   _startAnimTrigger: ScaleUp
 --- !u!95 &8056880575331708501
 Animator:
@@ -3283,7 +3293,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 240b62d4ace3bd148aaa8ad2b64ca545, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0

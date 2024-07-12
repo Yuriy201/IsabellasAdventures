@@ -85,7 +85,7 @@ namespace Player
 
         private void Start()
         {
-            _mobileInputContainer.CheckPlatformType(isMobile);
+            _mobileInputContainer.SetPlatformType(isMobile);
         }
 
         private void FixedUpdate()

@@ -58,10 +58,12 @@ namespace InputSystem
 
         private void CheckPlatformType()
         {
+            print("CheckPlatformType");
+
             switch (_gameConfig.PlatfotmType)
             {
                 case PlatfotmType.PC:
-                    SetMobailUi(false);
+                    //SetMobailUi(false);
                     break;
                 case PlatfotmType.Mobile:
                     SetMobailUi(true);
@@ -69,7 +71,7 @@ namespace InputSystem
             }
         }
 
-        public void CheckPlatformType(bool isMobile)
+        public void SetPlatformType(bool isMobile)
         {
             Debug.Log("Set Platform Ui: " + (isMobile ? "mobaile" : "pc"));
             SetMobailUi(isMobile);
@@ -77,6 +79,8 @@ namespace InputSystem
 
         public void SetMobailUi(bool activ)
         {
+            print(activ);
+
             for (int i = 0; i < _mobailUis.Length; i++)
             {
                 _mobailUis[i].SetActive(activ);
@@ -88,6 +92,7 @@ namespace InputSystem
             _controlType = btns ? ControlType.Buttons : ControlType.Joystick;
 
             CheckControlType();
+            SetMobailUi(true);
         }
 
         private void CheckControlType()
