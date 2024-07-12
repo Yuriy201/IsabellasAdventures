@@ -31,7 +31,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 19403873538048
-    m_Localized: Music Volume
+    m_Localized: Global volume
     m_Metadata:
       m_Items: []
   - m_Id: 19403877732352

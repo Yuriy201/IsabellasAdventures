@@ -6,6 +6,7 @@ namespace NeoxiderUi
     public class PageAnim : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
+        [SerializeField] private AnimatorUpdateMode _updateMode = AnimatorUpdateMode.UnscaledTime;
         [SerializeField] private string _startAnimTrigger;
 
         void Start()
@@ -22,6 +23,7 @@ namespace NeoxiderUi
         private void OnValidate()
         {
             _animator = GetComponent<Animator>();
+            _animator.updateMode = _updateMode;
         }
     }
 }

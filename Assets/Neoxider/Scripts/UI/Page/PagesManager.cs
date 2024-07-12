@@ -89,30 +89,32 @@ namespace NeoxiderUi
             lastPage = null;
         }
 
-        public void ChangePage(PageType page, bool lastPageDisable = true)
+        public void ChangePage(PageType pageType, bool lastPageDisable = true)
         {
-            if (Array.Exists(_setPageTypes, element => element == page))
+            if (Array.Exists(_setPageTypes, element => element == pageType))
             {
-                SetPage(page);
+                SetPage(pageType);
             }
 
-            if (activPage != null && page == activPage.pageType)
+            if (activPage != null && pageType == activPage.pageType)
                 return;
+
+            Debug.Log("ChangePage - " + "<color=yellow>" + pageType + "</color>");
 
             lastPage = activPage;
 
-            if (page == PageType.None)
+            if (pageType == PageType.None)
             {
                 PagesActivate(PageType.None, _pageNoneActiv);
                 activPage = null;
                 return;
             }
 
-            activPage = FindPage(page);
+            activPage = FindPage(pageType);
 
             if (activPage == null)
             {
-                Debug.LogError("Change page null PageType: " + page.ToString());
+                Debug.LogError("Change page null PageType: " + pageType.ToString());
             }
 
             if (lastPage != null)
@@ -130,6 +132,8 @@ namespace NeoxiderUi
 
         public void SwitchLastPage(bool lastPageActiv = false)
         {
+            Debug.Log("<color=yellow>SwitchLastPage - " + "</color><color=yellow>" + lastPage.pageType + "</color>");
+
             Page _page = lastPage;
             lastPage = activPage;
             activPage = _page;
@@ -141,6 +145,7 @@ namespace NeoxiderUi
 
         public void SetPage(PageType page)
         {
+            Debug.Log("SetPage - " + "<color=red>" + page + "</color>");
             lastPage = activPage;
             activPage = PagesActivate(page);
         }
@@ -161,7 +166,7 @@ namespace NeoxiderUi
             return _page;
         }
 
-        public Page PagesActivate(PageType targetPage, bool activ = true, 
+        public Page PagesActivate(PageType targetPage, bool activ = true,
             PageType[] ignorPage = null, bool ignorActiv = false, bool otherActiv = false)
         {
             if (ignorPage == null)
@@ -181,7 +186,7 @@ namespace NeoxiderUi
                 }
                 else
                 {
-                    if (Array.Exists(ignorPage, t => t == item.pageType)  )
+                    if (Array.Exists(ignorPage, t => t == item.pageType))
                     {
                         SetActiv(item, ignorActiv);
                     }
@@ -276,7 +281,7 @@ namespace NeoxiderUi
                     CheckDublicate();
 
                     _pages = scenePages;
-                    PagesActivate(_activPageEditor, true, new PageType[] { PageType.None}, true, true);
+                    PagesActivate(_activPageEditor, true, new PageType[] { PageType.None }, true, false);
                 }
             }
         }
