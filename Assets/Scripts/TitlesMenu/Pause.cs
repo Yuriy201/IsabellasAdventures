@@ -16,19 +16,14 @@ public class Pause : MonoBehaviour
     {
         if (pause)
         {
-            Debug.Log("pause");
+            Debug.Log("<color=red>Pause</color>");
             Time.timeScale = 0.0f;
         }
         else
         {
 
-            Debug.Log("UnPause");
+            Debug.Log("<color=red>UnPause</color>");
             Time.timeScale = 1.0f;
         }
-    }
-
-    private void OnApplicationFocus(bool focus)
-    {
-        SetPause(!focus);
     }
 }

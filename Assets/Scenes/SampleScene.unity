@@ -2876,7 +2876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mobileControlPath: <Gamepad>/leftStick
   _gameConfig: {fileID: 11400000, guid: d965fb48811237a478a8b8f4d1fdd7d4, type: 2}
-  _controlType: 0
+  _controlType: 1
   _mobailUis:
   - {fileID: 1013260534}
   - {fileID: 1870451211}
@@ -8458,7 +8458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1132894508
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8607,13 +8607,15 @@ GameObject:
   - component: {fileID: 1136671585}
   - component: {fileID: 1136671587}
   - component: {fileID: 1136671588}
+  - component: {fileID: 1136671590}
+  - component: {fileID: 1136671589}
   m_Layer: 5
   m_Name: Page Pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1136671584
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8685,7 +8687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pageType: 15
-  _pageAnim: {fileID: 0}
+  _pageAnim: {fileID: 1136671589}
 --- !u!114 &1136671588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8698,6 +8700,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24b34c61d45d6484f9afd3ac9d7549f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1136671589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136671583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73162b4b7688de843a0093cc13893d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 1136671590}
+  _updateMode: 2
+  _startAnimTrigger: MoveUp
+--- !u!95 &1136671590
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136671583}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 240b62d4ace3bd148aaa8ad2b64ca545, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1148719446
 GameObject:
   m_ObjectHideFlags: 0
@@ -10392,7 +10430,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1351364563}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 425253491}
+        m_TargetAssemblyTypeName: InputSystem.MobileInputContainer, Assembly-CSharp
+        m_MethodName: SetMobailUi
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1351364563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12018,7 +12068,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1633330423
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12476,7 +12526,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1675516363}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 425253491}
+        m_TargetAssemblyTypeName: InputSystem.MobileInputContainer, Assembly-CSharp
+        m_MethodName: SetMobailUi
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1675516363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18739,7 +18801,7 @@ MonoBehaviour:
   _airJumpParticlesCount: 30
   _coyoteTime: 0.2
   _jumpBufferTime: 0.2
-  _mobileInputContainer: {fileID: 0}
+  _mobileInputContainer: {fileID: 425253491}
   _bulletPrefab: {fileID: 2745127749481628010, guid: 4b7b5ce099aba4b498d42b0e82dd00fc, type: 3}
   _altBulletPrefab: {fileID: 2745127749481628010, guid: 2ddd6c549552f5949b5d5a1642d31f39, type: 3}
   _altFireManacost: 3
@@ -19635,9 +19697,9 @@ MonoBehaviour:
   activPage: {fileID: 0}
   lastPage: {fileID: 0}
   _pages:
-  - {fileID: 1985069577}
-  - {fileID: 1136671587}
   - {fileID: 402306814}
+  - {fileID: 1136671587}
+  - {fileID: 1985069577}
   _onePageTypes: 
   _lastPageActiv: 1
   _setPageTypes: 
@@ -19647,7 +19709,7 @@ MonoBehaviour:
       m_Calls: []
   _pageNoneActiv: 0
   _refresh: 1
-  _activPageEditor: 15
+  _activPageEditor: 11
 --- !u!4 &1998606889
 Transform:
   m_ObjectHideFlags: 0
@@ -20915,7 +20977,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8170153793226049616
 MonoBehaviour:
   m_ObjectHideFlags: 0

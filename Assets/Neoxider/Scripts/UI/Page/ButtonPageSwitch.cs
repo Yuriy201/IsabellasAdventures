@@ -10,7 +10,7 @@ namespace NeoxiderUi
         private Button _button;
 
         [SerializeField]
-        private PageType _pageType;
+        private PageType _pageType = PageType.Menu;
 
         /// <summary>
         /// меняет одну на другую или выкключает все и включает только одну
@@ -63,13 +63,20 @@ namespace NeoxiderUi
 
         public void SwitchPage()
         {
-            print("switchPage - " + _pageType);
+           
+
             if (_change)
             {
                 if (_switchLastPage)
+                {
+
                     SwitchLastPage();
+                }
                 else
+                {
                     _uiManager.ChangePage(_pageType);
+                }
+
             }
             else
             {

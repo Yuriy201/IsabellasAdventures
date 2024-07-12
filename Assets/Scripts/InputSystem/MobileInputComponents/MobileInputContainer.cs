@@ -71,6 +71,7 @@ namespace InputSystem
 
         public void CheckPlatformType(bool isMobile)
         {
+            Debug.Log("Set Platform Ui: " + (isMobile ? "mobaile" : "pc"));
             SetMobailUi(isMobile);
         }
 
