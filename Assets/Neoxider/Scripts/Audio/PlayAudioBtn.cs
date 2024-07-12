@@ -8,11 +8,12 @@ namespace NeoxiderAudio
         [SerializeField]
         private Button _button;
 
+        [SerializeField]
         private AudioManager _am;
 
         private void Start()
         {
-            _am = AudioManager.Instance;
+
         }
 
         private void OnEnable()
@@ -36,6 +37,7 @@ namespace NeoxiderAudio
         private void OnValidate()
         {
             _button = GetComponent<Button>();
+            _am = FindFirstObjectByType<AudioManager>();
         }
     }
 }
