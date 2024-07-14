@@ -15,23 +15,23 @@ namespace NeoxiderUi
 
         [SerializeField] private int id;
 
-        public void SetPoint(int id)
+        public void SetPoint(int value)
         {
-            this.id = id;
-            id = SafeId(id);
+            id = value;
+            value = SafeId(value);
 
             if (zeroPoints)
-                id -= 1;
+                value -= 1;
 
             if (flip)
-                id = points.Length - 1 - id;
+                value = points.Length - 1 - value;
 
             if (sprites_off_on.Length == 2)
             {
                 for (int j = 0; j < points.Length; j++)
                 {
                     int i = j;
-                    bool activ = fill ? (flip ? id <= i : i <= id) : i == id;
+                    bool activ = fill ? (flip ? value <= i : i <= value) : i == value;
 
                     Sprite sprite = GetSprite(activ);
 
@@ -49,6 +49,16 @@ namespace NeoxiderUi
             {
 
             }
+        }
+
+        public void SetPoint(float floatValue)
+        {
+            int maxIndex = points.Length;
+            int intValue = Mathf.RoundToInt(floatValue * maxIndex);
+            if(floatValue == 1f)
+                intValue = maxIndex;
+
+            SetPoint(intValue);
         }
 
         private Sprite GetSprite(bool type)

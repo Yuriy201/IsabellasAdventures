@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace NeoxiderUi
 {
-    public class VisualTogle : MonoBehaviour
+    public class VisualToggle : MonoBehaviour
     {
         [System.Serializable]
         public class ImageVariant
@@ -18,8 +18,8 @@ namespace NeoxiderUi
         public class TmpColorTextVariant
         {
             public TextMeshProUGUI tmp;
-            public Color start;
-            public Color end;
+            public Color start = Color.white;
+            public Color end = Color.white;
             public bool use_text = false;
             public string start_t;
             public string end_t;
@@ -28,25 +28,25 @@ namespace NeoxiderUi
         [System.Serializable]
         public class GameObjectVariant
         {
-            public GameObject start;
-            public GameObject end;
+            public GameObject[] starts;
+            public GameObject[] ends;
         }
 
         public ImageVariant[] imageV = new ImageVariant[0];
         public TmpColorTextVariant[] textColor = new TmpColorTextVariant[0];
-        public GameObjectVariant[] variants = new GameObjectVariant[0];
+        public GameObjectVariant variants;
 
-        public bool activ;
+        public bool end;
 
         public void Press()
         {
-            activ = true;
+            end = true;
             Visual();
         }
 
         public void EndPress()
         {
-            activ = false;
+            end = false;
             Visual();
         }
 
@@ -64,7 +64,7 @@ namespace NeoxiderUi
 
         public void Visual(bool activ)
         {
-            this.activ = activ;
+            this.end = activ;
             Visual();
         }
 
@@ -72,7 +72,7 @@ namespace NeoxiderUi
         {
             foreach (ImageVariant v in imageV)
             {
-                v.image.sprite = activ ? v.end : v.start;
+                v.image.sprite = end ? v.end : v.start;
             }
         }
 
@@ -82,11 +82,11 @@ namespace NeoxiderUi
             {
                 if (t.tmp != null)
                 {
-                    t.tmp.color = activ ? t.end : t.start;
+                    t.tmp.color = end ? t.end : t.start;
 
                     if (t.use_text)
                     {
-                        t.tmp.text = activ ? t.end_t : t.start_t;
+                        t.tmp.text = end ? t.end_t : t.start_t;
                     }
                 }
             }
@@ -94,16 +94,20 @@ namespace NeoxiderUi
 
         private void VariantVisual()
         {
-            foreach (GameObjectVariant v in variants)
+            for (int i = 0; i < variants.starts.Length; i++)
             {
-                v.start.SetActive(!activ);
-                v.end.SetActive(activ);
+                variants.starts[i].SetActive(!end);
+            }
+
+            for (int i = 0; i < variants.ends.Length; i++)
+            {
+                variants.ends[i].SetActive(end);
             }
         }
 
         private void OnValidate()
         {
-            if (!activ)
+            if (!end)
             {
                 foreach (ImageVariant v in imageV)
                 {

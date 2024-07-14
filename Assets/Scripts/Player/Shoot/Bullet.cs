@@ -1,4 +1,5 @@
 using Enemy;
+using NeoxiderAudio;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -20,7 +21,10 @@ public class Bullet : MonoBehaviour
         if (collision == null) return;
 
         if (collision.TryGetComponent(out IDamagable target))
+        {
             target.GetDamage(_damage);
+            AudioManager.PlaySound(ClipType.arrowHit);
+        }
 
         ObjectPool.Instance.ReternObject(gameObject);
     }

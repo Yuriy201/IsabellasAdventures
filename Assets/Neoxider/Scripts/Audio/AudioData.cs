@@ -1,16 +1,20 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace NeoxiderAudio
 {
-    public class AudioData : MonoBehaviour
+    [CreateAssetMenu(fileName = "AudioData", menuName = "Neoxider/Audio", order = 32)]
+    public class AudioData : ScriptableObject
     {
         [System.Serializable]
         public class AudioInfo
         {
-            public SourseType sourseType = SourseType.Interface;
-            public ClipType type = ClipType.click;
             public AudioClip[] clips;
+            public ClipType type = ClipType.click;
+            [Range(0, 1f)]
+            public float volume = 1;
+            public SourseType sourseType = SourseType.Interface;
 
             public AudioInfo(ClipType type)
             {
@@ -19,33 +23,38 @@ namespace NeoxiderAudio
             }
         }
 
-        public static AudioData Instance;
+        public AudioInfo[] audioInfo => _audioInfo;
 
-        [SerializeField] private AudioInfo[] _audioDatas;
-        [SerializeField] private bool _autoSetAllType;
+        [SerializeField] private AudioInfo[] _audioInfo;
+        [SerializeField] private Dictionary<ClipType, AudioInfo> _audioInfoDict;
 
-        private void Awake()
+        [Header("Editor")]
+        public bool _autoSetAllType;
+
+        internal void SetAudioData(AudioInfo[] audioInfo)
         {
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            _audioInfo = audioInfo;
         }
 
-        public AudioInfo GetData(ClipType clipType)
+        public AudioInfo GetAudioInfo(ClipType clipType)
         {
-            foreach (var d in _audioDatas)
+            if (_audioInfoDict.TryGetValue(clipType, out AudioInfo audioInfo))
             {
-                if (d.type == clipType)
-                    return d;
+                return audioInfo;
             }
 
             return null;
+        }
+
+        public int GetAudioInfoId(ClipType clipType)
+        {
+            for (int i = 0; i < _audioInfo.Length; i++)
+            {
+                if (_audioInfo[i].type == clipType)
+                    return i;
+            }
+
+            return -1;
         }
 
         private void OnValidate()
@@ -54,13 +63,33 @@ namespace NeoxiderAudio
             {
                 _autoSetAllType = false;
                 int count = Enum.GetNames(typeof(ClipType)).Length;
-                _audioDatas = new AudioInfo[count];
+                AudioInfo[] audioDatasLast = (AudioInfo[])_audioInfo.Clone();
+                _audioInfo = new AudioInfo[count];
 
                 for (int i = 0; i < count; i++)
                 {
-                    _audioDatas[i] = new AudioInfo((ClipType)Enum.Parse(typeof(ClipType), i.ToString()));
+                    _audioInfo[i] = new AudioInfo((ClipType)Enum.Parse(typeof(ClipType), i.ToString()));
+                }
+
+                for (int i = 0; i < audioDatasLast.Length; i++)
+                {
+                    ClipType type = audioDatasLast[i].type;
+
+                    int id = GetAudioInfoId(type);
+
+                    if (id >= 0)
+                        _audioInfo[id] = audioDatasLast[i];
                 }
             }
+
+            _audioInfoDict = new Dictionary<ClipType, AudioInfo>();
+
+            for (int i = 0; i < _audioInfo.Length; i++)
+            {
+                _audioInfoDict.Add(_audioInfo[i].type, _audioInfo[i]);
+            }
+
+            //Debug.Log("dict - " + _audioInfo[0].type + _audioInfo[0].clips.Length);
         }
     }
 }
