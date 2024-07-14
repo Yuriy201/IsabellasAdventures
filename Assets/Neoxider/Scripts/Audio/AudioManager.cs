@@ -36,41 +36,13 @@ namespace NeoxiderAudio
         [Range(0, 1f)]
         public float startVolumeGame = 1f;
 
-<<<<<<< Updated upstream
-=======
         public AudioData audioData;
 
->>>>>>> Stashed changes
         public static AudioManager Instance { get; private set; }
 
         private void Awake()
         {
             if (Instance == null)
-<<<<<<< Updated upstream
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
-
-        public void PlayClick()
-        {
-            PlaySound(ClipType.click);
-        }
-
-        public void PlaySound(ClipType clipType, float volume = 1f, Transform transform = null)
-        {
-            AudioData.AudioInfo aData = audioDatas.GetData(clipType);
-            AudioClip clip = GetRandomElement(aData.clips);
-            AudioSource source = GetSourse(aData.sourseType);
-
-            if (transform != null)
-=======
->>>>>>> Stashed changes
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject);

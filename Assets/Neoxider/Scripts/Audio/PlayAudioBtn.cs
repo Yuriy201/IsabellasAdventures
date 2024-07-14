@@ -8,16 +8,6 @@ namespace NeoxiderAudio
         [SerializeField]
         private Button _button;
 
-<<<<<<< Updated upstream
-        private AudioManager _am;
-
-        private void Start()
-        {
-            _am = AudioManager.Instance;
-        }
-
-=======
->>>>>>> Stashed changes
         private void OnEnable()
         {
             _button.onClick.AddListener(AudioPlay);
