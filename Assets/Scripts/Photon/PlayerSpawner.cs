@@ -4,10 +4,9 @@ using Player;
 using UnityEngine.Events;
 
 [DefaultExecutionOrder(50)]
-public class PlayerSpawner : MonoBehaviourPunCallbacks
+public class PlayerSpawner : Spawner
 {
     [SerializeField] private GameObject _playerPrefab;
-    [SerializeField] private Transform[] _spawnPoints;
 
     public UnityAction OnSpawned;
     public PlayerController SpawnedPlayer { get; private set; }
@@ -22,7 +21,7 @@ public class PlayerSpawner : MonoBehaviourPunCallbacks
 
         return _spawnPoints[randomValue];
     }
-    public void Spawn()
+    public override void Spawn()
     {
         var spawnPoint = GetRandomSpawnPoint();
 
