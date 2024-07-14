@@ -38,19 +38,19 @@ namespace NeoxiderAudio
 
         public AudioData audioData;
 
-        //public static AudioManager Instance { get; private set; }
+        public static AudioManager Instance { get; private set; }
 
         private void Awake()
         {
-            //if (Instance == null)
-            //{
-            //    Instance = this;
-            //    DontDestroyOnLoad(gameObject);
-            //}
-            //else
-            //{
-            //    Destroy(gameObject);
-            //}
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         public static void PlaySound(int clipId = 0)
@@ -87,6 +87,8 @@ namespace NeoxiderAudio
                 Debug.LogWarning("AudioManager has not Instance");
 
                 CreateInstance();
+
+                PlaySound(clipType, volume, transform);
             }
         }
 
@@ -98,7 +100,11 @@ namespace NeoxiderAudio
             AudioManager audioManager = newGameObject.AddComponent<AudioManager>();
             Instance = audioManager;
             DontDestroyOnLoad(audioManager.gameObject);
-            audioManager.audioData = (AudioData)Resources.FindObjectsOfTypeAll(typeof(AudioData))[0];
+
+            var audioData = (AudioData[])Resources.FindObjectsOfTypeAll(typeof(AudioData));
+
+            if (audioData.Length > 0)
+                audioManager.audioData = audioData[0];
 
             if (Instance.audioData == null)
             {
@@ -112,6 +118,8 @@ namespace NeoxiderAudio
                 newAudioSource.name = Instance.ast[i].sourseType.ToString() + " Audio Source";
                 Instance.ast[i].sourse = newAudioSource.AddComponent<AudioSource>();
             }
+
+
         }
 
         public void MuteAll(bool activ)

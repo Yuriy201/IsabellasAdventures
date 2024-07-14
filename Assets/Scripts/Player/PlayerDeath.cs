@@ -1,4 +1,5 @@
 using DG.Tweening;
+using NeoxiderAudio;
 using NeoxiderUi;
 using Player;
 using UnityEngine;
@@ -44,6 +45,8 @@ public class PlayerDeath : MonoBehaviour
     }
     private void Death()
     {
+        AudioManager.PlaySound(ClipType.gameOver);
+
         playerController.enabled = false;
 
         _gameOverPage.gameObject.SetActive(true);
