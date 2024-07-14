@@ -21,7 +21,7 @@ namespace Player
 
         [Space(5)]
         [Header("Movement")]
-        [ReadOnlyProperty] 
+        [ReadOnlyProperty]
         [SerializeField] private float _speed;
         [SerializeField] private float _walkSpeed = 10f;
         [SerializeField] private float _sprintSpeed = 15f;
@@ -31,7 +31,7 @@ namespace Player
         [SerializeField] private float _jumpForce;
         [SerializeField] private int _airJumpsCount = 2;
         [ReadOnlyProperty]
-        [SerializeField]  private int currentAirJumps;
+        [SerializeField] private int currentAirJumps;
         [Space(4)]
         [SerializeField] private Transform _checkGroundSphere;
         [SerializeField] private float _checkGroundSphereRadius;
@@ -140,7 +140,9 @@ namespace Player
             if (coyoteTimer > 0f)
             {
                 _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
-                _animator.SetTrigger("Jump");
+
+                _photonView.RPC(nameof(EnableJumpTrigger), RpcTarget.All);
+
                 coyoteTimer = -1f;
                 jumpBufferTimer = -1f;
 
@@ -150,23 +152,30 @@ namespace Player
             if (currentAirJumps > 0)
             {
                 _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
-                //_animator.SetTrigger("Jump");
                 _airJumpParticles.Emit(_airJumpParticlesCount);
                 currentAirJumps--;
                 jumpBufferTimer = -1f;
 
                 return;
             }
-
+            _photonView.RPC(nameof(ResetJumpTrigger), RpcTarget.All);
+        }
+        [PunRPC]
+        private void EnableJumpTrigger()
+        {
+            _animator.SetTrigger("Jump");
+        }
+        [PunRPC]
+        private void ResetJumpTrigger()
+        {
             _animator.ResetTrigger("Jump");
         }
-
         private void CheckGround()
         {
             _isGround = Physics2D.OverlapCircle(_checkGroundSphere.position, _checkGroundSphereRadius, ~_ignoredLayers);
             _animator.SetBool("IsGround", _isGround);
 
-            if (_isGround && _rb.velocity.y <= 0f) 
+            if (_isGround && _rb.velocity.y <= 0f)
             {
                 currentAirJumps = _airJumpsCount;
                 coyoteTimer = _coyoteTime;
@@ -181,38 +190,46 @@ namespace Player
         {
             if (_canShoot)
             {
-                GameObject newBullet = ObjectPool.Instance.GetObject(_bulletPrefab, _shootPoint.transform);
-                newBullet.transform.rotation = _shootPoint.rotation;
-                newBullet.GetComponent<Bullet>().ApplyVelocity();
-
-                ObjectPool.Instance.ReternObject(newBullet, 2f);
-
-                _animator.SetTrigger("Shoot");
-                StartCoroutine(ReloadFire());
+                _photonView.RPC(nameof(FireRPC), RpcTarget.All);
             }
         }
+        [PunRPC]
+        private void FireRPC()
+        {
+            GameObject newBullet = ObjectPool.Instance.GetObject(_bulletPrefab, _shootPoint.transform);
+            newBullet.transform.rotation = _shootPoint.rotation;
+            newBullet.GetComponent<Bullet>().ApplyVelocity();
 
+            ObjectPool.Instance.ReternObject(newBullet, 2f);
+
+            _animator.SetTrigger("Shoot");
+            StartCoroutine(ReloadFire());
+        }
         private void AltFire()
         {
             if (_canShoot)
             {
                 if (Stats.RemoveMana(this))
                 {
-                    GameObject newBullet = ObjectPool.Instance.GetObject(_altBulletPrefab, _shootPoint.transform);
-                    newBullet.transform.rotation = _shootPoint.rotation;
-                    newBullet.GetComponent<Bullet>().ApplyVelocity();
-
-                    ObjectPool.Instance.ReternObject(newBullet, 2f);
-
-                    _animator.SetTrigger("Shoot");
-                    StartCoroutine(ReloadFire());
+                    _photonView.RPC(nameof(AltFireRPC), RpcTarget.All);
                 }
             }
         }
+        [PunRPC]
+        private void AltFireRPC()
+        {
+            GameObject newBullet = ObjectPool.Instance.GetObject(_altBulletPrefab, _shootPoint.transform);
+            newBullet.transform.rotation = _shootPoint.rotation;
+            newBullet.GetComponent<Bullet>().ApplyVelocity();
 
+            ObjectPool.Instance.ReternObject(newBullet, 2f);
+
+            _animator.SetTrigger("Shoot");
+            StartCoroutine(ReloadFire());
+        }
         private void JumpBuffer()
         {
-            jumpBufferTimer -= Time.deltaTime;  
+            jumpBufferTimer -= Time.deltaTime;
 
             if (jumpBufferTimer > 0f && _isGround)
             {

@@ -40,6 +40,10 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - RotateFace
+  - EnableJumpTrigger
+  - ResetJumpTrigger
+  - FireRPC
+  - AltFireRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 4173997367891787456}
   - component: {fileID: 4167912172319413022}
   - component: {fileID: 1675102988609436050}
-  - component: {fileID: 299331583529794308}
   - component: {fileID: 3225201262012106070}
   - component: {fileID: 19331993733837903}
   - component: {fileID: 3930168907750212990}
   - component: {fileID: 1910673923390968100}
   - component: {fileID: 4795025107751279255}
+  - component: {fileID: 407941180715822994}
+  - component: {fileID: 299331583529794308}
   - component: {fileID: 7134014967337520988}
   m_Layer: 3
   m_Name: Player
@@ -143,27 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deathDelay: 3
---- !u!95 &299331583529794308
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 433133559216328037}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 25ee8dff3d196444b8198c08910533e1, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &3225201262012106070
 Rigidbody2D:
   serializedVersion: 4
@@ -246,6 +226,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 1910673923390968100}
+  - {fileID: 407941180715822994}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -280,6 +261,57 @@ MonoBehaviour:
   _localScripts:
   - {fileID: 4167912172319413022}
   - {fileID: 1675102988609436050}
+--- !u!114 &407941180715822994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433133559216328037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 2
+    Name: Speed
+  - Type: 4
+    SynchronizeType: 2
+    Name: IsGround
+  - Type: 9
+    SynchronizeType: 0
+    Name: Shoot
+  - Type: 9
+    SynchronizeType: 0
+    Name: Jump
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+--- !u!95 &299331583529794308
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433133559216328037}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 25ee8dff3d196444b8198c08910533e1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7134014967337520988
 MonoBehaviour:
   m_ObjectHideFlags: 0
