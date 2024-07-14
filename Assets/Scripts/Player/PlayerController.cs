@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using CustomAttributes;
 using InputSystem;
+using Photon.Pun;
 using UnityEngine;
 using Zenject;
 
@@ -8,6 +9,7 @@ namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(CapsuleCollider2D))]
+    [RequireComponent(typeof(PhotonView))]
 
     public class PlayerController : MonoBehaviour, IManaUser
     {
@@ -58,9 +60,11 @@ namespace Player
 
         private Animator _animator;
         private Rigidbody2D _rb;
+        private PhotonView _photonView;
         private InputHandler _inputHandler;
 
         private bool _isGround;
+        private bool _canRotate = false;
         private bool _canShoot = true;
         #endregion
 
@@ -69,18 +73,23 @@ namespace Player
         private Vector2 _rightFaceRotation = new Vector2(1, 1);
         #endregion
 
-        [Inject]
-        private void Inject(InputHandler inputHandler, PlayerStats playerStats)
+        public void SetUp(InputHandler inputHandler, PlayerStats playerStats, MobileInputContainer mobileInputContainer)
         {
             _inputHandler = inputHandler;
             Stats = playerStats;
+            _mobileInputContainer = mobileInputContainer;
+
+            _inputHandler.JumpButtonDown += Jump;
+            _inputHandler.FireButtonDown += Fire;
+            _inputHandler.AltFireButtonDown += AltFire;
         }
 
         private void Awake()
         {
+            _photonView = GetComponent<PhotonView>();
             _rb = GetComponent<Rigidbody2D>();
             _animator = GetComponentInChildren<Animator>();
-            QualitySettings.vSyncCount = -1;           
+            QualitySettings.vSyncCount = -1;
         }
 
         private void Start()
@@ -106,14 +115,22 @@ namespace Player
 
         private void FaceRotation()
         {
-            if (_rb.velocity.x < 0)
+            if (_rb.velocity.x < 0 && _canRotate == false)
             {
-                transform.localRotation = Quaternion.Euler(0, 180, 0);
+                _photonView.RPC(nameof(RotateFace), RpcTarget.AllBuffered, Quaternion.Euler(0, 180, 0));
+                _canRotate = true;
             }
-            else if (_rb.velocity.x > 0)
+            else if (_rb.velocity.x > 0 && _canRotate)
             {
-                transform.localRotation = Quaternion.Euler(0, 0, 0);
+                _photonView.RPC(nameof(RotateFace), RpcTarget.AllBuffered, Quaternion.Euler(0, 0, 0));
+                _canRotate = false;
             }
+        }
+
+        [PunRPC]
+        private void RotateFace(Quaternion degress)
+        {
+            transform.localRotation = degress;
         }
 
         private void Jump()
@@ -209,13 +226,6 @@ namespace Player
             _canShoot = false;
             yield return new WaitForSeconds(_reloadTime);
             _canShoot = true;
-        }
-
-        private void OnEnable()
-        {
-            _inputHandler.JumpButtonDown += Jump;
-            _inputHandler.FireButtonDown += Fire;
-            _inputHandler.AltFireButtonDown += AltFire;
         }
 
         private void OnDisable()

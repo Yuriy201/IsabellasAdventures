@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class PlayerDeath : MonoBehaviour
 {
     [Header("Death Canvas")]
-    [SerializeField]
     private Page _gameOverPage;
     private CanvasGroup _deathCanvasGroup;
 
@@ -19,9 +18,11 @@ public class PlayerDeath : MonoBehaviour
     private PlayerController playerController;
     private PlayerStats stats;
 
-    private void OnDisable() => stats.OnDied -= Death;
-
-    private void OnValidate()
+    private void OnDisable()
+    {
+        stats.OnDied -= Death;
+    }
+    private void Awake()
     {
         playerController = GetComponent<PlayerController>();
     }
@@ -37,7 +38,10 @@ public class PlayerDeath : MonoBehaviour
         _deathCanvasGroup.alpha = 0f;
         _gameOverPage.gameObject.SetActive(false);
     }
-
+    public void SetUp(Page gameOverPage)
+    {
+        _gameOverPage = gameOverPage;
+    }
     private void Death()
     {
         playerController.enabled = false;

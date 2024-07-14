@@ -18,6 +18,8 @@ namespace Enemy.Wolf
 
         [field: SerializeField] public Transform LeftExetremPoint { get; private set; }
         [field: SerializeField] public Transform RightExetremPoint { get; private set; }
+
+        [field: SerializeField] public int Level { get; private set; } = 1;
         [field: SerializeField] public float Speed { get; private set; }
         [field: SerializeField] public int Damage { get; private set; }
 
