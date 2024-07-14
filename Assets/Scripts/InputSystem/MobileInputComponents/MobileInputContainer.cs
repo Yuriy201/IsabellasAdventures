@@ -79,8 +79,6 @@ namespace InputSystem
 
         public void SetMobailUi(bool activ)
         {
-            print(activ);
-
             for (int i = 0; i < _mobailUis.Length; i++)
             {
                 _mobailUis[i].SetActive(activ);

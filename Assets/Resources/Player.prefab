@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 19331993733837903}
   - component: {fileID: 3930168907750212990}
   - component: {fileID: 1910673923390968100}
+  - component: {fileID: 4795025107751279255}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -263,6 +264,21 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &4795025107751279255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433133559216328037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e661da32fb106549915647781a443fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _localScripts:
+  - {fileID: 4167912172319413022}
+  - {fileID: 1675102988609436050}
 --- !u!1 &5814098738993002985
 GameObject:
   m_ObjectHideFlags: 0
@@ -5075,13 +5091,15 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
+  m_UseCustomVertexStreams: 0
   m_VertexStreams: 00010304
+  m_UseCustomTrailVertexStreams: 0
+  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}

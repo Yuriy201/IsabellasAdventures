@@ -18,8 +18,10 @@ public class PlayerDeath : MonoBehaviour
     private PlayerController playerController;
     private PlayerStats stats;
 
-    private void OnDisable() => stats.OnDied -= Death;
-
+    private void OnDisable()
+    {
+        stats.OnDied -= Death;
+    }
     private void Awake()
     {
         playerController = GetComponent<PlayerController>();
