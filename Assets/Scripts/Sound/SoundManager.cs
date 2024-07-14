@@ -1,7 +1,7 @@
 ﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
-using UnityEngine;
 using Zenject;
 
 namespace Sound
@@ -52,10 +52,17 @@ namespace Sound
             _globalVolume = _globalVolumeSlider.value;
             _sfxVolume = _sfxVolumeSlider.value;
 
-            _playerAudioMixer.SetFloat("Global", Mathf.Lerp(MINVOLUME, MAXVOLUME, _globalVolumeSlider.value));
-            _playerAudioMixer.SetFloat("SFX", Mathf.Lerp(MINVOLUME, MAXVOLUME, _sfxVolumeSlider.value));
+            _playerAudioMixer.SetFloat("Global", GetVolumeCustom(_globalVolumeSlider.value));
+            _playerAudioMixer.SetFloat("SFX", GetVolumeCustom(_sfxVolumeSlider.value));
 
             StartCoroutine(Save());
+        }
+
+        public static float GetVolumeCustom(float sliderValue)
+        {
+            float t = 1 - Mathf.Pow(1 - sliderValue, 2);
+            float volume = Mathf.Lerp(MINVOLUME, MAXVOLUME, t);
+            return volume;
         }
 
         private IEnumerator Save()

@@ -1,4 +1,5 @@
 using UnityEngine;
+using static NeoxiderAudio.AudioData;
 
 namespace NeoxiderAudio
 {
@@ -11,7 +12,6 @@ namespace NeoxiderAudio
 
     public class AudioManager : MonoBehaviour
     {
-
         [System.Serializable]
         public class AudioSourseType
         {
@@ -29,13 +29,24 @@ namespace NeoxiderAudio
         new AudioSourseType(SourseType.Music),
         new AudioSourseType(SourseType.Game) };
 
-        public AudioData audioDatas;
+        [Range(0, 1f)]
+        public float startVolumeInterface = 0.8f;
+        [Range(0, 1f)]
+        public float startVolumeMusic = 0.5f;
+        [Range(0, 1f)]
+        public float startVolumeGame = 1f;
 
+<<<<<<< Updated upstream
+=======
+        public AudioData audioData;
+
+>>>>>>> Stashed changes
         public static AudioManager Instance { get; private set; }
 
         private void Awake()
         {
             if (Instance == null)
+<<<<<<< Updated upstream
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
@@ -58,12 +69,77 @@ namespace NeoxiderAudio
             AudioSource source = GetSourse(aData.sourseType);
 
             if (transform != null)
+=======
+>>>>>>> Stashed changes
             {
-                source.spatialBlend = 1;
-                source.transform.position = transform.position;
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        public static void PlaySound(int clipId = 0)
+        {
+            if (clipId >= 0)
+                PlaySound((ClipType)clipId);
+        }
+
+        public static void PlaySound(ClipType clipType, float volume = 1f, Transform transform = null)
+        {
+            if (Instance != null)
+            {
+                AudioInfo aData = Instance.audioData.GetAudioInfo(clipType);
+
+                if (aData != null)
+                {
+                    if (TryGetRandomClip(aData.clips, out AudioClip clip))
+                    {
+                        AudioSource source = Instance.GetSourse(aData.sourseType);
+
+                        if (transform != null)
+                        {
+                            source.spatialBlend = 1;
+                            source.transform.position = transform.position;
+                        }
+
+                        float avarageVolume = (volume + aData.volume) / 2;
+                        source.PlayOneShot(clip, avarageVolume);
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogWarning("AudioManager has not Instance");
+
+                CreateInstance();
+            }
+        }
+
+        private static void CreateInstance()
+        {
+            GameObject newGameObject = new GameObject();
+            newGameObject.name = nameof(AudioManager);
+
+            AudioManager audioManager = newGameObject.AddComponent<AudioManager>();
+            Instance = audioManager;
+            DontDestroyOnLoad(audioManager.gameObject);
+            audioManager.audioData = (AudioData)Resources.FindObjectsOfTypeAll(typeof(AudioData))[0];
+
+            if (Instance.audioData == null)
+            {
+                Debug.LogError("AudioManager has not audioData");
             }
 
-            source.PlayOneShot(clip, volume);
+            for (int i = 0; i < Instance.ast.Length; i++)
+            {
+                GameObject newAudioSource = new GameObject();
+                newAudioSource.transform.SetParent(Instance.transform, false);
+                newAudioSource.name = Instance.ast[i].sourseType.ToString() + " Audio Source";
+                Instance.ast[i].sourse = newAudioSource.AddComponent<AudioSource>();
+            }
         }
 
         public void MuteAll(bool activ)
@@ -140,17 +216,26 @@ namespace NeoxiderAudio
             return null;
         }
 
-        private AudioClip GetRandomElement(AudioClip[] clips)
+        private static bool TryGetRandomClip(AudioClip[] clips, out AudioClip clip)
         {
             if (clips.Length == 1)
-                return clips[0];
+            {
+                clip = clips[0];
+                return true;
+            }
+            else if (clips.Length > 1)
+            {
+                clip = clips[Random.Range(0, clips.Length)];
+                return true;
+            }
 
-            return clips[Random.Range(0, clips.Length)];
+            clip = null;
+            return false;
         }
 
         private void OnValidate()
         {
-            audioDatas = FindFirstObjectByType<AudioData>();
+
         }
     }
 }
