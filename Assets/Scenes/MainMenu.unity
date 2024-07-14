@@ -1328,9 +1328,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameConfig: {fileID: 11400000, guid: d965fb48811237a478a8b8f4d1fdd7d4, type: 2}
-  _playerGameObject: {fileID: 0}
   _mobileInputContainer: {fileID: 0}
   _audioMixer: {fileID: 24100000, guid: d7ae88c1951ce134e876410d2a79a3d8, type: 2}
+  _playerSpawner: {fileID: 0}
 --- !u!114 &1248748184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1988,7 +1988,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e15814efce5684da7759d7c10efcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  languagesIndexes: []
+  languagesIndexes:
+  - English (en)
+  - Russian (ru)
   indexLanguage: 0
 --- !u!224 &1501733626 stripped
 RectTransform:
@@ -3295,6 +3297,10 @@ PrefabInstance:
       propertyPath: pageType
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6215602225964809042, guid: ec4e48c8003b44d44b58d595d7238253, type: 3}
+      propertyPath: _pageAnim
+      value: 
+      objectReference: {fileID: 8056880575331708500}
     - target: {fileID: 6380429029190850716, guid: ec4e48c8003b44d44b58d595d7238253, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

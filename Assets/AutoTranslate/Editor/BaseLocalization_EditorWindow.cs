@@ -1,12 +1,13 @@
-﻿using GoodTime.Tools.GUIPro;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.Tables;
+using GoodTime.Tools.GUIPro;
 
+#if UNITY_EDITOR
 namespace GoodTime.HernetsMaksym.AutoTranslate.Windows
 {
     public class BaseLocalization_EditorWindow : BaseCustomWindow_EditorWindow
@@ -125,3 +126,4 @@ namespace GoodTime.HernetsMaksym.AutoTranslate.Windows
         }
     }
 }
+#endif
