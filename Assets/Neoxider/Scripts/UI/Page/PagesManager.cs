@@ -272,7 +272,7 @@ namespace NeoxiderUi
         {
             name = nameof(PagesManager);
 
-            if (_refresh)
+            if (_refresh && gameObject.scene.name != null)
             {
                 Page[] scenePages = FindAllPages();
 
