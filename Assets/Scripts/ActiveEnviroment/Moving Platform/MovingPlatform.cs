@@ -8,31 +8,41 @@ using System.Drawing;
 using System.Linq;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class MovingPlatform : MonoBehaviour
 {
     [HideInInspector]
     public Rigidbody2D rigidbody;
+
     private BoxCollider2D collider;
 
     [SerializeField]
     private float _moveSpeed = 2f;
 
-    public Vector2[] _movePoints;
+    [SerializeField]
+    private float _nextPointDelay = 0.5f;
+    private float nextPointDelayTimer;
+
+    public Vector2[] _movePoints = new Vector2[0];
 
     private int nextPointIndex;
 
+    private Vector2 lastPlatformPoint;
     private Vector2 platformPositionLastFrame = Vector2.zero;
 
-    [ReadOnlyProperty]
-    private HashSet<Rigidbody2D> rigidbodiesOnPlatform = new();
+    [SerializeField]
+    private AnimationCurve _speedEasing;
 
-    //[ReadOnlyProperty]
-    //private HashSet<Rigidbody2D> nonPlayableRigidbodiesOnPlatform = new();
+    public List<Rigidbody2D> rigidbodiesOnPlatform = new();
 
     private void OnValidate()
     {
         collider = GetComponent<BoxCollider2D>();
         rigidbody = GetComponent<Rigidbody2D>();
+
+        rigidbody.isKinematic = true;
+        rigidbody.freezeRotation = true;
 
         nextPointIndex = 1;   
         
@@ -40,15 +50,21 @@ public class MovingPlatform : MonoBehaviour
         {
             _movePoints[0] = transform.position;
         }
+        else
+        {
+            _movePoints = new Vector2[1];
+            _movePoints[0] = transform.position;
+        }
     }
 
     private void Start()
     {
+        nextPointDelayTimer = _nextPointDelay;
         _movePoints[0] = transform.position;
 
-        platformPositionLastFrame = rigidbody.position;
+        lastPlatformPoint = _movePoints[0];
 
-        //rigidbody.DOPath(_movePoints.Select(x => (Vector2)x.position).ToArray(), _moveSpeed * 3).SetLoops(-1, LoopType.Yoyo);
+        platformPositionLastFrame = rigidbody.position;
     }
 
     private void GetNextPoint()
@@ -61,31 +77,39 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
+
+    private float GetPercentageAlong(Vector2 a, Vector2 b, Vector2 c)
+    {
+        var ab = b - a;
+        var ac = c - a;
+        return Vector2.Dot(ac, ab) / ab.sqrMagnitude;
+    }
+
     private void FixedUpdate()
     {    
         if (Vector2.Distance(rigidbody.position, _movePoints[nextPointIndex]) < 0.2f)
         {
-            GetNextPoint();
-            rigidbody.velocity = Vector2.zero;
+            nextPointDelayTimer -= Time.deltaTime;
+
+            if (nextPointDelayTimer <= 0)
+            {
+                nextPointDelayTimer = _nextPointDelay;
+
+                lastPlatformPoint = _movePoints[nextPointIndex];
+
+                GetNextPoint();
+                rigidbody.velocity = Vector2.zero;
+            }
         }
 
-        //rigidbody.MovePosition(Vector2.MoveTowards(rigidbody.position, (Vector2)_movePoints[nextPointIndex].position, _moveSpeed));
-        rigidbody.velocity = ((Vector2)_movePoints[nextPointIndex] - rigidbody.position).normalized * _moveSpeed;
+        float t = GetPercentageAlong(lastPlatformPoint, _movePoints[nextPointIndex], rigidbody.position);
+
+        rigidbody.velocity = (_movePoints[nextPointIndex] - rigidbody.position).normalized * _moveSpeed * _speedEasing.Evaluate(t);
 
         foreach (var rb in rigidbodiesOnPlatform)
         {          
-            //rb.position += new Vector2((rigidbody.position - platformPositionLastFrame).x, 0);
             rb.MovePosition(rb.position + (rb.velocity * Time.fixedDeltaTime) + new Vector2((rigidbody.position - platformPositionLastFrame).x, 0));
         }
-
-        /*
-        foreach (var rb in nonPlayableRigidbodiesOnPlatform)
-        {
-            rb.velocity = Vector2.zero;
-            rb.position += new Vector2((rigidbody.position - platformPositionLastFrame).x, 0);
-            //rb.MovePosition(rb.position + (rb.velocity * Time.fixedDeltaTime) + new Vector2((rigidbody.position - platformPositionLastFrame).x, 0));
-        }
-        */
 
         platformPositionLastFrame = rigidbody.position;
     }
@@ -95,21 +119,10 @@ public class MovingPlatform : MonoBehaviour
         if (collision.attachedRigidbody == null && collision.attachedRigidbody.isKinematic)
             return;
 
-        /* only box colliders stay on the moving platforms by default
-        if (collision.TryGetComponent<BoxCollider2D>(out _))
-            return;
-        */
-
         if (collision.gameObject.CompareTag("Player"))
         {
             rigidbodiesOnPlatform.Add(collision.attachedRigidbody);           
         }
-        /*
-        else
-        {
-            nonPlayableRigidbodiesOnPlatform.Add(collision.attachedRigidbody);
-        }
-        */
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -118,17 +131,8 @@ public class MovingPlatform : MonoBehaviour
         {
             if (rigidbodiesOnPlatform.Contains(collision.attachedRigidbody))
             {
-                rigidbodiesOnPlatform.Remove(collision.attachedRigidbody);
-              
-                //collision.attachedRigidbody.velocity += new Vector2(rigidbody.velocity.x * 5, 0);
+                rigidbodiesOnPlatform.Remove(collision.attachedRigidbody);            
             }
-
-            /*
-            else if (nonPlayableRigidbodiesOnPlatform.Contains(collision.attachedRigidbody))
-            {
-                nonPlayableRigidbodiesOnPlatform.Remove(collision.attachedRigidbody);
-            }
-            */
         }
     }
 
@@ -145,10 +149,4 @@ public class MovingPlatform : MonoBehaviour
 
         Gizmos.DrawLine(prevPoint, transform.position);
     }
-}
-
-public enum MovingPlatformEaseType
-{
-    EachPoint,
-    WholePath
 }
