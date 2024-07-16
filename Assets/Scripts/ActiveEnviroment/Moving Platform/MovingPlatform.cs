@@ -34,7 +34,7 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField]
     private AnimationCurve _speedEasing;
 
-    public List<Rigidbody2D> rigidbodiesOnPlatform = new();
+    private HashSet<Rigidbody2D> rigidbodiesOnPlatform = new();
 
     private void OnValidate()
     {

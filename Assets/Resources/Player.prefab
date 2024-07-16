@@ -5163,7 +5163,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7268109073898872415}
-  - component: {fileID: 9163314947336326915}
   m_Layer: 3
   m_Name: CheckGround
   m_TagString: Untagged
@@ -5186,41 +5185,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7215736544791544407}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &9163314947336326915
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7532464730414693383}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.32
 --- !u!1 &7652979549642114137
 GameObject:
   m_ObjectHideFlags: 0
