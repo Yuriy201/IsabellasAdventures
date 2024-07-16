@@ -1,18 +1,15 @@
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private Button playButton;
     [SerializeField] private string _gameVersion = "1.0.0";
     [SerializeField] private string _nextSceneName;
 
     private void Start()
     {
-        playButton.interactable = false;
-        playButton.onClick.AddListener(LoadNextScene);
         Connect();
     }
     private void Connect()
@@ -38,24 +35,10 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         Debug.Log("Connected");
 
-        PhotonNetwork.JoinLobby();
-    }
-    public override void OnJoinedLobby()
-    {
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = 2;
-        roomOptions.IsOpen = true;
-        roomOptions.IsVisible = true;
-
-        PhotonNetwork.JoinOrCreateRoom("test", roomOptions, TypedLobby.Default);
-    }
-    public override void OnJoinedRoom()
-    {
-        playButton.interactable = true;
-        
+        LoadNextScene();
     }
     private void LoadNextScene()
     {
-        PhotonNetwork.LoadLevel(_nextSceneName);
+        SceneManager.LoadScene(_nextSceneName);
     }
 }

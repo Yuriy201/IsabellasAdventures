@@ -152,13 +152,18 @@ namespace Player
             if (currentAirJumps > 0)
             {
                 _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
-                _airJumpParticles.Emit(_airJumpParticlesCount);
+                _photonView.RPC(nameof(EnableParticles), RpcTarget.All);
                 currentAirJumps--;
                 jumpBufferTimer = -1f;
 
                 return;
             }
             _photonView.RPC(nameof(ResetJumpTrigger), RpcTarget.All);
+        }
+        [PunRPC]
+        private void EnableParticles()
+        {
+            _airJumpParticles.Emit(_airJumpParticlesCount);
         }
         [PunRPC]
         private void EnableJumpTrigger()
