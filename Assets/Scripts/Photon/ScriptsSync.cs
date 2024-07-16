@@ -2,15 +2,13 @@ using Photon.Pun;
 using UnityEngine;
 
 [DefaultExecutionOrder(-50)]
-[RequireComponent(typeof(PhotonView))]
-public class PlayerSync : MonoBehaviour
+public class ScriptsSync : GetPhotonView
 {
     [SerializeField] private MonoBehaviour[] _localScripts;
 
-    private PhotonView _view;
-    private void Awake()
+    protected override void Awake()
     {
-        _view = GetComponent<PhotonView>();
+        base.Awake();
 
         if (_view.IsMine == false)
         {

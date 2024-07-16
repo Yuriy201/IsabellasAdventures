@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace NeoxiderUi
 {
-    public class UIReady : MonoBehaviourPunCallbacks
+    public class UIReady : GetPhotonView
     {
         public void Quit()
         {
@@ -13,8 +13,13 @@ namespace NeoxiderUi
 
         public void Restart()
         {
-            int idScene = SceneManager.GetActiveScene().buildIndex;
-            LoadScene(idScene);
+            _view.RPC(nameof(RestartRPC), RpcTarget.AllBuffered);
+        }
+        [PunRPC]
+        private void RestartRPC()
+        {
+            var sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            PhotonNetwork.LoadLevel(sceneIndex);
         }
         public void Pause(bool activ)
         {
