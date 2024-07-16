@@ -1,14 +1,18 @@
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
+    [SerializeField] private Button playButton;
     [SerializeField] private string _gameVersion = "1.0.0";
     [SerializeField] private string _nextSceneName;
 
     private void Start()
     {
+        playButton.interactable = false;
+        playButton.onClick.AddListener(LoadNextScene);
         Connect();
     }
     private void Connect()
@@ -47,7 +51,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
-        LoadNextScene();
+        playButton.interactable = true;
+        
     }
     private void LoadNextScene()
     {

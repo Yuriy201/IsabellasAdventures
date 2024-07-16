@@ -5149,6 +5149,10 @@ PrefabInstance:
       propertyPath: _pageType
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 5809625757634561959, guid: ead3f94fcf3b1f94fad65e926579e964, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
