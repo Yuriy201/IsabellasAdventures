@@ -185,7 +185,7 @@ MonoBehaviour:
   startVolumeInterface: 0.8
   startVolumeMusic: 0.5
   startVolumeGame: 1
-  audioData: {fileID: 0}
+  audioData: {fileID: 11400000, guid: ae07702436e51ce4dbb14ca3cb10d4b9, type: 2}
 --- !u!1 &2786099439316410264
 GameObject:
   m_ObjectHideFlags: 0

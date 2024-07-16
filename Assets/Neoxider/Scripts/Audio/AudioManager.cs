@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using static NeoxiderAudio.AudioData;
 
 namespace NeoxiderAudio
@@ -41,6 +43,11 @@ namespace NeoxiderAudio
         public static AudioManager Instance { get; private set; }
 
         private void Awake()
+        {
+            Init();
+        }
+
+        private void Init()
         {
             if (Instance == null)
             {
@@ -105,15 +112,35 @@ namespace NeoxiderAudio
             }
             else
             {
+                
                 Debug.LogWarning("AudioManager has not Instance");
 
                 CreateInstance();
 
-                PlaySound(clipType, volume, transform);
+                Instance.StartCoroutine(LoadAudioData(() =>
+                {
+                    PlaySound(clipType, volume, transform);
+                }));
+         
             }
         }
 
-        private static async void CreateInstance()
+        private static IEnumerator LoadAudioData(System.Action callback)
+        {           
+            var audioDataHandler = Addressables.LoadAssetAsync<AudioData>("AudioData");
+            yield return audioDataHandler;
+
+            Instance.audioData = audioDataHandler.Result;
+
+            if (Instance.audioData == null)
+            {
+                Debug.LogWarning("AudioManager has not audioData");
+            }
+
+            callback.Invoke();
+        }
+
+        private static void CreateInstance()
         {
             GameObject newGameObject = new GameObject();
             newGameObject.name = nameof(AudioManager);
@@ -128,16 +155,6 @@ namespace NeoxiderAudio
                 newAudioSource.transform.SetParent(Instance.transform, false);
                 newAudioSource.name = Instance.ast[i].sourseType.ToString() + " Audio Source";
                 Instance.ast[i].sourse = newAudioSource.AddComponent<AudioSource>();
-            }
-
-            var audioData = (AudioData[])Resources.FindObjectsOfTypeAll(typeof(AudioData));
-
-            if (audioData.Length > 0)
-                audioManager.audioData = audioData[0];
-
-            if (Instance.audioData == null)
-            {
-                Debug.LogWarning("AudioManager has not audioData");
             }
         }
 
