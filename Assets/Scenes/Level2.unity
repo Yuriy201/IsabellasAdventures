@@ -1523,7 +1523,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 360
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.8584906, g: 0.7197103, b: 0.2794144, a: 0}
   m_FlipX: 0
@@ -8630,7 +8630,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1474999200
 Transform:
   m_ObjectHideFlags: 0
@@ -8777,7 +8777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1521760234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8791,12 +8791,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 1521760236}
-  _moveSpeed: 6
+  _moveSpeed: 7
+  stopDistance: 0.1
   _nextPointDelay: 1
   _movePoints:
-  - {x: -59.7, y: -16.92}
-  - {x: -84.27, y: -16.92}
-  - {x: -71.9, y: -5.5}
+  - point: {x: -21.08, y: -16.92}
+    curve: {x: -19.1, y: -6.1}
+    isLinear: 0
+  - point: {x: -67.7, y: -16.92}
+    curve: {x: -40.5, y: -21.1}
+    isLinear: 1
+  - point: {x: -42.5, y: -5.2}
+    curve: {x: -43.67, y: -12.83}
+    isLinear: 0
   _speedEasing:
     serializedVersion: 2
     m_Curve:
@@ -8830,17 +8837,17 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.8
       value: 0.8
-      inSlope: -2.0833335
-      outSlope: -2.0833335
+      inSlope: -1.8333335
+      outSlope: -1.8333335
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.1
-      inSlope: -3.5000002
-      outSlope: -3.5000002
+      value: 0.2
+      inSlope: -3.0000002
+      outSlope: -3.0000002
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -8848,6 +8855,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  pathCirclesCount: 10
+  pathCirclesRadius: 0.5
+  curvePointRadius: 1
+  tt: 0
 --- !u!61 &1521760235
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8981,7 +8992,7 @@ Transform:
   m_GameObject: {fileID: 1521760233}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -59.7, y: -16.92, z: 0}
+  m_LocalPosition: {x: -21.08, y: -16.92, z: 0}
   m_LocalScale: {x: 15, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

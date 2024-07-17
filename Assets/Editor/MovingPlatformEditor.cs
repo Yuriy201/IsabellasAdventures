@@ -16,7 +16,7 @@ public class MovingPlatformEditor : Editor
         {
             for (int i = 0; i < platform._movePoints.Length; i++)
             {
-                platform._movePoints[i] = platform.transform.position;
+                platform._movePoints[i].point = platform.transform.position;
             }
         }
     }
