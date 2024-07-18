@@ -100,8 +100,6 @@ public class MovingPlatform : MonoBehaviour
     {
         Vector2 direction = _movePoints[nextPointIndex].point - rigidbody.position;
 
-        Debug.Log(direction.sqrMagnitude);
-
         if (direction.sqrMagnitude <= 0.5f)
         {
             nextPointDelayTimer += Time.deltaTime;

@@ -56,6 +56,17 @@ namespace Player
             OnStateChanged?.Invoke();
         }
 
+        public void RemoveHealth(int value)
+        {
+            _currentHealth -= value;
+            _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
+
+            if (_currentHealth <= 0)
+                OnDied?.Invoke();
+
+            OnStateChanged?.Invoke();
+        }
+
         public bool RemoveMana(IManaUser manaUser)
         {
             int value = manaUser.GetManacost();
