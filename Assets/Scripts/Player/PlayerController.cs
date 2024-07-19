@@ -29,6 +29,8 @@ namespace Player
         [Space(5)]
         [Header("Jump")]
         [SerializeField] private float _jumpForce;
+        [SerializeField] private float _jumpTime = 0.5f;
+        private float jumpTimer;
         [SerializeField] private int _airJumpsCount = 2;
         [ReadOnlyProperty]
         [SerializeField] private int currentAirJumps;
@@ -80,9 +82,10 @@ namespace Player
             _mobileInputContainer = mobileInputContainer;
 
             _inputHandler.JumpButtonDown += Jump;
+            _inputHandler.JumpButtonUp += JumpButtonUp;
             _inputHandler.FireButtonDown += Fire;
             _inputHandler.AltFireButtonDown += AltFire;
-        }
+        }       
 
         private void Awake()
         {
@@ -103,6 +106,7 @@ namespace Player
             FaceRotation();
             CheckGround();
             JumpBuffer();
+            JumpVelocity();
         }
 
         private void Walk()
@@ -138,8 +142,8 @@ namespace Player
             jumpBufferTimer = _jumpBufferTime;
 
             if (coyoteTimer > 0f)
-            {
-                _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+            {              
+                jumpTimer = _jumpTime;
 
                 _photonView.RPC(nameof(EnableJumpTrigger), RpcTarget.All);
 
@@ -151,15 +155,32 @@ namespace Player
 
             if (currentAirJumps > 0)
             {
-                _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+                jumpTimer = _jumpTime;
+              
                 _photonView.RPC(nameof(EnableParticles), RpcTarget.All);
                 currentAirJumps--;
                 jumpBufferTimer = -1f;
 
                 return;
             }
+
             _photonView.RPC(nameof(ResetJumpTrigger), RpcTarget.All);
         }
+
+        private void JumpVelocity()
+        {
+            if (_inputHandler.Jump && jumpTimer > 0f)
+            {
+                _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+                jumpTimer -= Time.deltaTime;
+            }
+        }
+
+        private void JumpButtonUp()
+        {
+            jumpTimer = -1f;
+        }
+
         [PunRPC]
         private void EnableParticles()
         {

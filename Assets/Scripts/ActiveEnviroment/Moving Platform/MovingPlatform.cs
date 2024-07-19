@@ -122,6 +122,13 @@ public class MovingPlatform : MonoBehaviour
                 }
             }
 
+            foreach (var rb in rigidbodiesOnPlatform)
+            {
+                rb.MovePosition(rb.position + (rb.velocity * Time.fixedDeltaTime) + new Vector2((rigidbody.position - platformPositionLastFrame).x, 0));
+            }
+
+            platformPositionLastFrame = rigidbody.position;
+
             return;
         }
 
@@ -134,7 +141,6 @@ public class MovingPlatform : MonoBehaviour
         }
         else
         {
-            Debug.Log("LINER");
             rigidbody.velocity = linearPathDirection * _moveSpeed * _speedEasing.Evaluate(t);
         }
 

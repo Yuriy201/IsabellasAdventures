@@ -8,8 +8,10 @@ namespace InputSystem
         public abstract Vector2 Directon { get; }
 
         public bool Sprinting;
+        public bool Jump;
 
         public event Action JumpButtonDown;
+        public event Action JumpButtonUp;
         public event Action FireButtonDown;
 
         public event Action AltFireButtonDown;
@@ -18,5 +20,6 @@ namespace InputSystem
         protected void InvokeAltFireButtonAction() => AltFireButtonDown?.Invoke();
         protected void InvokeJumpButtonAction() => JumpButtonDown?.Invoke();
 
+        protected void InvokeJumpButtonUpAction() => JumpButtonUp?.Invoke();
     }
 }
