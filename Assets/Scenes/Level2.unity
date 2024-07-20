@@ -298,14 +298,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1423679346}
     m_Modifications:
-    - target: {fileID: 380879967155272288, guid: aaa1bfd4beb6f2943a48b29bc3a646a7, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 9.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 380879967155272288, guid: aaa1bfd4beb6f2943a48b29bc3a646a7, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 4.39
-      objectReference: {fileID: 0}
     - target: {fileID: 549333026339105031, guid: aaa1bfd4beb6f2943a48b29bc3a646a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.99
@@ -346,22 +338,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1022075161466582505, guid: aaa1bfd4beb6f2943a48b29bc3a646a7, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 9.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022075161466582505, guid: aaa1bfd4beb6f2943a48b29bc3a646a7, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 4.39
-      objectReference: {fileID: 0}
     - target: {fileID: 1033940857722745333, guid: aaa1bfd4beb6f2943a48b29bc3a646a7, type: 3}
       propertyPath: m_Name
       value: WolfPack (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 2274103869302222074, guid: aaa1bfd4beb6f2943a48b29bc3a646a7, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 5d32f497ccc43425180462f3a315e98b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3657,7 +3637,7 @@ Transform:
   m_GameObject: {fileID: 627720429}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.899998, y: -17.55, z: 0}
+  m_LocalPosition: {x: -9.61, y: -17.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5131,7 +5111,7 @@ Transform:
   m_GameObject: {fileID: 806570698}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.25, y: -17.55, z: 0}
+  m_LocalPosition: {x: -7.63, y: -17.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9380,7 +9360,7 @@ Transform:
   m_GameObject: {fileID: 1557368329}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.0200005, y: -17.55, z: 0}
+  m_LocalPosition: {x: -5.22, y: -17.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10285,7 +10265,7 @@ Transform:
   m_GameObject: {fileID: 1797333023}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: -17.55, z: 0}
+  m_LocalPosition: {x: -3.23, y: -17.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
