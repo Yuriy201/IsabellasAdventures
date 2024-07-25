@@ -9955,14 +9955,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1423679346}
     m_Modifications:
-    - target: {fileID: 380879967155272288, guid: aaa1bfd4beb6f2943a48b29bc3a646a7, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 9.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 380879967155272288, guid: aaa1bfd4beb6f2943a48b29bc3a646a7, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 4.39
-      objectReference: {fileID: 0}
     - target: {fileID: 549333026339105031, guid: aaa1bfd4beb6f2943a48b29bc3a646a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.615264
@@ -10003,22 +9995,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1022075161466582505, guid: aaa1bfd4beb6f2943a48b29bc3a646a7, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 9.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1022075161466582505, guid: aaa1bfd4beb6f2943a48b29bc3a646a7, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 4.39
-      objectReference: {fileID: 0}
     - target: {fileID: 1033940857722745333, guid: aaa1bfd4beb6f2943a48b29bc3a646a7, type: 3}
       propertyPath: m_Name
       value: WolfPack (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 2274103869302222074, guid: aaa1bfd4beb6f2943a48b29bc3a646a7, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 5d32f497ccc43425180462f3a315e98b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

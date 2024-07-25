@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2518383368375030500}
   - component: {fileID: 5976727499257776824}
   - component: {fileID: 1619606931265041641}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AltAroow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

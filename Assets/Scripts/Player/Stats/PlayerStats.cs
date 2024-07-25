@@ -3,6 +3,7 @@ using System;
 
 namespace Player
 {
+    [System.Serializable]
     public class PlayerStats
     {
         public event Action OnStateChanged;
