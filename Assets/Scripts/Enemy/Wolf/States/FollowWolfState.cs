@@ -7,7 +7,7 @@ namespace Enemy.Wolf
 {
     public class FollowWolfState : WolfState
     {
-        private float speedMult = 1.2f;
+        private float speedMult = 1.3f;
         private float distanceCheckCdTimer = 0.5f;
 
         public FollowWolfState(StateMachine<WolfState> stateMachine, Wolf wolf)
@@ -16,6 +16,9 @@ namespace Enemy.Wolf
         public override void Enter()
         {
             _wolf.Animator.Play(_wolf.WalkHash);
+
+            _wolf.Animator.SetFloat("WalkMult", speedMult);
+
             Debug.Log($"<color=yellow>Enter in Follow</color>");
         }
 

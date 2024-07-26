@@ -24,6 +24,8 @@ namespace Enemy.Wolf
             walking = true;
             staying = false;
 
+            _wolf.Animator.SetFloat("WalkMult", 1);
+
             Debug.Log($"<color=green>Enter in Patrol</color>");
             //_wolf.Rigidbody2D.velocity = new Vector2(_wolf.Speed, _wolf.Rigidbody2D.velocity.y);
         }
