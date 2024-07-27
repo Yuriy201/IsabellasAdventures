@@ -2,11 +2,15 @@ using Photon.Pun;
 using UnityEngine;
 using Player;
 using UnityEngine.Events;
+using Zenject;
 
 [DefaultExecutionOrder(50)]
 public class PlayerSpawner : Spawner
 {
-    [SerializeField] private GameObject _playerPrefab;
+    [SerializeField] private GameObject _networkPlayerPrefab;
+    [SerializeField] private GameObject _defaultPlayerPrefab;
+
+    [Inject] private GameConfig _gameConfig;
 
     public UnityAction OnSpawned;
     public PlayerController SpawnedPlayer { get; private set; }
@@ -25,8 +29,16 @@ public class PlayerSpawner : Spawner
     {
         var spawnPoint = GetRandomSpawnPoint();
 
-        PlayerController player = PhotonNetwork.Instantiate(_playerPrefab.name, spawnPoint.position, spawnPoint.rotation).GetComponent<PlayerController>();
-        SpawnedPlayer = player;
+        if (_gameConfig.IsMultiplayer)
+        {
+            SpawnedPlayer = PhotonNetwork.Instantiate(_networkPlayerPrefab.name, spawnPoint.position, spawnPoint.rotation).GetComponent<PlayerController>();
+            Debug.Log("Network Spawner");
+        }
+        else
+        {
+            SpawnedPlayer = Instantiate(_defaultPlayerPrefab, spawnPoint.position, spawnPoint.rotation).GetComponent<PlayerController>();
+            Debug.Log("Default Spawner");
+        }
         OnSpawned?.Invoke();
     }
 }

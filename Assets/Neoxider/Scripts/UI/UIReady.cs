@@ -1,11 +1,16 @@
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace NeoxiderUi
 {
     public class UIReady : GetPhotonView
     {
+        [Inject] private GameConfig _gameConfig;
+
+        private int _currentSceneIndex;
+
         public void Quit()
         {
             Application.Quit();
@@ -13,13 +18,21 @@ namespace NeoxiderUi
 
         public void Restart()
         {
-            _view.RPC(nameof(RestartRPC), RpcTarget.AllBuffered);
+            _currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+            if (_gameConfig.IsMultiplayer)
+            {
+                _view.RPC(nameof(RestartRPC), RpcTarget.AllBuffered);
+            }
+            else
+            {
+                SceneManager.LoadScene(_currentSceneIndex);
+            }
         }
         [PunRPC]
         private void RestartRPC()
         {
-            var sceneIndex = SceneManager.GetActiveScene().buildIndex;
-            PhotonNetwork.LoadLevel(sceneIndex);
+            PhotonNetwork.LoadLevel(_currentSceneIndex);
         }
         public void Pause(bool activ)
         {
@@ -31,7 +44,9 @@ namespace NeoxiderUi
 
         public void LoadScene(int idScene) //добавить возможность асинхронной загрузки
         {
-            PhotonNetwork.LeaveRoom();
+            if (_gameConfig.IsMultiplayer)
+                PhotonNetwork.LeaveRoom();
+
             SceneManager.LoadScene(idScene);
         }
         private void OnValidate()

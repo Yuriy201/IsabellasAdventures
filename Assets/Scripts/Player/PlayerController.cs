@@ -1,19 +1,14 @@
-﻿using System.Collections;
+using UnityEngine;
+using System.Collections;
 using CustomAttributes;
 using InputSystem;
-using Photon.Pun;
-using UnityEngine;
-using Zenject;
 
 namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(CapsuleCollider2D))]
-    [RequireComponent(typeof(PhotonView))]
-
-    public class PlayerController : MonoBehaviour, IManaUser
+    public abstract class PlayerController : MonoBehaviour, IManaUser
     {
-        #region Field
         public PlayerStats Stats { get; private set; }
 
         // for testing
@@ -22,58 +17,48 @@ namespace Player
         [Space(5)]
         [Header("Movement")]
         [ReadOnlyProperty]
-        [SerializeField] private float _speed;
-        [SerializeField] private float _walkSpeed = 10f;
-        [SerializeField] private float _sprintSpeed = 15f;
+        [SerializeField] protected float _speed;
+        [SerializeField] protected float _walkSpeed = 10f;
+        [SerializeField] protected float _sprintSpeed = 15f;
 
         [Space(5)]
         [Header("Jump")]
-        [SerializeField] private float _jumpForce;
-        [SerializeField] private float _jumpTime = 0.5f;
-        private float jumpTimer;
-        [SerializeField] private int _airJumpsCount = 2;
+        [SerializeField] protected float _jumpForce;
+        [SerializeField] protected float _jumpTime = 0.5f;
+        protected float jumpTimer;
+        [SerializeField] protected int _airJumpsCount = 2;
         [ReadOnlyProperty]
-        [SerializeField] private int currentAirJumps;
+        [SerializeField] protected int currentAirJumps;
         [Space(4)]
-        [SerializeField] private Transform _checkGroundSphere;
-        [SerializeField] private float _checkGroundSphereRadius;
-        [SerializeField] private LayerMask _ignoredLayers;
+        [SerializeField] protected Transform _checkGroundSphere;
+        [SerializeField] protected float _checkGroundSphereRadius;
+        [SerializeField] protected LayerMask _ignoredLayers;
         [Space(4)]
-        [SerializeField] private ParticleSystem _airJumpParticles;
-        [SerializeField] private int _airJumpParticlesCount = 5;
+        [SerializeField] protected ParticleSystem _airJumpParticles;
+        [SerializeField] protected int _airJumpParticlesCount = 5;
         [Space(4)]
-        [SerializeField] private float _coyoteTime = 0.2f;
-        private float coyoteTimer;
+        [SerializeField] protected float _coyoteTime = 0.2f;
+        protected float coyoteTimer;
         [Space(4)]
-        [SerializeField] private float _jumpBufferTime = 0.2f;
-        private float jumpBufferTimer;
-
-        [Space]
-        [Header("Mobile Input")]
-        [SerializeField] private MobileInputContainer _mobileInputContainer;
+        [SerializeField] protected float _jumpBufferTime = 0.2f;
+        protected float jumpBufferTimer;
 
         [Space(5)]
         [Header("Combat")]
-        [SerializeField] private GameObject _bulletPrefab;
-        [SerializeField] private GameObject _altBulletPrefab;
-        [SerializeField][Range(0, 10)] private int _altFireManacost;
-        [SerializeField] private Transform _shootPoint;
-        [SerializeField] private float _reloadTime;
+        [SerializeField] protected GameObject _bulletPrefab;
+        [SerializeField] protected GameObject _altBulletPrefab;
+        [SerializeField][Range(0, 10)] protected int _altFireManacost;
+        [SerializeField] protected Transform _shootPoint;
+        [SerializeField] protected float _reloadTime;
 
-        private Animator _animator;
-        private Rigidbody2D _rb;
-        private PhotonView _photonView;
-        private InputHandler _inputHandler;
+        protected MobileInputContainer _mobileInputContainer;
+        protected Animator _animator;
+        protected Rigidbody2D _rb;
+        protected InputHandler _inputHandler;
 
-        private bool _isGround;
-        private bool _canRotate = false;
-        private bool _canShoot = true;
-        #endregion
-
-        #region Const
-        private Vector2 _leftFaceRotation = new Vector2(-1, 1);
-        private Vector2 _rightFaceRotation = new Vector2(1, 1);
-        #endregion
+        protected bool _isGround;
+        protected bool _canRotate = false;
+        protected bool _canShoot = true;
 
         public void SetUp(InputHandler inputHandler, PlayerStats playerStats, MobileInputContainer mobileInputContainer)
         {
@@ -85,11 +70,9 @@ namespace Player
             _inputHandler.JumpButtonUp += JumpButtonUp;
             _inputHandler.FireButtonDown += Fire;
             _inputHandler.AltFireButtonDown += AltFire;
-        }       
-
-        private void Awake()
+        }
+        protected virtual void Awake()
         {
-            _photonView = GetComponent<PhotonView>();
             _rb = GetComponent<Rigidbody2D>();
             _animator = GetComponentInChildren<Animator>();
             QualitySettings.vSyncCount = -1;
@@ -108,66 +91,11 @@ namespace Player
             JumpBuffer();
             JumpVelocity();
         }
+        protected abstract void Walk();
+        protected abstract void FaceRotation();
+        protected abstract void Jump();
 
-        private void Walk()
-        {
-            _speed = _inputHandler.Sprinting ? _sprintSpeed : _walkSpeed;
-
-            _rb.velocity = new Vector2(_inputHandler.Directon.x * _speed, _rb.velocity.y);
-            _animator.SetFloat("Speed", Mathf.Abs(_rb.velocity.x));
-        }
-
-        private void FaceRotation()
-        {
-            if (_rb.velocity.x < 0 && _canRotate == false)
-            {
-                _photonView.RPC(nameof(RotateFace), RpcTarget.AllBuffered, Quaternion.Euler(0, 180, 0));
-                _canRotate = true;
-            }
-            else if (_rb.velocity.x > 0 && _canRotate)
-            {
-                _photonView.RPC(nameof(RotateFace), RpcTarget.AllBuffered, Quaternion.Euler(0, 0, 0));
-                _canRotate = false;
-            }
-        }
-
-        [PunRPC]
-        private void RotateFace(Quaternion degress)
-        {
-            transform.localRotation = degress;
-        }
-
-        private void Jump()
-        {
-            jumpBufferTimer = _jumpBufferTime;
-
-            if (coyoteTimer > 0f)
-            {              
-                jumpTimer = _jumpTime;
-
-                _photonView.RPC(nameof(EnableJumpTrigger), RpcTarget.All);
-
-                coyoteTimer = -1f;
-                jumpBufferTimer = -1f;
-
-                return;
-            }
-
-            if (currentAirJumps > 0)
-            {
-                jumpTimer = _jumpTime;
-              
-                _photonView.RPC(nameof(EnableParticles), RpcTarget.All);
-                currentAirJumps--;
-                jumpBufferTimer = -1f;
-
-                return;
-            }
-
-            _photonView.RPC(nameof(ResetJumpTrigger), RpcTarget.All);
-        }
-
-        private void JumpVelocity()
+        protected void JumpVelocity()
         {
             if (_inputHandler.Jump && jumpTimer > 0f)
             {
@@ -179,22 +107,6 @@ namespace Player
         private void JumpButtonUp()
         {
             jumpTimer = -1f;
-        }
-
-        [PunRPC]
-        private void EnableParticles()
-        {
-            _airJumpParticles.Emit(_airJumpParticlesCount);
-        }
-        [PunRPC]
-        private void EnableJumpTrigger()
-        {
-            _animator.SetTrigger("Jump");
-        }
-        [PunRPC]
-        private void ResetJumpTrigger()
-        {
-            _animator.ResetTrigger("Jump");
         }
         private void CheckGround()
         {
@@ -212,47 +124,8 @@ namespace Player
             }
         }
 
-        private void Fire()
-        {
-            if (_canShoot)
-            {
-                _photonView.RPC(nameof(FireRPC), RpcTarget.All);
-            }
-        }
-        [PunRPC]
-        private void FireRPC()
-        {
-            GameObject newBullet = ObjectPool.Instance.GetObject(_bulletPrefab, _shootPoint.transform);
-            newBullet.transform.rotation = _shootPoint.rotation;
-            newBullet.GetComponent<Bullet>().ApplyVelocity();
-
-            ObjectPool.Instance.ReternObject(newBullet, 2f);
-
-            _animator.SetTrigger("Shoot");
-            StartCoroutine(ReloadFire());
-        }
-        private void AltFire()
-        {
-            if (_canShoot)
-            {
-                if (Stats.RemoveMana(this))
-                {
-                    _photonView.RPC(nameof(AltFireRPC), RpcTarget.All);
-                }
-            }
-        }
-        [PunRPC]
-        private void AltFireRPC()
-        {
-            GameObject newBullet = ObjectPool.Instance.GetObject(_altBulletPrefab, _shootPoint.transform);
-            newBullet.transform.rotation = _shootPoint.rotation;
-            newBullet.GetComponent<Bullet>().ApplyVelocity();
-
-            ObjectPool.Instance.ReternObject(newBullet, 2f);
-
-            _animator.SetTrigger("Shoot");
-            StartCoroutine(ReloadFire());
-        }
+        protected abstract void Fire();
+        protected abstract void AltFire();
         private void JumpBuffer()
         {
             jumpBufferTimer -= Time.deltaTime;
@@ -262,9 +135,7 @@ namespace Player
                 Jump();
             }
         }
-
-
-        private IEnumerator ReloadFire()
+        protected IEnumerator ReloadFire()
         {
             _canShoot = false;
             yield return new WaitForSeconds(_reloadTime);

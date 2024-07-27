@@ -4,4 +4,6 @@ using UnityEngine;
 public class GameConfig : ScriptableObject
 {
     [field: SerializeField] public PlatfotmType PlatfotmType { get; private set; }
+
+    public bool IsMultiplayer = false;
 }

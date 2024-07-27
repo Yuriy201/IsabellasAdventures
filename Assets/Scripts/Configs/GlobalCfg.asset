@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GlobalCfg
   m_EditorClassIdentifier: 
   <PlatfotmType>k__BackingField: 0
+  IsMultiplayer: 0

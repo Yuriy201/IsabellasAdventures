@@ -16,6 +16,7 @@ public class GlobalInstaller : MonoInstaller
     {
         BindStats();
         BindInputHandler();
+        BindGameConfig();
         BindAudioMixer();
         BindPlayerSpawner();
         BindMobileInputContainer();
@@ -24,6 +25,10 @@ public class GlobalInstaller : MonoInstaller
     private void BindAudioMixer()
     {
         Container.Bind<AudioMixer>().FromInstance(_audioMixer).AsSingle().NonLazy();
+    }
+    private void BindGameConfig()
+    {
+        Container.Bind<GameConfig>().FromInstance(_gameConfig).AsSingle().NonLazy();
     }
     private void BindPlayerSpawner()
     {
