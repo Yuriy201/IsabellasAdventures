@@ -17,6 +17,7 @@ namespace Enemy.Bird
             _crow.Animator.Play(_crow.FlyHash);
             _isStay = false;
             _currentPoint = _crow.GetCurrentPoint();
+            _crow.Rotate(_currentPoint.position);
         }
 
         public override void Exit() { }

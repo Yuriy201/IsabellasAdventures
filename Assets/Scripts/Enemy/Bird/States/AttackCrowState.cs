@@ -14,7 +14,10 @@ namespace Enemy.Bird
             _crow.StartCoroutine(AttackRoutine());
         }
 
-        public override void Exit() { }
+        public override void Exit()
+        {
+            _crow.Animator.Play(_crow.FlyHash);
+        }
 
         public override void Operate()
         {
