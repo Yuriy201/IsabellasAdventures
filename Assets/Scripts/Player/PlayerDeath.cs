@@ -23,6 +23,7 @@ public class PlayerDeath : MonoBehaviour
     {
         stats.OnDied -= Death;
     }
+
     private void Awake()
     {
         playerController = GetComponent<PlayerController>();
@@ -47,6 +48,7 @@ public class PlayerDeath : MonoBehaviour
     {
         AudioManager.PlaySound(ClipType.gameOver);
 
+        playerController.StopPlayer();
         playerController.enabled = false;
 
         _gameOverPage.gameObject.SetActive(true);

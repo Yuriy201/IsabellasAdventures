@@ -9,7 +9,7 @@ namespace Player
             _speed = _inputHandler.Sprinting ? _sprintSpeed : _walkSpeed;
 
             _rb.velocity = new Vector2(_inputHandler.Directon.x * _speed, _rb.velocity.y);
-            _animator.SetFloat("Speed", Mathf.Abs(_rb.velocity.x));
+            _animator.SetFloat(SpeedFloatHash, Mathf.Abs(_rb.velocity.x));
         }
 
         protected override void FaceRotation()
@@ -66,11 +66,11 @@ namespace Player
         }
         private void EnableJumpTrigger()
         {
-            _animator.SetTrigger("Jump");
+            _animator.SetTrigger(JumpTriggerHash);
         }
         private void ResetJumpTrigger()
         {
-            _animator.ResetTrigger("Jump");
+            _animator.ResetTrigger(JumpTriggerHash);
         }
         protected override void Fire()
         {
@@ -82,7 +82,7 @@ namespace Player
 
                 ObjectPool.Instance.ReternObject(newBullet, 2f);
 
-                _animator.SetTrigger("Shoot");
+                _animator.SetTrigger(ShootTriggerHash);
                 StartCoroutine(ReloadFire());
             }
         }
@@ -98,7 +98,7 @@ namespace Player
 
                     ObjectPool.Instance.ReternObject(newBullet, 2f);
 
-                    _animator.SetTrigger("Shoot");
+                    _animator.SetTrigger(ShootTriggerHash);
                     StartCoroutine(ReloadFire());
                 }
             }

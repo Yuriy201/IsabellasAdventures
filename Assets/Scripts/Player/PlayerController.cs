@@ -60,6 +60,11 @@ namespace Player
         protected bool _canRotate = false;
         protected bool _canShoot = true;
 
+        protected int GroundAnimationHash = Animator.StringToHash("IsGround");
+        protected int SpeedFloatHash = Animator.StringToHash("Speed");
+        protected int JumpTriggerHash = Animator.StringToHash("Jump");
+        protected int ShootTriggerHash = Animator.StringToHash("Shoot");
+
         public void SetUp(InputHandler inputHandler, PlayerStats playerStats, MobileInputContainer mobileInputContainer)
         {
             _inputHandler = inputHandler;
@@ -107,11 +112,12 @@ namespace Player
         private void JumpButtonUp()
         {
             jumpTimer = -1f;
+            _animator.ResetTrigger(JumpTriggerHash);
         }
         private void CheckGround()
         {
             _isGround = Physics2D.OverlapCircle(_checkGroundSphere.position, _checkGroundSphereRadius, ~_ignoredLayers);
-            _animator.SetBool("IsGround", _isGround);
+            _animator.SetBool(GroundAnimationHash, _isGround);
 
             if (_isGround && _rb.velocity.y <= 0f)
             {
@@ -120,6 +126,7 @@ namespace Player
             }
             else
             {
+                _animator.SetBool(GroundAnimationHash, _isGround);
                 coyoteTimer -= Time.deltaTime;
             }
         }
@@ -140,6 +147,12 @@ namespace Player
             _canShoot = false;
             yield return new WaitForSeconds(_reloadTime);
             _canShoot = true;
+        }
+
+        public void StopPlayer()
+        {
+            _animator.SetFloat(SpeedFloatHash, 0f);
+            _rb.velocity = Vector3.zero;
         }
 
         private void OnDisable()

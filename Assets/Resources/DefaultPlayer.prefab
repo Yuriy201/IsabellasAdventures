@@ -4978,7 +4978,7 @@ MonoBehaviour:
   _checkGroundSphereRadius: 0.32
   _ignoredLayers:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 78
   _airJumpParticles: {fileID: 8513024186118068720}
   _airJumpParticlesCount: 30
   _coyoteTime: 0.2
