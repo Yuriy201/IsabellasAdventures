@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8903800617409443235}
   - component: {fileID: 2106905528329672081}
   - component: {fileID: 4120918207475396910}
-  - component: {fileID: 4976523832940754465}
   - component: {fileID: 1455235459433971865}
   - component: {fileID: 8401822204767221643}
   m_Layer: 9
@@ -50,7 +49,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToFall: 1
-  _animatorArgumentName: fdsgffdg
   _restoreTime: 3
 --- !u!212 &2106905528329672081
 SpriteRenderer:
@@ -131,27 +129,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!95 &4976523832940754465
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 376538318771998267}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!61 &1455235459433971865
 BoxCollider2D:
   m_ObjectHideFlags: 0
