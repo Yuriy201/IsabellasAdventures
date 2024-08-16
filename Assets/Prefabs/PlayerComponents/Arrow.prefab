@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5976727499257776824}
   - component: {fileID: 3749154208411446004}
   - component: {fileID: 1257795658240209421}
+  - component: {fileID: 6279435725631690467}
   m_Layer: 10
   m_Name: Arrow
   m_TagString: Untagged
@@ -224,3 +225,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canRotate: 1
+--- !u!114 &6279435725631690467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2745127749481628010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647898cba3a0a274bbf06d4772379a9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StayTime: 2

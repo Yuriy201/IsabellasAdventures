@@ -3,16 +3,17 @@ using Player;
 using System.Collections.Generic;
 using System.Collections;
 
+[RequireComponent(typeof(Collider2D))]
 public class Thorn : MonoBehaviour
 {
-    private HashSet<PlayerController> hittedPlayers = new HashSet<PlayerController>();
+    private HashSet<Collider2D> hittedPlayers = new HashSet<Collider2D>();
     private WaitForSeconds hitCdWait;
 
     [SerializeField]
     private int _damage;
 
     [SerializeField]
-    private int _hitCd;
+    private float _hitCd;
     //public int GetDamageValue() => _damage;
 
     private void Start()
@@ -20,25 +21,22 @@ public class Thorn : MonoBehaviour
         hitCdWait = new WaitForSeconds(_hitCd);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out PlayerController player))
+        if (!hittedPlayers.Contains(collision) && collision.TryGetComponent(out PlayerController player))
         {
-            if (!hittedPlayers.Contains(player))
-            {
-                //_damage = player.Stats.MaxHealth;
-                player.Stats.RemoveHealth(_damage);
-                hittedPlayers.Add(player);
+            //_damage = player.Stats.MaxHealth;
+            player.Stats.RemoveHealth(_damage);
+            hittedPlayers.Add(collision);
 
-                StartCoroutine(HitCd(player));
-            }        
+            StartCoroutine(HitCd(collision));
         }
     }
 
-    private IEnumerator HitCd(PlayerController player)
+    private IEnumerator HitCd(Collider2D collision)
     {
         yield return hitCdWait;
 
-        hittedPlayers.Remove(player);
+        hittedPlayers.Remove(collision);
     }
 }

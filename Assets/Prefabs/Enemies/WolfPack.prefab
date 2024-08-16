@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 2157082991775130936}
   - component: {fileID: 3911190865771652098}
   - component: {fileID: 3577140260554519267}
-  - component: {fileID: 5439960507823052215}
+  - component: {fileID: 3919374751042288309}
   m_Layer: 6
   m_Name: Wolf
   m_TagString: Untagged
@@ -475,11 +475,11 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 6.3556433, y: 4.265793}
+  m_Offset: {x: 0, y: -0.24}
+  m_Size: {x: 5.49, y: 3.68}
   m_Direction: 1
---- !u!70 &5439960507823052215
-CapsuleCollider2D:
+--- !u!68 &3919374751042288309
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -493,7 +493,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1023
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -511,5 +511,17 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 8.262336, y: 5.118952}
-  m_Direction: 1
+  m_EdgeRadius: 0.81
+  m_Points:
+  - {x: 3.1528993, y: 1.4454486}
+  - {x: 3.5671718, y: 0.9332063}
+  - {x: 2.2315087, y: 0.34040937}
+  - {x: 2.4563289, y: -1.2893435}
+  - {x: -2.004255, y: -1.3103414}
+  - {x: -2.6016674, y: -0.18160835}
+  - {x: -3.025297, y: 0.8335444}
+  - {x: 3.1858566, y: 1.4321873}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
