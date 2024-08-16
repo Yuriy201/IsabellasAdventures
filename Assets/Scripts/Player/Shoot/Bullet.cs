@@ -1,5 +1,6 @@
 using Enemy;
 using NeoxiderAudio;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -10,6 +11,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] private int _damage;
 
     private Rigidbody2D _rigidbody;
+
+    public event Action<Collider2D>? OnHit;
     
     private void Awake()
     {
@@ -22,11 +25,12 @@ public class Bullet : MonoBehaviour
 
         if (collision.TryGetComponent(out IDamagable target))
         {
+            OnHit.Invoke(collision);
             target.GetDamage(_damage);
             AudioManager.PlaySound(ClipType.arrowHit);
         }
 
-        ObjectPool.Instance.ReternObject(gameObject);
+        //ObjectPool.Instance.ReternObject(gameObject);
     }
 
     public void ApplyVelocity()

@@ -7,6 +7,7 @@ namespace Player
     public class PlayerStats
     {
         public event Action OnStateChanged;
+        public event Action OnDamaged;
         
         public event Action OnLackOfMoney;
         public event Action OnLackOfMana;
@@ -55,6 +56,7 @@ namespace Player
                 OnDied?.Invoke();
 
             OnStateChanged?.Invoke();
+            OnDamaged?.Invoke();
         }
 
         public void RemoveHealth(int value)
@@ -66,6 +68,7 @@ namespace Player
                 OnDied?.Invoke();
 
             OnStateChanged?.Invoke();
+            OnDamaged?.Invoke();
         }
 
         public bool RemoveMana(IManaUser manaUser)

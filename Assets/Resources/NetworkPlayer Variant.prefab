@@ -252,6 +252,9 @@ PrefabInstance:
       addedObject: {fileID: 3889045717192979347}
     - targetCorrespondingSourceObject: {fileID: 3672405805955947743, guid: 7dd9c7c2fce13a04589e98d12c8db95b, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 7624587052333331872}
+    - targetCorrespondingSourceObject: {fileID: 3672405805955947743, guid: 7dd9c7c2fce13a04589e98d12c8db95b, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 7467685016630093517}
     - targetCorrespondingSourceObject: {fileID: 3672405805955947743, guid: 7dd9c7c2fce13a04589e98d12c8db95b, type: 3}
       insertIndex: -1
@@ -355,6 +358,19 @@ MonoBehaviour:
   _altFireManacost: 3
   _shootPoint: {fileID: 841814245013852671}
   _reloadTime: 1
+--- !u!114 &7624587052333331872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5192281249391376985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb216d00fef20f048adab18ea1663ffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectDuration: 0.5
 --- !u!114 &7467685016630093517
 MonoBehaviour:
   m_ObjectHideFlags: 0

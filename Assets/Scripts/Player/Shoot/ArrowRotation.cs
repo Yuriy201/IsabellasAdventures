@@ -9,8 +9,7 @@ public class ArrowRotation : MonoBehaviour
     private Rigidbody2D rigidbody;
 
     [ReadOnlyProperty]
-    [SerializeField]
-    private bool canRotate = true;
+    public bool canRotate = true;
 
     private void Start()
     {
@@ -24,7 +23,7 @@ public class ArrowRotation : MonoBehaviour
 
     private void Update()
     {
-        if (canRotate)
+        if (canRotate && rigidbody.velocity != Vector2.zero)
             transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, Mathf.Atan2(rigidbody.velocity.y, rigidbody.velocity.x) * Mathf.Rad2Deg);
     }
 
