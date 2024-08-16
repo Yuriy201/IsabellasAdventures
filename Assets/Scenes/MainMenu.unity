@@ -2471,7 +2471,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e15814efce5684da7759d7c10efcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  languagesIndexes: []
+  languagesIndexes:
+  - English (en)
+  - Russian (ru)
   indexLanguage: 0
 --- !u!1 &1471550757
 GameObject:
@@ -3168,7 +3170,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: aaf071c628b49bf49a723be3e82cd0ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 514b0b11f64dc486b88a1ae39a073a5f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
