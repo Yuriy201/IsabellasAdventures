@@ -19,7 +19,7 @@ namespace Enemy.Wolf
 
         public override void Enter()
         {
-            walkTimer = Random.Range(2f, 4f);
+            walkTimer = Random.Range(12f, 14f);
 
             walking = true;
             staying = false;

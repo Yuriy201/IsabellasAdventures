@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6086315326717398110}
   m_Layer: 6
   m_Name: Crow
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,9 +173,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 2.5434875, y: -0.82847595}
   serializedVersion: 2
-  m_Radius: 50
+  m_Radius: 44.47335
 --- !u!95 &6086315326717398110
 Animator:
   serializedVersion: 5
