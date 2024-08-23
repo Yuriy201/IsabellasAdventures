@@ -3,69 +3,55 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public GameObject wolfPrefab;
-    public GameObject ravenPrefab;
-    public Transform[] spawnPoints;
-    public float spawnInterval = 60f;
-    public int totalWolves = 5;
-    public int totalRavens = 5;
+    [System.Serializable]
+    public class Wave
+    {
+        public GameObject[] enemies;
+    }
+
+    public Wave[] waves;
+    private int currentWaveIndex = 0;
 
     private void Start()
     {
-        StartCoroutine(SpawnWave());
+        ActivateWave(waves[currentWaveIndex]);
+        StartCoroutine(StartNextWave());
     }
 
-    private IEnumerator SpawnWave()
+    private IEnumerator StartNextWave()
     {
-        int wolvesSpawned = 0;
-        int ravensSpawned = 0;
-
-        while (wolvesSpawned < totalWolves || ravensSpawned < totalRavens)
+        while (currentWaveIndex < waves.Length)
         {
-            if (wolvesSpawned < totalWolves)
+            yield return new WaitUntil(() => AreAllEnemiesMissing(waves[currentWaveIndex].enemies));
+            yield return new WaitForSeconds(30f);
+            currentWaveIndex++;
+            if (currentWaveIndex < waves.Length)
             {
-                Transform spawnPoint = spawnPoints[wolvesSpawned % spawnPoints.Length];
-                GameObject wolf = SpawnObject(wolfPrefab, spawnPoint.position, spawnPoint.rotation);
-                wolvesSpawned++;
+                ActivateWave(waves[currentWaveIndex]);
             }
+        }
+    }
 
-            if (ravensSpawned < totalRavens)
+    private void ActivateWave(Wave wave)
+    {
+        foreach (var enemy in wave.enemies)
+        {
+            if (enemy != null)
             {
-                Transform spawnPoint = spawnPoints[ravensSpawned % spawnPoints.Length];
-                GameObject raven = SpawnObject(ravenPrefab, spawnPoint.position, spawnPoint.rotation);
-                ravensSpawned++;
+                enemy.SetActive(true);
             }
-
-            yield return new WaitForSeconds(spawnInterval / (totalWolves + totalRavens));
         }
     }
 
-    private GameObject SpawnObject(GameObject prefab, Vector3 position, Quaternion rotation)
+    private bool AreAllEnemiesMissing(GameObject[] enemies)
     {
-        GameObject obj = Instantiate(prefab, position, rotation);
-        InitializeSpawnedObject(obj);
-        return obj;
-    }
-
-    private void InitializeSpawnedObject(GameObject obj)
-    {
-        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-        if (rb != null)
+        foreach (var enemy in enemies)
         {
-            rb.simulated = true;
+            if (enemy != null)
+            {
+                return false;
+            }
         }
-
-        Collider2D collider = obj.GetComponent<Collider2D>();
-        if (collider != null)
-        {
-            collider.enabled = true;
-        }
-
-        Animator animator = obj.GetComponent<Animator>();
-        if (animator != null)
-        {
-            animator.Rebind();
-            animator.Update(0);
-        }
+        return true;
     }
 }
