@@ -4989,6 +4989,8 @@ MonoBehaviour:
   _altFireManacost: 3
   _shootPoint: {fileID: 8167005581905295225}
   _reloadTime: 1
+  sprintClip: {fileID: 7400000, guid: 4205fff874cf0de43b1babe84b587bba, type: 2}
+  idleClip: {fileID: 7400000, guid: 728ce650d6e9d9343a4be4a7836d161c, type: 2}
 --- !u!114 &5868566623026524133
 MonoBehaviour:
   m_ObjectHideFlags: 0

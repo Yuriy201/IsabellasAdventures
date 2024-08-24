@@ -14,6 +14,7 @@ public class Coin : MonoBehaviour
     {
         if (other.TryGetComponent(out PlayerController player))
         {
+            CoinCounter.Instance.AddCoin();
             Destroy(gameObject);
         }
     }
