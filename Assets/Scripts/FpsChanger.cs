@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FpsChanher : MonoBehaviour
+public class FpsChanger : MonoBehaviour
 {
     [SerializeField] private int _fps = 60;
 
