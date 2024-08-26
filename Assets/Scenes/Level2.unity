@@ -44370,6 +44370,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3919374751042288309, guid: aaa1bfd4beb6f2943a48b29bc3a646a7, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -46274,7 +46278,7 @@ PrefabInstance:
       objectReference: {fileID: 1998606888}
     - target: {fileID: 2036010259290523758, guid: 250181ba74c2bc14e82003d6d0063454, type: 3}
       propertyPath: _pages.Array.size
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2036010259290523758, guid: 250181ba74c2bc14e82003d6d0063454, type: 3}
       propertyPath: _pages.Array.data[0]
