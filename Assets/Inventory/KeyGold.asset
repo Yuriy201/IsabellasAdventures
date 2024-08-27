@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ce357ee68418430c85dce39f3e91d5e, type: 3}
-  m_Name: KeySilver
+  m_Name: KeyGold
   m_EditorClassIdentifier: 
-  itemName: 
+  itemType: 0
+  itemName: Gold Key
+  itemPrefab: {fileID: 1435969580870720233, guid: 035fd0f5470aa4de698edda90b87b0a9, type: 3}
   itemDescription: 

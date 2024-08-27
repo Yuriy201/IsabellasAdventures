@@ -7,5 +7,6 @@ public class ItemScriptableObject : ScriptableObject
 {
     public ItemType itemType;
     public string itemName;
+    public GameObject itemPrefab;
     public string itemDescription;
 }
