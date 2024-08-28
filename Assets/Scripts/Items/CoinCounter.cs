@@ -19,6 +19,7 @@ public class CoinCounter : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        _coinCount = PlayerPrefs.GetInt("Coins");
     }
 
     private void Start()
@@ -29,11 +30,13 @@ public class CoinCounter : MonoBehaviour
     public void AddCoin()
     {
         _coinCount++;
+        PlayerPrefs.SetInt("Coins", _coinCount);
         UpdateCoinText();
     }
 
     public int GetCoinCount()
     {
+        _coinCount = PlayerPrefs.GetInt("Coins");
         return _coinCount;
     }
 
