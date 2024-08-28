@@ -28,11 +28,11 @@ namespace Player
         {
             if (_playerStats == null) return;
 
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                _playerStats.AddHealth(this);
-                _playerStats.AddMana(this);
-            }
+            //if (Input.GetKeyDown(KeyCode.UpArrow))
+            //{
+            //    _playerStats.AddHealth(this);
+            //    _playerStats.AddMana(this);
+            //}
         }
 
         private void UpdateUI()

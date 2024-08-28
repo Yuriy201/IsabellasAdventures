@@ -85,7 +85,12 @@ namespace Player
 
         private void Start()
         {
-            _mobileInputContainer.SetPlatformType(isMobile);
+            if(_mobileInputContainer!=null)
+                _mobileInputContainer.SetPlatformType(isMobile);
+            else
+            {
+                Debug.LogWarning("_mobileInputContainer null");
+            }
         }
 
         private void FixedUpdate()
