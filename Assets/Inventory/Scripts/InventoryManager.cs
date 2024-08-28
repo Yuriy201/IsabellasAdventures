@@ -12,7 +12,6 @@ public class InventoryManager : MonoBehaviour
     
     void Start()
     {
-        
         for (int i = 0; 1 < InventoryPanel.childCount; i++)
         {
             if (InventoryPanel.GetChild(i).GetComponent<InventorySlot>() != null)
@@ -25,7 +24,6 @@ public class InventoryManager : MonoBehaviour
 
     public void closepan()
     {
-        
         pan.SetActive(false);
         menu.SetActive(true);
         
@@ -33,7 +31,6 @@ public class InventoryManager : MonoBehaviour
     }
     public void openPan()
     {
-       
         pan.SetActive(true);
         menu.SetActive(false);
     }
@@ -42,22 +39,33 @@ public class InventoryManager : MonoBehaviour
         if (menu.activeSelf == true)
         {
             pan.SetActive(false);
-            
+
         }
     }
 
     public void AddItem(ItemScriptableObject _item)
     {
-        
         foreach (InventorySlot slot in slots)
         {
-            
             if (slot.isEmpty == true)
             {
-               
                 slot.item = _item;
                 slot.isEmpty = false;
                 slot.SetIcon(_item.icon);
+                break;
+            }
+        }
+    }
+
+    public void LoseItem(ItemScriptableObject _item)
+    {
+        foreach (InventorySlot slot in slots)
+        {
+            if (slot.isEmpty == false)
+            {
+                slot.item = null;
+                slot.isEmpty = true;
+                slot.DeleteIcon();
                 break;
             }
         }
