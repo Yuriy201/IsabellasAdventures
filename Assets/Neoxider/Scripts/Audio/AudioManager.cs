@@ -113,7 +113,7 @@ namespace NeoxiderAudio
             else
             {
                 
-                Debug.LogWarning("AudioManager has not Instance");
+         
 
                 CreateInstance();
 
