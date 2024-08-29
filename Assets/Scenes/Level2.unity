@@ -10805,6 +10805,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
   <Health>k__BackingField: 100
+  <Rigidbody2D>k__BackingField: {fileID: 563511629}
+  <Animator>k__BackingField: {fileID: 563511628}
   <LeftExetremPoint>k__BackingField: {fileID: 2126816449}
   <RightExetremPoint>k__BackingField: {fileID: 1787672178}
   <Level>k__BackingField: 1
@@ -42216,6 +42218,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
   <Health>k__BackingField: 100
+  <Rigidbody2D>k__BackingField: {fileID: 1876178377}
+  <Animator>k__BackingField: {fileID: 1876178376}
   <LeftExetremPoint>k__BackingField: {fileID: 479168116}
   <RightExetremPoint>k__BackingField: {fileID: 1188338415}
   <Level>k__BackingField: 1
@@ -50961,6 +50965,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
   <Health>k__BackingField: 100
+  <Rigidbody2D>k__BackingField: {fileID: 2157082990709783948}
+  <Animator>k__BackingField: {fileID: 3911190866870566070}
   <LeftExetremPoint>k__BackingField: {fileID: 5938428998753887321}
   <RightExetremPoint>k__BackingField: {fileID: 3622357161515423072}
   <Level>k__BackingField: 1
@@ -50993,6 +50999,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
   <Health>k__BackingField: 100
+  <Rigidbody2D>k__BackingField: {fileID: 2157082991083050229}
+  <Animator>k__BackingField: {fileID: 3911190866430236111}
   <LeftExetremPoint>k__BackingField: {fileID: 5938428998649072928}
   <RightExetremPoint>k__BackingField: {fileID: 3622357161343581209}
   <Level>k__BackingField: 1
@@ -51025,6 +51033,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
   <Health>k__BackingField: 100
+  <Rigidbody2D>k__BackingField: {fileID: 2157082990444555300}
+  <Animator>k__BackingField: {fileID: 3911190866066500894}
   <LeftExetremPoint>k__BackingField: {fileID: 5938428999023572465}
   <RightExetremPoint>k__BackingField: {fileID: 3622357160707425480}
   <Level>k__BackingField: 1
@@ -51057,6 +51067,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
   <Health>k__BackingField: 100
+  <Rigidbody2D>k__BackingField: {fileID: 2157082991809458840}
+  <Animator>k__BackingField: {fileID: 3911190865805030306}
   <LeftExetremPoint>k__BackingField: {fileID: 5938428999834757965}
   <RightExetremPoint>k__BackingField: {fileID: 3622357160415320692}
   <Level>k__BackingField: 1
@@ -51089,6 +51101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
   <Health>k__BackingField: 100
+  <Rigidbody2D>k__BackingField: {fileID: 2157082991868609364}
+  <Animator>k__BackingField: {fileID: 3911190865611375214}
   <LeftExetremPoint>k__BackingField: {fileID: 5938429000044780161}
   <RightExetremPoint>k__BackingField: {fileID: 3622357160491396024}
   <Level>k__BackingField: 1

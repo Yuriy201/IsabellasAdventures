@@ -11,7 +11,10 @@ namespace Enemy.Wolf
     {
         public event Action AttackAnimationCallback;
 
+        [field:SerializeField]
         public Rigidbody2D Rigidbody2D { get; private set; }
+
+        [field: SerializeField]
         public Animator Animator { get; private set; }
         public PlayerController Target { get; set; }
         public PlayerController TouchingTarget { get; private set; }
@@ -57,6 +60,7 @@ namespace Enemy.Wolf
 
         private void Awake()
         {
+            //Animator = GetComponent<Animator>();
             DistanceTrigger.OnPlayerChanged += (player) => Target = player;
         }
 
