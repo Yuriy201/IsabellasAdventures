@@ -12,14 +12,14 @@ public class InventoryManager : MonoBehaviour
     
     void Start()
     {
-        for (int i = 0; 1 < InventoryPanel.childCount; i++)
+        for (int i = 0; i < InventoryPanel.childCount; i++)
         {
             if (InventoryPanel.GetChild(i).GetComponent<InventorySlot>() != null)
             {
                 slots.Add(InventoryPanel.GetChild(i).GetComponent<InventorySlot>());
             }
         }
-        
+
     }
 
     public void closepan()
