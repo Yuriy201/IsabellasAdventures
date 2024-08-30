@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 namespace Player
 {
     public class DefaultPlayerController : PlayerController
     {
         [SerializeField] private AnimationClip sprintClip;
-        [SerializeField] private AnimationClip idleClip; 
+        [SerializeField] private AnimationClip idleClip;
 
         private bool _isSprinting;
+        private bool _idlePlayed;
+        private Coroutine _idleCoroutine;
 
         protected override void Walk()
         {
@@ -19,19 +22,43 @@ namespace Player
             if (Mathf.Abs(_rb.velocity.x) == _sprintSpeed && !_isSprinting)
             {
                 _animator.Play(sprintClip.name);
+                Debug.Log("Sprint");
                 _isSprinting = true;
+                _idlePlayed = false; // Reset the idle flag when sprinting starts
+
+                // Stop any ongoing idle coroutine since we are sprinting
+                if (_idleCoroutine != null)
+                {
+                    StopCoroutine(_idleCoroutine);
+                    _idleCoroutine = null;
+                }
             }
             else if ((Mathf.Abs(_rb.velocity.x) != _sprintSpeed && _isSprinting) || _rb.velocity.x == 0)
             {
                 _animator.SetFloat(SpeedFloatHash, 0);
                 _isSprinting = false;
 
-               
-                if (_rb.velocity.x == 0)
+                if (_rb.velocity.x == 0 && !_idlePlayed)
                 {
-                    _animator.Play(idleClip.name);
+                    // Start coroutine to play idle animation for 0.3 seconds
+                    if (_idleCoroutine != null)
+                    {
+                        StopCoroutine(_idleCoroutine);
+                    }
+                    _idleCoroutine = StartCoroutine(PlayIdleAnimation());
                 }
             }
+        }
+
+        private IEnumerator PlayIdleAnimation()
+        {
+            _animator.Play(idleClip.name);
+            yield return new WaitForSeconds(0.3f);
+
+            _idlePlayed = true; // Mark that idle animation has been played
+
+            // After 0.3 seconds, you can stop the animation or transition to another state.
+            _animator.SetFloat(SpeedFloatHash, 0);
         }
 
         protected override void FaceRotation()
@@ -48,9 +75,9 @@ namespace Player
             }
         }
 
-        private void RotateFace(Quaternion degress)
+        private void RotateFace(Quaternion degrees)
         {
-            transform.localRotation = degress;
+            transform.localRotation = degrees;
         }
 
         protected override void Jump()
