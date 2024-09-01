@@ -129,14 +129,29 @@ namespace Player
         {
             if (_canShoot)
             {
-                GameObject newBullet = ObjectPool.Instance.GetObject(_bulletPrefab, _shootPoint.transform);
-                newBullet.transform.rotation = _shootPoint.rotation;
-                newBullet.GetComponent<Bullet>().ApplyVelocity();
+                ArrowManager arrowManager = GetComponent<ArrowManager>();
+                if (arrowManager.HasArrows())
+                {
+                    // Use an arrow
+                    arrowManager.UseArrow();
 
-                ObjectPool.Instance.ReternObject(newBullet, 2f);
+                    // Create and shoot the bullet
+                    GameObject newBullet = ObjectPool.Instance.GetObject(_bulletPrefab, _shootPoint.transform);
+                    newBullet.transform.rotation = _shootPoint.rotation;
+                    newBullet.GetComponent<Bullet>().ApplyVelocity();
 
-                _animator.SetTrigger(ShootTriggerHash);
-                StartCoroutine(ReloadFire());
+                    ObjectPool.Instance.ReternObject(newBullet, 2f);
+
+                    // Play shooting animation
+                    _animator.SetTrigger(ShootTriggerHash);
+
+                    // Start reload coroutine
+                    StartCoroutine(ReloadFire());
+                }
+                else
+                {
+                    Debug.Log("No arrows left!");
+                }
             }
         }
 
