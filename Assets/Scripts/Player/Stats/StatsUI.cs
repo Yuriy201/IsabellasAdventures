@@ -7,9 +7,10 @@ namespace Player
 {
     public class StatsUI : MonoBehaviour, IManaAdder, IHealthAdder
     {
-        [SerializeField] private Image _healthBar;
-        [SerializeField] private Image _manaBar;
+        //[SerializeField] private Image _healthBar;
+        //[SerializeField] private Image _manaBar;
         [SerializeField] private TextMeshProUGUI _expText;
+        public Slider expSlider;
 
         private PlayerStats _playerStats;
 
@@ -22,6 +23,8 @@ namespace Player
         private void Start()
         {
             UpdateUI();
+            expSlider.maxValue = ExperienceInfo.GetExpForNext(_playerStats.Experience);
+            expSlider.value = _playerStats.Experience;
         }
 
         private void Update()
@@ -37,13 +40,13 @@ namespace Player
 
         private void UpdateUI()
         {
-            _healthBar.fillAmount = (float)_playerStats.CurrentHealth / _playerStats.MaxHealth;
-            _manaBar.fillAmount = (float)_playerStats.CurrentMana / _playerStats.MaxMana;
+            //_healthBar.fillAmount = (float)_playerStats.CurrentHealth / _playerStats.MaxHealth;
+            //_manaBar.fillAmount = (float)_playerStats.CurrentMana / _playerStats.MaxMana;
 
             int remExp = 0;
             ExperienceInfo.CalculateLevel(_playerStats.Experience, out remExp);
-
-            _expText.text = $"Level {_playerStats.Level}: " + remExp  + "/" + ExperienceInfo.GetExpForNext(_playerStats.Experience);
+            expSlider.value = remExp;
+            _expText.text = $"Уровень {_playerStats.Level}: {remExp}/{expSlider.maxValue}";
         }
 
         private void OnEnable() => _playerStats.OnStateChanged += UpdateUI;
