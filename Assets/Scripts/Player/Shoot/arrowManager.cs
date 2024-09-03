@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class ArrowManager : MonoBehaviour
 {
-    [SerializeField] private int maxArrows = 5;
+    [SerializeField] private int maxArrows = 6;
     [SerializeField] private int currentArrows;
 
     private void Start()
     {
-        currentArrows = maxArrows; // Initialize the player with the maximum number of arrows
+        currentArrows = maxArrows;
     }
 
     public bool HasArrows()

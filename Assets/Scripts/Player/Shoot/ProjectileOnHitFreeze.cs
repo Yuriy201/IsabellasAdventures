@@ -8,17 +8,19 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class ProjectileOnHitFreeze : MonoBehaviour
 {
+
     public float StayTime = 2f;
 
     private LayerMask excludeLayers;
-
     private Rigidbody2D rb;
     private ArrowRotation arrowRotation = null;
-
     private List<Enemy.Enemy> enemiesListened = new List<Enemy.Enemy>();
+    private Collider2D _collider;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<Collider2D>();
         excludeLayers = rb.includeLayers;
 
         GetComponent<Bullet>().OnHit += OnHit;
@@ -33,8 +35,8 @@ public class ProjectileOnHitFreeze : MonoBehaviour
     {
         rb.isKinematic = false;
         rb.simulated = true;
-
         rb.includeLayers = excludeLayers;
+        _collider.enabled = true;
 
         StopAllCoroutines();
     }
@@ -50,6 +52,7 @@ public class ProjectileOnHitFreeze : MonoBehaviour
                 rb.isKinematic = true;
                 rb.velocity = Vector3.zero;
                 rb.simulated = false;
+                EnablePickup(); // Allow the arrow to be picked up after hitting
             }).OnUpdate(() =>
             {
                 if (arrowRotation != null)
@@ -65,29 +68,26 @@ public class ProjectileOnHitFreeze : MonoBehaviour
 
             if (collision.TryGetComponent(out Enemy.Enemy enemy))
             {
-                enemy.Died += ReturnToPool;
+                enemy.Died += HandleEnemyDeath;
                 enemiesListened.Add(enemy);
             }
-
-            StartCoroutine(ReturnToPoolAfterTime());
         }
     }
 
-    private IEnumerator ReturnToPoolAfterTime()
+    private void EnablePickup()
     {
-        yield return new WaitForSeconds(StayTime);
-
-        ReturnToPool();
+        gameObject.AddComponent<ArrowPickup>(); // Attach the ArrowPickup script to make it pickable
     }
 
-    private void ReturnToPool()
+    private void HandleEnemyDeath()
     {
         transform.SetParent(null);
-        ObjectPool.Instance.ReternObject(gameObject);
+        rb.simulated = false;
 
         foreach (var enemy in enemiesListened)
         {
-            enemy.Died -= ReturnToPool;
+            enemy.Died -= HandleEnemyDeath;
         }
+        enemiesListened.Clear();
     }
 }

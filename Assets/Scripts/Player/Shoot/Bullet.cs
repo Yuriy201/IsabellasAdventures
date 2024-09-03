@@ -18,16 +18,11 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-      
-           
-            _rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        
-
+        _rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
     }
 
     private void Start()
     {
-       
         StartCoroutine(DestroyAfterLifetime());
     }
 
@@ -54,6 +49,6 @@ public class Bullet : MonoBehaviour
     private IEnumerator DestroyAfterLifetime()
     {
         yield return new WaitForSeconds(_lifeTime);
-        Destroy(gameObject);
+        // Destroy(gameObject);  // Comment this line out or remove it to prevent destruction
     }
 }

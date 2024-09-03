@@ -2702,7 +2702,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthbar: {fileID: 927365955799824335}
   _manabar: {fileID: 177663049671963609}
-  _playersLevel: {fileID: 0}
 --- !u!1 &3110108323187609741
 GameObject:
   m_ObjectHideFlags: 0
