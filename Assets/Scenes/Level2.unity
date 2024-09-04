@@ -4872,6 +4872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowsToGive: 1
+  pickupDelay: 0.2
 --- !u!1 &274846319
 GameObject:
   m_ObjectHideFlags: 0
@@ -49386,6 +49387,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5622591832705087247, guid: 250181ba74c2bc14e82003d6d0063454, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c8c818c4a899dc6488fe08f22e2e77f0, type: 3}
     - target: {fileID: 6461678519774346111, guid: 250181ba74c2bc14e82003d6d0063454, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
