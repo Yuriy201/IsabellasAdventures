@@ -21,6 +21,6 @@ public class ChestTrigger : MonoBehaviour
     public void OpenChest()
     {
         InventoryManager.LoseItem(item);
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }
