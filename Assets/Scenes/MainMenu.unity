@@ -2606,6 +2606,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f0f02b0be1637c4992d0ee4ae8c4b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1471900999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1471901001}
+  - component: {fileID: 1471901000}
+  m_Layer: 0
+  m_Name: GoalsMain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1471901000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471900999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 224c9619cbe5b584e93deefa952289f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  achievementPrefab: {fileID: 7897529898651371916, guid: 958a8b1557daa944a9e4f396d7fb0243, type: 3}
+  displayDuration: 3
+--- !u!4 &1471901001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471900999}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.523161, y: -4.916253, z: -0.19401018}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1501733626 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4662495319522735177, guid: ead3f94fcf3b1f94fad65e926579e964, type: 3}
@@ -4251,7 +4297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3059836845465407564, guid: ec4e48c8003b44d44b58d595d7238253, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 26.5
+      value: 26.500061
       objectReference: {fileID: 0}
     - target: {fileID: 3059836845465407564, guid: ec4e48c8003b44d44b58d595d7238253, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4791,3 +4837,4 @@ SceneRoots:
   - {fileID: 1381707842}
   - {fileID: 1220990437}
   - {fileID: 1332779756}
+  - {fileID: 1471901001}
