@@ -42,13 +42,13 @@ public class InventoryManager : MonoBehaviour
     {
         pan.SetActive(false);
         menu.SetActive(true);
-        
-      
+        Time.timeScale = 1f;
     }
     public void openPan()
     {
         pan.SetActive(true);
         menu.SetActive(false);
+        Time.timeScale = 0f;
     }
     void Update()
     {
