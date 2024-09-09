@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+
 public class AchievementManager : MonoBehaviour
 {
     public static AchievementManager Instance;
