@@ -12,6 +12,9 @@ public class AchievementManager : MonoBehaviour
 
     private bool level2AchievementUnlocked = false;
     private bool playTimeAchievementUnlocked = false;
+    private bool wolfKillAchievementUnlocked = false;
+    private int wolfKillCount = 0;
+    private const int wolfKillThreshold = 30;
     private float playTimeCounter = 0f;
     private const float playTimeThreshold = 180f;
 
@@ -44,6 +47,23 @@ public class AchievementManager : MonoBehaviour
                 UnlockPlayTimeAchievement();
             }
         }
+    }
+    public void RegisterWolfKill()
+    {
+        if (!wolfKillAchievementUnlocked)
+        {
+            wolfKillCount++;
+            if (wolfKillCount >= wolfKillThreshold)
+            {
+                UnlockWolfKillAchievement();
+            }
+        }
+    }
+    private void UnlockWolfKillAchievement()
+    {
+        wolfKillAchievementUnlocked = true;
+        ShowAchievement("Убить 30 волков");
+        SaveAchievements();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -118,6 +138,8 @@ public class AchievementManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("Level2Achievement", level2AchievementUnlocked ? 1 : 0);
         PlayerPrefs.SetInt("PlayTimeAchievement", playTimeAchievementUnlocked ? 1 : 0);
+        PlayerPrefs.SetInt("WolfKillAchievement", wolfKillAchievementUnlocked ? 1 : 0);
+        PlayerPrefs.SetInt("WolfKillCount", wolfKillCount);
         PlayerPrefs.Save();
     }
 
@@ -125,6 +147,8 @@ public class AchievementManager : MonoBehaviour
     {
         level2AchievementUnlocked = PlayerPrefs.GetInt("Level2Achievement", 0) == 1;
         playTimeAchievementUnlocked = PlayerPrefs.GetInt("PlayTimeAchievement", 0) == 1;
+        wolfKillAchievementUnlocked = PlayerPrefs.GetInt("WolfKillAchievement", 0) == 1;
+        wolfKillCount = PlayerPrefs.GetInt("WolfKillCount", 0);
     }
 
     private void OnDestroy()

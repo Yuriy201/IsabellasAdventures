@@ -91,7 +91,11 @@ namespace Enemy.Wolf
 
         private void InvokeAttackAnimationCallback() => AttackAnimationCallback?.Invoke();
 
-        void AddExp() => _playerStats.AddExperience(this);
+        void AddExp()
+        {
+            _playerStats.AddExperience(this);
+            AchievementManager.Instance?.RegisterWolfKill(); 
+        }
 
         private void OnEnable()
         {
@@ -102,6 +106,7 @@ namespace Enemy.Wolf
         {
             Died -= AddExp;
         }
+
 
         private void OnDrawGizmos()
         {
