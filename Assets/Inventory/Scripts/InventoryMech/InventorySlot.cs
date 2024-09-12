@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +8,7 @@ public class InventorySlot : MonoBehaviour
     public GameObject IconGO;
     private void Awake()
     {
-        IconGO = transform.GetChild(0).gameObject;
+        IconGO = transform.GetChild(0).GetChild(0).gameObject;
     }
     public void SetIcon(Sprite icon)
     {
@@ -22,4 +20,5 @@ public class InventorySlot : MonoBehaviour
         IconGO.GetComponent<Image>().color = new Color(1, 1, 1, 0);
         IconGO.GetComponent<Image>().sprite = null;
     }
+    
 }
