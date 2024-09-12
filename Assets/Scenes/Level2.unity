@@ -53024,6 +53024,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: currant
       objectReference: {fileID: 0}
+    - target: {fileID: 484111530407767876, guid: 1b3f023abb18748529cde068d2bc23e2, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8424655838733673735, guid: 1b3f023abb18748529cde068d2bc23e2, type: 3}
       propertyPath: InventoryManager
       value: 
@@ -53316,6 +53320,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1522524371}
     m_Modifications:
+    - target: {fileID: 564508348993471748, guid: cf3645a5e3d3948a68c8e40f3a0ce8d4, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 774841448487780268, guid: cf3645a5e3d3948a68c8e40f3a0ce8d4, type: 3}
       propertyPath: m_Name
       value: Apple2
@@ -55141,6 +55149,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1522524371}
     m_Modifications:
+    - target: {fileID: 1042594908368802043, guid: 80f2685ba0e6148f68a19d1e308c8b0a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240838386690411943, guid: 80f2685ba0e6148f68a19d1e308c8b0a, type: 3}
       propertyPath: m_Name
       value: Apple1
@@ -56356,6 +56368,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1522524371}
     m_Modifications:
+    - target: {fileID: 599191975046986469, guid: a856bc5397ac24cea941cc18606aa4b6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4268792376632437902, guid: a856bc5397ac24cea941cc18606aa4b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 22.1
