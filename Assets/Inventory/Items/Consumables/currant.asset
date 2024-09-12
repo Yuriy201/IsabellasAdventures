@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 594a548518b6947ea87ead6b514172fa, type: 3}
+  m_Name: currant
+  m_EditorClassIdentifier: 
+  itemType: 3
+  itemName: Currant
+  itemPrefab: {fileID: 47903460404461587, guid: 1b3f023abb18748529cde068d2bc23e2, type: 3}
+  icon: {fileID: 21300000, guid: 8704259424c294fdabaeb700b5c724dd, type: 3}
+  itemDescription: 
+  isConsumeable: 1
+  changeHealth: 0
