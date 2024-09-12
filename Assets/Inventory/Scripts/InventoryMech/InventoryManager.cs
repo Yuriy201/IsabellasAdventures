@@ -5,12 +5,13 @@ using UnityEngine.InputSystem;
 
 public class InventoryManager : MonoBehaviour
 {
-    public Transform InventoryKeyPanel, InventoryPotionPanel, InventoryConsumablesPanel;
+    public Transform InventoryKeyPanel, InventoryPotionPanel, InventoryConsumablesPanel, minislotopen, minislotclosed;
     public List<InventorySlot> KeySlots = new List<InventorySlot>();
     public List<InventorySlot> PotionSlots = new List<InventorySlot>();
     public List<InventorySlot> ConsumablesSlots = new List<InventorySlot>();
     [SerializeField] GameObject pan, menu, key, potion, cons;
     public bool isOpen = false;
+    [SerializeField] private GameObject _minislotpanel;
 
     
     void Start()
@@ -59,6 +60,11 @@ public class InventoryManager : MonoBehaviour
             potion.SetActive(false);
             cons.SetActive(false);
         }
+        if (pan.activeSelf)
+            _minislotpanel.transform.position = minislotopen.position;
+        else
+            _minislotpanel.transform.position = minislotclosed.position;
+
     }
 
     public void AddItemKey(ItemScriptableObject _item)

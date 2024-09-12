@@ -10,4 +10,8 @@ public class ItemScriptableObject : ScriptableObject
     public GameObject itemPrefab;
     public Sprite icon;
     public string itemDescription;
+    public bool isConsumeable;
+
+    [Header("Edible")]
+    public float changeHealth;
 }
