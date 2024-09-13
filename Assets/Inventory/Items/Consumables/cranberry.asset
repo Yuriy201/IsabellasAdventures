@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 594a548518b6947ea87ead6b514172fa, type: 3}
+  m_Name: cranberry
+  m_EditorClassIdentifier: 
+  itemType: 3
+  itemName: Cranberry
+  itemPrefab: {fileID: 5027268563720515876, guid: a856bc5397ac24cea941cc18606aa4b6, type: 3}
+  icon: {fileID: 21300000, guid: b23f9dd1f65a54135bf2a27e07134982, type: 3}
+  itemDescription: 
+  isConsumeable: 1
+  changeHealth: 0

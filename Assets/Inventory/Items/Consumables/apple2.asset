@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 594a548518b6947ea87ead6b514172fa, type: 3}
-  m_Name: Consumables
+  m_Name: apple2
   m_EditorClassIdentifier: 
   itemType: 3
-  itemName: Food
-  itemPrefab: {fileID: 2193775788745590637, guid: 15d23efcb1adc40d78e64113e3eb5c79, type: 3}
-  icon: {fileID: 21300000, guid: 60e0122fe58be4b7fa237536de28700a, type: 3}
+  itemName: Apple2
+  itemPrefab: {fileID: 774841448487780268, guid: cf3645a5e3d3948a68c8e40f3a0ce8d4, type: 3}
+  icon: {fileID: 21300000, guid: fa9960c73aad248e49e2dbfe660c8e33, type: 3}
   itemDescription: 
+  isConsumeable: 1
+  changeHealth: 0
