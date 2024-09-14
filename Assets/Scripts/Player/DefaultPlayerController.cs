@@ -140,8 +140,6 @@ namespace Player
                     newBullet.transform.rotation = _shootPoint.rotation;
                     newBullet.GetComponent<Bullet>().ApplyVelocity();
 
-                    ObjectPool.Instance.ReternObject(newBullet, 2f);
-
                     // Play shooting animation
                     _animator.SetTrigger(ShootTriggerHash);
 

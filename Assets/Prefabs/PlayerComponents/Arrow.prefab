@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3164567816691317103}
   - component: {fileID: 3963873114021806104}
   - component: {fileID: 6069366975044850073}
-  - component: {fileID: 5976727499257776824}
   - component: {fileID: 3749154208411446004}
   - component: {fileID: 1257795658240209421}
   - component: {fileID: 6279435725631690467}
@@ -103,8 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ace2e12d7d0f8d45905cd5c6740b667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 20
-  _lifeTime: 1000
+  _speed: 30
   _damage: 30
 --- !u!50 &6069366975044850073
 Rigidbody2D:
@@ -125,49 +123,14 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 34d9e8fa7c9ab574e8bada96e2b0830e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 985
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!70 &5976727499257776824
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2745127749481628010}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 3.77, y: 0}
-  m_Size: {x: 0.93, y: 0.74}
-  m_Direction: 1
 --- !u!61 &3749154208411446004
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -180,27 +143,27 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1022
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.49, y: 0}
+  m_Offset: {x: -0.06, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -211,7 +174,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.7, y: 0.3}
+  m_Size: {x: 8.68, y: 0.3}
   m_EdgeRadius: 0
 --- !u!114 &1257795658240209421
 MonoBehaviour:
@@ -238,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647898cba3a0a274bbf06d4772379a9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StayTime: 1000
+  arrowPickup: {fileID: 7947514187017011158}
 --- !u!1 &7881681429493643349
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +214,7 @@ GameObject:
   - component: {fileID: 2034721812560386871}
   - component: {fileID: 6840107711288845639}
   - component: {fileID: 7947514187017011158}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ArrowPick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,11 +300,11 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 1
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -357,7 +320,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.6103189, y: 0.0022257864}
+  m_Offset: {x: 1.199072, y: 0.0022257864}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -368,7 +331,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.082873, y: 0.72345966}
+  m_Size: {x: 3.2603796, y: 0.72345966}
   m_EdgeRadius: 0
 --- !u!114 &7947514187017011158
 MonoBehaviour:
@@ -383,4 +346,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowsToGive: 1
-  pickupDelay: 0.5
+  pickupDelay: 0
+  arrowCollider: {fileID: 6840107711288845639}

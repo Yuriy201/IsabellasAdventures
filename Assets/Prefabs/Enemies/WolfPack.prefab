@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 2157082991775130936}
   - component: {fileID: 3911190865771652098}
   - component: {fileID: 3577140260554519267}
-  - component: {fileID: 3919374751042288309}
+  - component: {fileID: 8166786848230657640}
   m_Layer: 6
   m_Name: Wolf
   m_TagString: Enemy
@@ -377,6 +377,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
   <Health>k__BackingField: 100
+  <Rigidbody2D>k__BackingField: {fileID: 2157082991775130936}
+  <Animator>k__BackingField: {fileID: 3911190865771652098}
   <LeftExetremPoint>k__BackingField: {fileID: 5938428999869578477}
   <RightExetremPoint>k__BackingField: {fileID: 3622357160382959060}
   <Level>k__BackingField: 1
@@ -478,8 +480,8 @@ CapsuleCollider2D:
   m_Offset: {x: 0.13729611, y: -0.24000013}
   m_Size: {x: 5.2154446, y: 3.6800196}
   m_Direction: 1
---- !u!68 &3919374751042288309
-EdgeCollider2D:
+--- !u!60 &8166786848230657640
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -507,21 +509,26 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0.81
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 9.13, y: 4.39}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: 3.1528993, y: 1.4454486}
-  - {x: 3.5671718, y: 0.9332063}
-  - {x: 2.2315087, y: 0.34040937}
-  - {x: 2.4563289, y: -1.2893435}
-  - {x: -2.004255, y: -1.3103414}
-  - {x: -2.6016674, y: -0.18160835}
-  - {x: -3.025297, y: 0.8335444}
-  - {x: 3.1858566, y: 1.4321873}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+    m_Paths:
+    - - {x: -2.59, y: -2.07}
+      - {x: 3.46, y: -2.07}
+      - {x: 2.52, y: 0.05}
+      - {x: 4.48, y: 0.81}
+      - {x: 3.53, y: 2.15}
+      - {x: -4.35, y: 1.03}
+      - {x: -1.65, y: -0.3}
+  m_UseDelaunayMesh: 0

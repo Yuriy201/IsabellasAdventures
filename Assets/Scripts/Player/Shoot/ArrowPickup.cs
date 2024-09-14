@@ -5,14 +5,20 @@ using UnityEngine;
 public class ArrowPickup : MonoBehaviour
 {
     [SerializeField] private int arrowsToGive = 1;
-    [SerializeField] private float pickupDelay = 0.2f; 
+    [SerializeField] private float pickupDelay = 0.2f;
+
+    [SerializeField]
     private Collider2D arrowCollider;
 
-    private void Start()
+    private void OnValidate()
     {
         arrowCollider = GetComponent<Collider2D>();
-        arrowCollider.enabled = false;
-        StartCoroutine(EnablePickupAfterDelay());
+    }
+
+    private void Start()
+    {     
+        //arrowCollider.enabled = false;
+        //StartCoroutine(EnablePickupAfterDelay());
     }
 
     private IEnumerator EnablePickupAfterDelay()
@@ -29,7 +35,7 @@ public class ArrowPickup : MonoBehaviour
         if (arrowManager != null)
         {
             arrowManager.PickupArrow(arrowsToGive);
-            Destroy(gameObject);
+            ObjectPool.Instance.ReternObject(transform.parent.gameObject);
         }
     }
 }
