@@ -4304,6 +4304,8 @@ MonoBehaviour:
   InventoryKeyPanel: {fileID: 2031166006}
   InventoryPotionPanel: {fileID: 1174652037}
   InventoryConsumablesPanel: {fileID: 1083673555}
+  minislotopen: {fileID: 0}
+  minislotclosed: {fileID: 0}
   KeySlots: []
   PotionSlots: []
   ConsumablesSlots: []
@@ -4313,6 +4315,7 @@ MonoBehaviour:
   potion: {fileID: 1174652036}
   cons: {fileID: 1083673554}
   isOpen: 0
+  _minislotpanel: {fileID: 0}
 --- !u!114 &191379820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5342,6 +5345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowsToGive: 1
   pickupDelay: 0.2
+  arrowCollider: {fileID: 272467599}
 --- !u!1 &274846319
 GameObject:
   m_ObjectHideFlags: 0

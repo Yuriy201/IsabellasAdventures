@@ -6,10 +6,10 @@ AudioImporter:
   defaultSettings:
     serializedVersion: 2
     loadType: 0
-    sampleRateSetting: 0
-    sampleRateOverride: 44100
+    sampleRateSetting: 2
+    sampleRateOverride: 8000
     compressionFormat: 1
-    quality: 1
+    quality: 0.01
     conversionMode: 0
     preloadAudioData: 0
   platformSettingOverrides: {}

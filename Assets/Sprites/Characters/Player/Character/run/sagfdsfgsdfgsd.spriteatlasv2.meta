@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7a007de82e5e1ee4182df7f6900a3373
+guid: 2daab3ac842a9b943844249f55a8a122
 SpriteAtlasImporter:
   externalObjects: {}
   textureSettings:
@@ -8,7 +8,7 @@ SpriteAtlasImporter:
     compressionQuality: 50
     maxTextureSize: 2048
     textureCompression: 0
-    filterMode: 2
+    filterMode: 1
     generateMipMaps: 0
     readable: 0
     crunchedCompression: 0
@@ -16,7 +16,7 @@ SpriteAtlasImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 3
@@ -29,11 +29,11 @@ SpriteAtlasImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   packingSettings:
     serializedVersion: 2
-    padding: 8
+    padding: 4
     blockOffset: 1
     allowAlphaSplitting: 0
     enableRotation: 1
-    enableTightPacking: 0
+    enableTightPacking: 1
     enableAlphaDilation: 0
   secondaryTextureSettings: {}
   variantMultiplier: 1
