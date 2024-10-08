@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9b18a434c87724680f2f8eeaad4884, type: 3}
   m_Name: GlobalCfg
   m_EditorClassIdentifier: 
-  <PlatfotmType>k__BackingField: 0
+  <PlatfotmType>k__BackingField: 1
   IsMultiplayer: 0

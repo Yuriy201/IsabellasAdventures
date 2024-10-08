@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 30
-  _damage: 30
+  _damage: 50
 --- !u!50 &6069366975044850073
 Rigidbody2D:
   serializedVersion: 4
@@ -126,7 +126,7 @@ Rigidbody2D:
     m_Bits: 985
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1032
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -189,6 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canRotate: 1
+  lerp: 0
 --- !u!114 &6279435725631690467
 MonoBehaviour:
   m_ObjectHideFlags: 0

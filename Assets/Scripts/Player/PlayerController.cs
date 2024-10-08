@@ -83,16 +83,6 @@ namespace Player
             QualitySettings.vSyncCount = -1;
         }
 
-        private void Start()
-        {
-            if(_mobileInputContainer!=null)
-                _mobileInputContainer.SetPlatformType(isMobile);
-            else
-            {
-                Debug.LogWarning("_mobileInputContainer null");
-            }
-        }
-
         private void FixedUpdate()
         {
             Walk();

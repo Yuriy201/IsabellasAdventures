@@ -11,6 +11,13 @@ public class ProjectileOnHitFreeze : MonoBehaviour
     private LayerMask excludeLayers;
     private LayerMask includeLayers;
     private Rigidbody2D rb;
+
+    [SerializeField]
+    private float arrowPickupEnableDelay = 0.5f;
+
+    private WaitForSeconds arrowPickupDelayWFS;
+
+    [SerializeField]
     private ArrowRotation arrowRotation = null;
 
     [SerializeField]
@@ -34,6 +41,8 @@ public class ProjectileOnHitFreeze : MonoBehaviour
         {
             this.arrowRotation = arrowRotation;
         }
+
+        arrowPickupDelayWFS = new WaitForSeconds(arrowPickupEnableDelay);
     }
 
     private void OnEnable()
@@ -51,7 +60,7 @@ public class ProjectileOnHitFreeze : MonoBehaviour
         rb.includeLayers = ~-1;
         rb.excludeLayers = ~0;
 
-        currentTween = DOTween.To(() => rb.velocity, x => rb.velocity = x, Vector2.zero, 0.1f).SetEase(Ease.InOutCubic).OnComplete(() =>
+        currentTween = DOTween.To(() => rb.velocity, x => rb.velocity = x, Vector2.zero, Random.Range(0.05f, 0.15f)).SetEase(Ease.InOutCubic).OnComplete(() =>
         {
             rb.velocity = Vector3.zero;
 
@@ -119,11 +128,19 @@ public class ProjectileOnHitFreeze : MonoBehaviour
 
         if (arrowPickup != null)
         {
-            arrowPickup.enabled = true;
             arrowRotation.lerp = false;
+
+            StartCoroutine(PickupDelay());
         }
 
         StopAllCoroutines();
+    }
+
+    private IEnumerator PickupDelay()
+    {
+        yield return arrowPickupDelayWFS;
+
+        arrowPickup.enabled = true;
     }
 
     private void HandleEnemyDeath()
@@ -150,7 +167,7 @@ public class ProjectileOnHitFreeze : MonoBehaviour
         if (rb.includeLayers != ~-1)
         {
             FreezeState();
-        }      
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)

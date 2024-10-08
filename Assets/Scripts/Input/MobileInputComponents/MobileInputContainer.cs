@@ -36,8 +36,10 @@ namespace InputSystem
 
         [Space]
         [Header("EditorOnly")]
-        [Tooltip("Обновление интерфейса под платформу")]
+        [Tooltip("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")]
         [SerializeField] private bool _refresh = true;
+
+        /*
 
         private void Start()
         {
@@ -56,6 +58,7 @@ namespace InputSystem
             }
         }
 
+
         private void CheckPlatformType()
         {
             print("CheckPlatformType");
@@ -66,7 +69,7 @@ namespace InputSystem
                     //SetMobailUi(false);
                     break;
                 case PlatfotmType.Mobile:
-                    SetMobailUi(true);
+                    //SetMobailUi(true);
                     break;
             }
         }
@@ -76,6 +79,8 @@ namespace InputSystem
             Debug.Log("Set Platform Ui: " + (isMobile ? "mobaile" : "pc"));
             SetMobailUi(isMobile);
         }
+
+        
 
         public void SetMobailUi(bool activ)
         {
@@ -110,5 +115,6 @@ namespace InputSystem
                     break;
             }
         }
+        */
     }
 }

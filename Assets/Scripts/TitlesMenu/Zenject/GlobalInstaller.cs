@@ -12,6 +12,10 @@ public class GlobalInstaller : MonoInstaller
     [SerializeField] private AudioMixer _audioMixer;
     [SerializeField] private PlayerSpawner _playerSpawner;
 
+    [Space(5)]
+    [Header("Mobile Controls")]
+    [SerializeField] private MobileControls _mobileControls;
+
     public override void InstallBindings()
     {
         BindStats();
@@ -20,6 +24,7 @@ public class GlobalInstaller : MonoInstaller
         BindAudioMixer();
         BindPlayerSpawner();
         BindMobileInputContainer();
+        BindMobileControls();
     }
 
     private void BindAudioMixer()
@@ -38,6 +43,11 @@ public class GlobalInstaller : MonoInstaller
     {
         Container.Bind<MobileInputContainer>().FromInstance(_mobileInputContainer).AsSingle().NonLazy();
     }
+
+    private void BindMobileControls()
+    {
+        Container.Bind<MobileControls>().FromInstance(_mobileControls).AsSingle().NonLazy();
+    }
     private void BindStats()
     {
         StatsContainer container = new StatsContainer(100, 100, 100, 100, 0, 0);
@@ -46,16 +56,7 @@ public class GlobalInstaller : MonoInstaller
     }
     private void BindInputHandler()
     {
-        switch (_gameConfig.PlatfotmType)
-        {
-            case PlatfotmType.PC:
-                Container.Bind<InputHandler>().To<PcInputHandler>().FromNew().AsSingle().NonLazy();
-                break;
-            case PlatfotmType.Mobile:
-                InputHandler inputHandler = new MobileInputHandler(_mobileInputContainer);
-                Container.Bind<InputHandler>().FromInstance(inputHandler).AsSingle().NonLazy();
-                break;
-        }
+        Container.Bind<InputHandler>().To<PcInputHandler>().FromNew().AsSingle().NonLazy();
     }
 }
 
