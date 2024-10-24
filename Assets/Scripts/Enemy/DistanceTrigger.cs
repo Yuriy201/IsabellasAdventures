@@ -17,6 +17,7 @@ public class DistanceTrigger : MonoBehaviour
     public float CurrentDistance;
 
     public event Action<PlayerController> OnPlayerChanged;
+    public event Action? OnPlayerExit;
 
     private Collider2D collider;
 
@@ -60,6 +61,8 @@ public class DistanceTrigger : MonoBehaviour
             ClosestPlayer = null;
             closestPlayerCollider = null;
             CurrentDistance = 0f;
+
+            OnPlayerExit?.Invoke();
         }
     }
 }

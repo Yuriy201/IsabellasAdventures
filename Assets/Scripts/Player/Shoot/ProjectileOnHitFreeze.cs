@@ -8,8 +8,16 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class ProjectileOnHitFreeze : MonoBehaviour
 {
+    [SerializeField]
+    private float deccelerationRate = -1;
+
+    [SerializeField]
+    private float stopRotationSqrVelocity = 1f;
+
     private LayerMask excludeLayers;
     private LayerMask includeLayers;
+
+    [SerializeField, HideInInspector]
     private Rigidbody2D rb;
 
     [SerializeField]
@@ -25,13 +33,20 @@ public class ProjectileOnHitFreeze : MonoBehaviour
 
     private DG.Tweening.Core.TweenerCore<Vector2, Vector2, DG.Tweening.Plugins.Options.VectorOptions> currentTween = null;
 
-    private List<Enemy.Enemy> enemiesListened = new List<Enemy.Enemy>();
+    [SerializeField]
     private Collider2D _collider;
+
+    private Vector2 prevVelocity;
+
+    private bool isPenetrating = false;
+
+    private void OnValidate()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        _collider = GetComponent<Collider2D>();
         excludeLayers = rb.excludeLayers;
         includeLayers = rb.includeLayers;
 
@@ -50,54 +65,72 @@ public class ProjectileOnHitFreeze : MonoBehaviour
         FiredState();
     }
 
+    private void FixedUpdate()
+    {
+        prevVelocity = rb.velocity;
+
+        if (isPenetrating && arrowRotation != null)
+        {
+            if (rb.velocity.sqrMagnitude < stopRotationSqrVelocity)
+            {
+                arrowRotation.canRotate = false;
+                rb.freezeRotation = true;
+            }
+        }
+    }
+
     private void OnHit(Collider2D collision)
     {
+        transform.SetParent(collision.transform);
         //Debug.LogWarning("HIT = " + collision.name);
 
-        rb.simulated = false;
+        //rb.simulated = false;
         _collider.enabled = false;
 
         rb.includeLayers = ~-1;
         rb.excludeLayers = ~0;
 
-        currentTween = DOTween.To(() => rb.velocity, x => rb.velocity = x, Vector2.zero, Random.Range(0.05f, 0.15f)).SetEase(Ease.InOutCubic).OnComplete(() =>
+        rb.velocity = prevVelocity;
+
+        isPenetrating = true;
+
+        float deccelerationTime = -Mathf.Abs(rb.velocity.magnitude) / deccelerationRate;
+
+        currentTween = DOTween.To(() => rb.velocity, x => rb.velocity = x, Vector2.zero, deccelerationTime).SetEase(Ease.OutSine).OnComplete(() =>
         {
-            rb.velocity = Vector3.zero;
+            rb.velocity = Vector2.zero;
+
+            Debug.Log("ROTATION = " + rb.rotation);
 
             FreezeState();
             rb.simulated = true;
 
-        }).OnUpdate(() =>
-        {
-            if (arrowRotation != null)
-            {
-                if (rb.velocity.sqrMagnitude < 2f)
-                {
-                    arrowRotation.canRotate = false;
-                }
-            }
         }).SetLink(gameObject);
 
-        if (collision.TryGetComponent(out IDamagable target))
-        {
-            if (collision.TryGetComponent(out Enemy.Enemy enemy))
-            {
-                rb.transform.SetParent(collision.transform, true);
-                enemy.Died += HandleEnemyDeath;
-                enemiesListened.Add(enemy);
-            }
-        }
+        //if (collision.TryGetComponent(out IDamagable target))
+        //{
+        //    if (collision.TryGetComponent(out Enemy.Enemy enemy))
+        //    {
+        //        rb.transform.SetParent(collision.transform, true);
+        //        enemy.Died += HandleEnemyDeath;
+        //        enemiesListened.Add(enemy);
+        //    }
+        //}
     }
 
     private void FiredState()
     {
         StopAllCoroutines();
+
+        isPenetrating = false;
         
         if (currentTween != null)
         {
             currentTween.Kill(false);
             currentTween = null;
         }
+
+        transform.SetParent(null);
 
         rb.simulated = true;
         rb.bodyType = RigidbodyType2D.Dynamic;
@@ -120,20 +153,25 @@ public class ProjectileOnHitFreeze : MonoBehaviour
 
     private void FreezeState()
     {
+        StopAllCoroutines();
+
+        isPenetrating = false;
+
         rb.bodyType = RigidbodyType2D.Kinematic;
         rb.freezeRotation = true;
         rb.includeLayers = ~-1;
         rb.excludeLayers = ~-1;
         _collider.enabled = false;
 
-        if (arrowPickup != null)
+        if (arrowRotation != null)
         {
             arrowRotation.lerp = false;
-
-            StartCoroutine(PickupDelay());
         }
 
-        StopAllCoroutines();
+        if (arrowPickup != null)
+        {
+            StartCoroutine(PickupDelay());
+        }
     }
 
     private IEnumerator PickupDelay()
@@ -141,33 +179,6 @@ public class ProjectileOnHitFreeze : MonoBehaviour
         yield return arrowPickupDelayWFS;
 
         arrowPickup.enabled = true;
-    }
-
-    private void HandleEnemyDeath()
-    {
-        transform.SetParent(null);
-
-        foreach (var enemy in enemiesListened)
-        {
-            enemy.Died -= HandleEnemyDeath;
-        }
-
-        enemiesListened.Clear();
-
-        FiredState();
-        
-        if (arrowRotation != null)
-        {
-            arrowRotation.lerp = true;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (rb.includeLayers != ~-1)
-        {
-            FreezeState();
-        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)

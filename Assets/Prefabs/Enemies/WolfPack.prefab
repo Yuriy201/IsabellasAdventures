@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 2157082991775130936}
   - component: {fileID: 3911190865771652098}
   - component: {fileID: 8166786848230657640}
+  - component: {fileID: 8470802882202707430}
   m_Layer: 6
   m_Name: Wolf
   m_TagString: Enemy
@@ -385,9 +386,9 @@ MonoBehaviour:
   <Damage>k__BackingField: 15
   DistanceTrigger: {fileID: 4674096977798990269}
   AttackCd: 2.2
-  AttackRadius: 30
-  AttackArea: {x: 6.06, y: 5.19}
-  AttackAreaOffset: {x: 3.85, y: -0.16}
+  AttackRadius: 11.4
+  AttackArea: {x: 4.69, y: 4.2}
+  AttackAreaOffset: {x: 1.94, y: -0.16}
   AttackLayers:
     serializedVersion: 2
     m_Bits: 8
@@ -496,3 +497,19 @@ PolygonCollider2D:
       - {x: -4.35, y: 1.03}
       - {x: -1.65, y: -0.3}
   m_UseDelaunayMesh: 0
+--- !u!114 &8470802882202707430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6779533058320331595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08774f888b86e594bb31f0f1d9c62ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectDuration: 0.1
+  stats: {fileID: 8660554472604353588}
+  spriteRenderer: {fileID: 2274103869302222074}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}

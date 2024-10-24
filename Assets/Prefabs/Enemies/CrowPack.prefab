@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 7599849413867086393}
   - component: {fileID: 2290393756825058547}
   - component: {fileID: 3941643602715044092}
-  - component: {fileID: 5305711359220688403}
+  - component: {fileID: 6602589044963813389}
   - component: {fileID: 6086315326717398110}
+  - component: {fileID: 783129217585101568}
   m_Layer: 6
   m_Name: Crow
   m_TagString: Enemy
@@ -33,7 +34,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 8173189511765526276}
   m_Father: {fileID: 8684221719044661672}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7599849413867086393
@@ -138,11 +140,14 @@ MonoBehaviour:
   - {fileID: 6334828831426172886}
   - {fileID: 6364569820462724028}
   - {fileID: 2772355219056489154}
-  _attackRadius: 3
+  _attackRadius: 6
+  _attackRange: 10
   FlyHash: 1808254291
   AttackHash: 1080829965
---- !u!58 &5305711359220688403
-CircleCollider2D:
+  _spriteRenderer: {fileID: 7599849413867086393}
+  _distanceTrigger: {fileID: 3532974171416070089}
+--- !u!70 &6602589044963813389
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -173,9 +178,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.5434875, y: -0.82847595}
-  serializedVersion: 2
-  m_Radius: 44.47335
+  m_Offset: {x: 0, y: 0.6}
+  m_Size: {x: 16.28, y: 7.2}
+  m_Direction: 1
 --- !u!95 &6086315326717398110
 Animator:
   serializedVersion: 5
@@ -197,6 +202,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &783129217585101568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860893484740902622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08774f888b86e594bb31f0f1d9c62ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectDuration: 0.1
+  stats: {fileID: 3941643602715044092}
+  spriteRenderer: {fileID: 7599849413867086393}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2411771482157372459
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +315,88 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8684221719044661672}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6699290861382503011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8173189511765526276}
+  - component: {fileID: 2564471412739254698}
+  - component: {fileID: 3532974171416070089}
+  m_Layer: 2
+  m_Name: Distance Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8173189511765526276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6699290861382503011}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1073159140449005080}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &2564471412739254698
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6699290861382503011}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1011
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 44.47335
+--- !u!114 &3532974171416070089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6699290861382503011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2c9de55198e354419de219d3191758e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClosestPlayer: {fileID: 0}
+  CurrentDistance: 0
 --- !u!1 &7754057447355813648
 GameObject:
   m_ObjectHideFlags: 0

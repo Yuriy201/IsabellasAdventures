@@ -236,6 +236,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7917545902183220251, guid: 7dd9c7c2fce13a04589e98d12c8db95b, type: 3}
+      propertyPath: effectDuration
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5994296345730999461, guid: 7dd9c7c2fce13a04589e98d12c8db95b, type: 3}
     m_RemovedGameObjects: []
@@ -371,6 +375,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectDuration: 0.5
+  spriteRenderer: {fileID: 5884872930729333441}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &7467685016630093517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,5 +479,10 @@ MonoBehaviour:
 --- !u!4 &5753341166650201554 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3832080151167103828, guid: 7dd9c7c2fce13a04589e98d12c8db95b, type: 3}
+  m_PrefabInstance: {fileID: 8861309278216185478}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &5884872930729333441 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3121826969052640327, guid: 7dd9c7c2fce13a04589e98d12c8db95b, type: 3}
   m_PrefabInstance: {fileID: 8861309278216185478}
   m_PrefabAsset: {fileID: 0}

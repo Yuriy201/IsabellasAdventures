@@ -5017,7 +5017,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb216d00fef20f048adab18ea1663ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectDuration: 0.5
+  effectDuration: 0.2
+  spriteRenderer: {fileID: 3121826969052640327}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &8786690287263078676
 Rigidbody2D:
   serializedVersion: 4
@@ -5077,8 +5079,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.23000991, y: -0.6138828}
-  m_Size: {x: 6.880815, y: 14.213217}
+  m_Offset: {x: 0.2300099, y: -0.6138828}
+  m_Size: {x: 6.880815, y: 14.21322}
   m_Direction: 0
 --- !u!95 &732439862640059908
 Animator:

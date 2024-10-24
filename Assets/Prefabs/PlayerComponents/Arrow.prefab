@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3749154208411446004}
   - component: {fileID: 1257795658240209421}
   - component: {fileID: 6279435725631690467}
+  - component: {fileID: -6872118592785677120}
   m_Layer: 10
   m_Name: Arrow
   m_TagString: Untagged
@@ -123,10 +124,10 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 34d9e8fa7c9ab574e8bada96e2b0830e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 985
+    m_Bits: 729
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1032
+    m_Bits: 1288
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -146,7 +147,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -202,7 +203,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647898cba3a0a274bbf06d4772379a9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deccelerationRate: -800
+  stopRotationSqrVelocity: 5
+  rb: {fileID: 6069366975044850073}
+  arrowPickupEnableDelay: 0.5
+  arrowRotation: {fileID: 0}
   arrowPickup: {fileID: 7947514187017011158}
+  _collider: {fileID: 3749154208411446004}
+--- !u!61 &-6872118592785677120
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2745127749481628010}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.06, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8.786667, y: 0.74}
+    newSize: {x: 8.786667, y: 0.74}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 8.95, y: 0.6}
+  m_EdgeRadius: 0
 --- !u!1 &7881681429493643349
 GameObject:
   m_ObjectHideFlags: 0

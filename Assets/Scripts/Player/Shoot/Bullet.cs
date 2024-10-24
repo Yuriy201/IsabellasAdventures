@@ -34,13 +34,11 @@ public class Bullet : MonoBehaviour
 
         if (collision.TryGetComponent(out IDamagable target))
         {
-
             if (!hittedTargets.Contains(target))
             {
                 hittedTargets.Add(target);
 
-                Debug.Log("CAL");
-                OnHit?.Invoke(collision);
+                //OnHit?.Invoke(collision);
                 target.GetDamage(_damage);
                 AudioManager.PlaySound(ClipType.arrowHit);
             }

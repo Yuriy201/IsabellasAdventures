@@ -38,13 +38,13 @@ public class ArrowRotation : MonoBehaviour
         }          
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        canRotate = false;
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    canRotate = false;
+    //}
 
-    private void OnDisable()
-    {
-        canRotate = false;
-    }
+    //private void OnDisable()
+    //{
+    //    canRotate = false;
+    //}
 }

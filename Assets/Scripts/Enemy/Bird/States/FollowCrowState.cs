@@ -15,8 +15,11 @@ namespace Enemy.Bird
         {
             if (_crow.Target == null)
                 _stateMachine.GoTo<PatrolCrowState>();
-            else if (_crow.TouchingTarget != null)
+            else if (_crow._distanceTrigger.CurrentDistance < _crow._attackRadius)
+            {
+                _crow.TouchingTarget = _crow._distanceTrigger.ClosestPlayer;
                 _stateMachine.GoTo<AttackCrowState>();
+            }               
             else
             {
                 _crow.Move(_crow.Target.transform.position, _crow.FollowSpeed);
