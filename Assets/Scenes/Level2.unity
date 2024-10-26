@@ -14916,6 +14916,7 @@ GameObject:
   - component: {fileID: 191379819}
   - component: {fileID: 191379816}
   - component: {fileID: 191379815}
+  - component: {fileID: 191379821}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -14981,7 +14982,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 14
@@ -15051,6 +15052,19 @@ MonoBehaviour:
   keypanel: {fileID: 2031166005}
   potionpanel: {fileID: 1174652036}
   consumablespanel: {fileID: 1083673554}
+--- !u!114 &191379821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191379814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34db1b5999998ca4a99185ed90f1e6ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _PanHelp: {fileID: 0}
 --- !u!1 &197181881
 GameObject:
   m_ObjectHideFlags: 0
@@ -67556,7 +67570,7 @@ PrefabInstance:
       objectReference: {fileID: 1511377157}
     - target: {fileID: 2036010259290523758, guid: 250181ba74c2bc14e82003d6d0063454, type: 3}
       propertyPath: _pages.Array.size
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2036010259290523758, guid: 250181ba74c2bc14e82003d6d0063454, type: 3}
       propertyPath: _pages.Array.data[0]
