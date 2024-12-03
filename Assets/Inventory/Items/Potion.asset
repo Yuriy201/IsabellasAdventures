@@ -15,5 +15,7 @@ MonoBehaviour:
   itemType: 2
   itemName: Potion
   itemPrefab: {fileID: 5698697349266101883, guid: 7054640812e6542c294b2a39a95661e7, type: 3}
-  icon: {fileID: 21300000, guid: 36275de3e5b264985974744f26c9af27, type: 3}
+  icon: {fileID: 21300000, guid: adf66dae34ce94847a4777b960399663, type: 3}
   itemDescription: 
+  isConsumeable: 0
+  changeHealth: 0

@@ -3,59 +3,65 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
-/// IPointerDownHandler - Следит за нажатиями мышки по объекту на котором висит этот скрипт
-/// IPointerUpHandler - Следит за отпусканием мышки по объекту на котором висит этот скрипт
-/// IDragHandler - Следит за тем не водим ли мы нажатую мышку по объекту
 public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     public InventorySlot oldSlot;
+    private RectTransform rectTransform;  // Чтобы избежать многократных вызовов GetComponent
+    private Image itemImage;  // Для работы с изображением предмета
 
     private void Start()
     {
         oldSlot = transform.GetComponentInParent<InventorySlot>();
+        rectTransform = GetComponent<RectTransform>(); // Кешируем компонент для улучшения производительности
+        itemImage = GetComponentInChildren<Image>();  // Получаем изображение предмета
     }
+
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
         if (oldSlot.isEmpty)
             return;
-        GetComponent<RectTransform>().position += new Vector3(eventData.delta.x, eventData.delta.y);
+
+        // Обновляем позицию объекта с учетом абсолютных координат
+        rectTransform.position = eventData.position;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("OnPointerDown");
         if (oldSlot.isEmpty)
             return;
-        //Делаем картинку прозрачнее
-        GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0.75f);
-        // Делаем так чтобы нажатия мышкой не игнорировали эту картинку
-        GetComponentInChildren<Image>().raycastTarget = false;
-        // Делаем наш DraggableObject ребенком InventoryPanel чтобы DraggableObject был над другими слотами инвенторя
+
+        // Делаем картинку прозрачнее (по желанию)
+        itemImage.color = new Color(1, 1, 1, 0.75f);
+
+        // Отключаем raycastTarget только для изображения (чтобы UI элементы не перехватывали события)
+        itemImage.raycastTarget = false;
+
+        // Делаем наш DraggableObject ребенком InventoryPanel, чтобы он был над другими слотами
         transform.SetParent(transform.parent.parent);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("OnPointerUp");
         if (oldSlot.isEmpty)
             return;
-        // Делаем картинку опять не прозрачной
-        GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1f);
-        // И чтобы мышка опять могла ее засечь
-        GetComponentInChildren<Image>().raycastTarget = true;
+
+        // Восстанавливаем нормальную непрозрачность
+        itemImage.color = new Color(1, 1, 1, 1f);
+
+        // Разрешаем мыши взаимодействовать с объектом снова
+        itemImage.raycastTarget = true;
+
+        // Возвращаем объект в родительский слот
         transform.SetParent(oldSlot.transform);
-        transform.position = oldSlot.transform.position;
+        transform.position = oldSlot.transform.position;  // Ставим на место
+
         if (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>() != null)
         {
-            //Перемещаем данные из одного слота в другой
-            Debug.Log("Droping");
+            // Перемещаем данные из одного слота в другой
             ExchangeSlotData(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>());
         }
-
     }
-   
+
     void ExchangeSlotData(InventorySlot newSlot)
     {
         // Временно храним данные newSlot в отдельных переменных
