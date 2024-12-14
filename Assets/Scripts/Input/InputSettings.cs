@@ -209,7 +209,7 @@ public partial class @InputSettings: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a21bf4dd-4de9-4af3-8add-14d998dafe36"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

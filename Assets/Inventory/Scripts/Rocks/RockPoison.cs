@@ -61,7 +61,7 @@ public class RockPoison : MonoBehaviour
 
     private IEnumerator SmoothLift()
     {
-        float targetY = _rockPos.position.y + 3.5f; // Целевая позиция
+        float targetY = _rockPos.position.y + 8.5f; // Целевая позиция
         float duration = 1f; // Длительность анимации
         float elapsedTime = 0f;
 
