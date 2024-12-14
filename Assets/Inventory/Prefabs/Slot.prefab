@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1121962346256351863}
   - component: {fileID: 567034516788487355}
   - component: {fileID: 6056597884201666930}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: DragObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 4511158526464259950}
   - component: {fileID: 5395787656463647905}
   - component: {fileID: 489675623955896359}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 8544296933862753271}
   - component: {fileID: 200801680096068445}
   - component: {fileID: 78174428029453844}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

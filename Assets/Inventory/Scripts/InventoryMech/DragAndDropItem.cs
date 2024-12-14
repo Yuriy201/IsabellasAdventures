@@ -6,14 +6,13 @@ using UnityEngine.UI;
 public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     public InventorySlot oldSlot;
-    private RectTransform rectTransform;  // Чтобы избежать многократных вызовов GetComponent
-    private Image itemImage;  // Для работы с изображением предмета
-
+    private RectTransform rectTransform;
+    private Image itemImage;
     private void Start()
     {
         oldSlot = transform.GetComponentInParent<InventorySlot>();
-        rectTransform = GetComponent<RectTransform>(); // Кешируем компонент для улучшения производительности
-        itemImage = GetComponentInChildren<Image>();  // Получаем изображение предмета
+        rectTransform = GetComponent<RectTransform>();
+        itemImage = GetComponentInChildren<Image>();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -30,13 +29,9 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if (oldSlot.isEmpty)
             return;
 
-        // Делаем картинку прозрачнее (по желанию)
+
         itemImage.color = new Color(1, 1, 1, 0.75f);
-
-        // Отключаем raycastTarget только для изображения (чтобы UI элементы не перехватывали события)
         itemImage.raycastTarget = false;
-
-        // Делаем наш DraggableObject ребенком InventoryPanel, чтобы он был над другими слотами
         transform.SetParent(transform.parent.parent);
     }
 
@@ -45,7 +40,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if (oldSlot.isEmpty)
             return;
 
-        // Восстанавливаем нормальную непрозрачность
+
         itemImage.color = new Color(1, 1, 1, 1f);
 
         // Разрешаем мыши взаимодействовать с объектом снова

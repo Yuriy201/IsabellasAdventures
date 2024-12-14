@@ -5,11 +5,11 @@ using UnityEngine.InputSystem;
 
 public class InventoryManager : MonoBehaviour
 {
-    public Transform InventoryKeyPanel, InventoryPotionPanel, InventoryConsumablesPanel, minislotopen, minislotclosed;
+    public Transform InventoryKeyPanel, InventoryPotionPanel, InventoryConsumablesPanel, minislotopen;
     public List<InventorySlot> KeySlots = new List<InventorySlot>();
     public List<InventorySlot> PotionSlots = new List<InventorySlot>();
     public List<InventorySlot> ConsumablesSlots = new List<InventorySlot>();
-    [SerializeField] GameObject pan, menu, key, potion, cons;
+    [SerializeField] GameObject pan, menu, key, potion, cons, minislotclosed;
     public bool isOpen = false;
     [SerializeField] private GameObject _minislotpanel;
 
@@ -39,33 +39,41 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void closepan()
+    public void TogglePan(bool isOpen)
     {
-        pan.SetActive(false);
-        menu.SetActive(true);
-        Time.timeScale = 1f;
-    }
-    public void openPan()
-    {
-        pan.SetActive(true);
-        menu.SetActive(false);
-        Time.timeScale = 0f;
+        pan.SetActive(isOpen);
+        menu.SetActive(!isOpen);
+        Time.timeScale = isOpen ? 0f : 1f;
     }
     void Update()
     {
-        if (menu.activeSelf == true)
+        if (menu.activeSelf)
+        {
             pan.SetActive(false);
+        }
+
+       
         if (key.activeSelf)
         {
             potion.SetActive(false);
             cons.SetActive(false);
         }
-        if (pan.activeSelf)
-            _minislotpanel.transform.position = minislotopen.position;
-        else
-            _minislotpanel.transform.position = minislotclosed.position;
+        else if (potion.activeSelf)
+        {
+            key.SetActive(false);
+            cons.SetActive(false);
+        }
+        else if (cons.activeSelf)
+        {
+            key.SetActive(false);
+            potion.SetActive(false);
+        }
 
+        
+        _minislotpanel.transform.position = pan.activeSelf ? minislotopen.position : minislotclosed.transform.position;
+        minislotclosed.SetActive(!pan.activeSelf);
     }
+
 
     public void AddItemKey(ItemScriptableObject _item)
     {
@@ -110,13 +118,38 @@ public class InventoryManager : MonoBehaviour
     {
         foreach (InventorySlot slot in KeySlots)
         {
-            if (slot.isEmpty == false)
+            if (slot.isEmpty == false && slot.item == _item)
             {
                 slot.item = null;
                 slot.isEmpty = true;
                 slot.DeleteIcon();
-                break;
+                return;
             }
         }
+
+
+        foreach (InventorySlot slot in PotionSlots)
+        {
+            if (slot.isEmpty == false && slot.item == _item)
+            {
+                slot.item = null;
+                slot.isEmpty = true;
+                slot.DeleteIcon();
+                return;
+            }
+        }
+
+        foreach (InventorySlot slot in ConsumablesSlots)
+        {
+            if (slot.isEmpty == false && slot.item == _item)
+            {
+                slot.item = null;
+                slot.isEmpty = true;
+                slot.DeleteIcon();
+                return;
+            }
+        }
+
     }
+
 }
