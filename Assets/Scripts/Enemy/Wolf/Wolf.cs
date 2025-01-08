@@ -40,6 +40,12 @@ namespace Enemy.Wolf
         private PlayerStats _playerStats;
         private int rsLayer;
 
+        //[SerializeField] private EnemysHealthBar healthBarPrefab;
+        //private EnemysHealthBar healthBar;
+        [SerializeField] private Vector3 offset;
+
+        private Transform target;
+
         private enum WolfState
         {
             Patrol,
@@ -78,10 +84,15 @@ namespace Enemy.Wolf
         {
             DistanceTrigger.OnPlayerChanged += (player) => Target = player;
             rsLayer = LayerMask.NameToLayer("RS");
+            //SethealthBarPrefab(healthBarPrefab);
         }
 
         private void Start()
         {
+            Health = MaxHealth;
+            //var healthBarInstance = Instantiate(healthBarPrefab, transform.position, Quaternion.identity);
+           // healthBarInstance.Initialize(transform, MaxHealth);
+           // healthBarPrefab = healthBarInstance;
             EnterPatrol();
         }
 
@@ -137,6 +148,19 @@ namespace Enemy.Wolf
             AchievementManager.Instance?.RegisterWolfKill();
         }
 
+        //public void TakeDamage(float damage)
+        //{
+        //    Debug.Log("пиздец");
+        //    Health -= damage;
+        //    healthBarPrefab.UpdateHealth(Health);
+            
+        //    if (Health <= 0)
+        //    {
+        //        Die();
+        //    }
+        //}
+
+
         private void OnEnable()
         {
             Died += AddExp;
@@ -170,6 +194,7 @@ namespace Enemy.Wolf
             Debug.Log("<color=green>Enter in Patrol</color>");
         }
 
+       
         public void OperatePatrol()
         {
             if (Target != null) return;
@@ -222,7 +247,10 @@ namespace Enemy.Wolf
                 }
             }
         }
-
+        private void Update()
+        {
+            healthSlider.value = Health/100;
+        }
         // Follow
         public void EnterFollow()
         {
