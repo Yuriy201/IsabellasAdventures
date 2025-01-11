@@ -15,5 +15,7 @@ MonoBehaviour:
   itemType: 1
   itemName: Gold Key
   itemPrefab: {fileID: 1435969580870720233, guid: 035fd0f5470aa4de698edda90b87b0a9, type: 3}
-  icon: {fileID: 21300000, guid: 9a1f64b7a82174d8c915f141761c373b, type: 3}
+  icon: {fileID: 21300000, guid: 530d2fade41bd449aadf185d8934f10c, type: 3}
   itemDescription: 
+  isConsumeable: 0
+  changeHealth: 0
