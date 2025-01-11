@@ -47,6 +47,7 @@ public class RollingStone : MonoBehaviour
     private void Awake()
     {
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("RS"), LayerMask.NameToLayer("Projectile"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("RS"), LayerMask.NameToLayer("FlyingPlatform"), true);
     }
 
     void StartRolling()
