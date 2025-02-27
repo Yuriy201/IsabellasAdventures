@@ -34512,6 +34512,10 @@ PrefabInstance:
       propertyPath: wolfSoundManager
       value: 
       objectReference: {fileID: 1204668210}
+    - target: {fileID: 8660554472604353588, guid: aaa1bfd4beb6f2943a48b29bc3a646a7, type: 3}
+      propertyPath: <MaxHealth>k__BackingField
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

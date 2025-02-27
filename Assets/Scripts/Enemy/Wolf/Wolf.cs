@@ -65,6 +65,7 @@ namespace Enemy.Wolf
 
         // Attack
         private float attackCdTimer;
+        private bool hasAttacked = false;
 
         [Inject]
         private void Inject(PlayerStats stats)
@@ -312,13 +313,26 @@ namespace Enemy.Wolf
 
         private void Attack()
         {
+            Debug.Log(Damage);
+            if (hasAttacked) return;
+            hasAttacked = true;
+
             var hits = Physics2D.BoxCastAll(Rigidbody2D.position + Vector2.Scale(AttackAreaOffset, transform.right), AttackArea, 0, transform.right, 0, AttackLayers);
 
             foreach (var player in hits)
             {
                 if (player.transform != null)
+                {
                     player.transform.GetComponent<PlayerController>().Stats.RemoveHealth(Damage);
+                }
             }
+
+            Invoke(nameof(ResetAttack), AttackCd);
+        }
+
+        private void ResetAttack()
+        {
+            hasAttacked = false;
         }
 
         public int GetDamageValue() => Damage;

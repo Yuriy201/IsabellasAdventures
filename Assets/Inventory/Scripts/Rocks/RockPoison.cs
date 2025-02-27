@@ -42,6 +42,11 @@ public class RockPoison : MonoBehaviour
         toUsePoison();
     }
 
+    private void Awake()
+    {
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("FlyingPlatform"), LayerMask.NameToLayer("RS"), true);
+    }
+
     private void toUsePoison()
     {
         if (_onTrig && _qsm.isPotionInQuickSlot && !_actionPerformed)
